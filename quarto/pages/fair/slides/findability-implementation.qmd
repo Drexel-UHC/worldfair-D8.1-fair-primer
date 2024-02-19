@@ -1,0 +1,65 @@
+---
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+---
+
+
+##   Baseline infrastructure 
+
+::: columns
+::: {.column width="40%"}
+![](images/improving0.png)
+:::
+
+::: {.column width="60%"}
+:::{.callout-warning}
+## Findable - Challenges
+- lack of key research oriented metadata (units, interpretations, ETC) 
+- lack of project management metadata (variable domain/subdomain, censor status)
+- metadata may be in machine unfriendly formats (pdf, word, doc)
+- complex metadata that vary within variable by country, year or strata (mortality censorship by certain countries)
+- No established way to link complex metadata to data
+:::
+:::
+:::
+
+
+## Step 1: Standardization (F1,F2, F3) {.smaller}
+
+::: columns
+::: {.column width="70%"}
+![](images/improving1.png)
+:::
+
+::: {.column width="30%"}
+- enforce strict variable naming convention (**F1.**)
+- create more comprehensive codebooks (**F2.**)
+- link codebooks to datasets that capture by country, by year, by strata complexities (**F3.**)
+:::
+:::
+
+
+## Step 2: User Interface (F4) {.smaller}
+
+::: columns
+::: {.column width="70%"}
+![](images/improving2.png)
+:::
+
+::: {.column width="30%"}
+- Compile standardized data into a single database
+- Create a user interface for users to interact with our SALURBAL database (**F4**)
+:::
+:::
+
+ 
+## Improve Findability - action items
+
+- **(F1)** enforce unique variable level identifiers
+- **(F2)** create comprehensive codebooks which contain additional research focused and project related metadata
+- **(F3)** link complex metadata to data via identifiers, country and year
+- **(F4)** web application to search and access standardize data/codebooks

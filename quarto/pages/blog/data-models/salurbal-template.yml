@@ -1,0 +1,44 @@
+# data model segments
+
+- segment: &metadata Metadata
+- segment: &data Data
+ 
+
+# Tables and columns
+
+- table: Codebook
+  segment: *metadata
+  display: accent6
+  columns:
+    var_name:   
+    dataset_id:
+    domain: 
+    subdomain: 
+    var_label: 
+    var_def: 
+    value_type:
+    units:
+    coding:
+    strata_description:
+    source:
+    dataset_notes:
+    limitations:
+    acknowledgements:
+    file_data:
+    file_codebook:
+    longitudinal:
+    public:
+    censor:
+    license:
+    fair:
+- table: Data
+  display: accent2
+  columns:
+    var_name: 
+    var_name_raw:  
+    iso2:  
+    strata_id: 
+    geo:   
+    salid1:   
+    year:   
+    value:

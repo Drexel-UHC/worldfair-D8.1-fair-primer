@@ -1,0 +1,8 @@
+---
+title: "Get Started"
+subtitle: "Core values and foundamental skills"
+pagetitle: "Analytics Corner - Get Started"
+---
+
+
+TBD

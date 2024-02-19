@@ -1,0 +1,43 @@
+---
+title: "Reusabile"
+subtitle: "The ultimate goal of FAIR is to optimise the reuse of data. To achieve this, metadata and data should be well-described so that they can be replicated and/or combined in different settings."
+pagetitle: "SALURBAL - Reusable"
+---
+
+
+
+## R1
+
+>R1. (Meta)data are richly described with a plurality of accurate and relevant
+attributes.
+
+## R1.1
+
+>   R1.1. (Meta)data are released with a clear and accessible data usage license.
+
+Our funders mandate that all research papers fall under a CC BY 4.0 license. Most likely publicly available data will be under the same license, pending confirmation by Kari and Fer. 
+
+## R1.2
+
+>   R1.2. (Meta)data are associated with detailed provenance.
+
+TBD
+
+
+## R1.3
+
+>   R1.3. (Meta)data meet domain-relevant community standards.
+
+
+This field is really community specific. What are the metadata requirements for SALURBAL?  From a machine-actionability perspective, the minimal metadata requirements are detailed in [F2](findable-f2.qmd). These fields fall into the following categories:
+
+
+<ul>
+  <li><span style="background-color:#f4d7ad">**Identifiers**</span>: columns responsible for linkage of data and metadata  </li>
+
+  <li><span style="background-color:#a3ccdf">**Categorization**</span>: columns responsible for categorising variables into domain or subdomain </li>
+
+  <li><span style="background-color:#c5fbc5">**Details**:</span> research related variables details, this will be useful for users who want to reuse our data/codebooks.</li>
+    <li><span style="background-color:#ebd7f3">**Internal**</span>: internal project related  metadata</li>
+</ul>
+

@@ -1,0 +1,57 @@
+---
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+---
+
+## SALURBAL: goal
+
+![](images/challenges-fig1-goal.png)
+
+## SALURBAL: what initially happened {.smaller}
+
+::: columns
+::: {.column width="70%"}
+![](images/challenges-fig2-legacy1.png){width="800"}
+:::
+
+::: {.column width="30%"}
+-   **Groups work independently**
+-   **Lack of strict standards across groups**: variable naming conventions, codebook content/format
+:::
+:::
+
+## SALURBAL: what initially happened {.smaller}
+
+::: columns
+::: {.column width="70%"}
+![](images/challenges-fig2-legacy2.png){width="800"}
+:::
+
+::: {.column width="30%"}
+-   Groups work independently
+-   Lack of strict standards across groups: variable naming conventions, codebook content/format
+-   **Then outputs were stored in separate folders**
+:::
+:::
+
+
+## 🤕 #1 Low **F**indability {.smaller}
+
+![](images/challenges-fig2-sad1.png){width="100%"}
+
+## 🤕 #2 Access is human intensive  
+
+![](images/challenges-fig2-sad2a.png){width="100%"}
+
+## 🤕 #2 Access is human intensive 
+
+![](images/challenges-fig2-sad2b.png){width="100%"}
+
+## 🤕 #3 No interoperablity (big picture)
+
+![](images/challenges-fig2-sad3.png){width="100%"}
+

@@ -1,0 +1,197 @@
+---
+title: "Step 2: summarize strata information"
+subtitle: "If your data is stratified you will need prepare identifiers for each strata level"
+pagetitle: "Renovation - Step 2"
+execute: 
+  echo: false
+  warning: false
+  error: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+## Data prep
+library(tidyverse)
+library(reactable)
+library(shiny)
+library(htmltools)
+
+load("../fair/files/quarto-f2-objects.rdata")
+load("../fair/files/quarto-f3-objects.rdata")
+load("../fair/files/renovation-objects.rdata")
+
+## Reactable theming
+salurbal_reactable = reactableTheme(
+  color = "#5e666d",
+  backgroundColor = "#e6ebee",
+  borderColor = "black",
+  stripedColor = "black",
+  highlightColor = "bfc5c9",
+  headerStyle = list(
+    fontWeight = "bolder",
+    fontSize = 'larger',
+    borderColor = "#555"
+  ),
+  searchInputStyle = list(width = "98%",
+                          backgroundColor = "#e6ebee",
+                          margin = "auto",
+                          marginTop = "3px",
+                          marginBottom = "3px")
+)
+
+## Row styling 
+get_row_color = function(description_tmp){
+  colorTmp = case_when(
+    str_detect(description_tmp,"IDENTIFIERS")~"#f4d7ad",
+    str_detect(description_tmp,"STRATA DETAILS")~"#b3e9d5",
+    str_detect(description_tmp,"CATEGORIZATION")~"#a3ccdf",
+    str_detect(description_tmp,"INTERNAL")~"#ebd7f3",
+    str_detect(description_tmp,"DETAILS")~"#c5fbc5",
+    TRUE~"#e6ebee"
+  )
+}
+
+## Local objects
+strata_vars = c('var_name','strata_1_name','strata_1_value','strata_2_name','strata_2_value')
+```
+
+
+
+:::{.callout-important}
+If your data is not stratified you can skip this step and move on to Step 3. 
+
+Step 2 template:  <a href="../fair/files/strata.csv" download>📥 strata.csv</a>
+:::
+
+
+#  Deliverable: `strata.csv`
+
+**`strata.csv` is a table that contains all possible strata_id for each variable. This will organize strata information 'long' meaning if a variable is stratified there should be multiple rows per variable. It should contain the following columns **  
+
+- `var_name`
+- `strata_1_name`: name of the first strata. Should have no spaces and no underdashes '_' all text should be in Pascal case.
+- `strata_1_raw` raw value of the first strata. Should have no spaces and no underdashes '_' all text should be in Pascal case.
+- `strata_1_value` recoded value  of the first strata (for interpretability). Should have no spaces and no underdashes '_' all text should be in Pascal case.
+- `strata_2_raw` raw value of the second strata. Should have no spaces and no underdashes '_' all text should be in Pascal case.
+- `strata_2_name`  recoded value  of the second strata (for interpretability). Should have no spaces and no underdashes '_' all text should be in Pascal case.
+- `strata_2_value` value of the second strata. Should have no spaces and no underdashes '_' all text should be in Pascal case.
+
+
+::: {.column-screen-inset-right}
+::: {.panel-tabset}
+
+##  Air Pollution Dataset (APS)
+
+
+
+
+```{r}
+
+htmltools::browsable(
+  tagList(
+    tags$button("Download strata.csv for APS", onclick = "Reactable.downloadDataCSV('step2_aps')"),
+    step2_aps  %>% 
+      mutate(strata_1_raw = NA,
+             strata_2_raw = NA) %>%
+      select(var_name, 
+             strata_1_name, strata_1_raw, strata_1_value, 
+             strata_2_name, strata_2_raw, strata_2_value) %>% 
+      reactable(
+        elementId = "step2_aps",
+        style = list(fontFamily = "Work Sans, sans-serif", fontSize = "0.7rem"),
+        pagination = FALSE, 
+        highlight = TRUE,  
+        sortable = F,
+        height = 500,
+        defaultPageSize = 20,
+        defaultColDef = colDef(minWidth = 150),
+        columns = list(
+          field = colDef(
+            width  = 150
+          )
+        ),
+        theme = salurbal_reactable
+      )
+    
+  )
+)
+
+```
+
+## SEC Census dataset (CNS) 
+
+
+```{r}
+
+htmltools::browsable(
+  tagList(
+    tags$button("Download strata.csv for CNS", onclick = "Reactable.downloadDataCSV('step2_cns')"),
+    
+    step2_cns   %>% 
+      mutate(strata_1_raw = strata_1_value %>% recode("Overall"="9",
+                                                      "Male"="1",
+                                                      "Female"="0",
+                                                      "Ratio"= "ratio"),
+             strata_2_raw = NA) %>%
+      select(var_name, 
+             strata_1_name, strata_1_raw, strata_1_value, 
+             strata_2_name, strata_2_raw, strata_2_value) %>% 
+      reactable(
+        elementId = "step2_cns",
+        style = list(fontFamily = "Work Sans, sans-serif", fontSize = "0.7rem"),
+        pagination = FALSE, 
+        highlight = TRUE,  
+        sortable = F,
+        height = 500,
+        defaultPageSize = 20,
+        defaultColDef = colDef(minWidth = 150),
+        columns = list(
+          field = colDef(
+            width  = 150
+          )
+        ),
+        theme = salurbal_reactable
+      )
+    
+    
+  )
+)
+```
+
+## Health Survey (SVY) 
+
+```{r}
+
+htmltools::browsable(
+  tagList(
+    tags$button("Download strata.csv for SVY", onclick = "Reactable.downloadDataCSV('step2_svy')"),
+    step2_svy  %>% 
+      mutate(strata_1_raw = strata_1_value %>% recode("Overall"="9",
+                                                      "Male"="1",
+                                                      "Female"="0"),
+             strata_2_raw = strata_2_value) %>%
+      select(var_name, 
+             strata_1_name, strata_1_raw, strata_1_value, 
+             strata_2_name, strata_2_raw, strata_2_value) %>% 
+      reactable(
+        elementId = "step2_svy",
+        style = list(fontFamily = "Work Sans, sans-serif", fontSize = "0.7rem"),
+        pagination = FALSE, 
+        highlight = TRUE,  
+        sortable = F,
+        height = 500,
+        defaultPageSize = 20,
+        defaultColDef = colDef(minWidth = 150),
+        columns = list(
+          field = colDef(
+            width  = 150
+          )
+        ),
+        theme = salurbal_reactable
+      )
+  ))
+```
+
+:::
+:::

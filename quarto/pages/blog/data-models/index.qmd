@@ -1,0 +1,179 @@
+---
+title: "Structured SALURBAL Data/Metadata: a primer "
+subtitle: "This post provides a primer on the SALURBAL data model and how we go from an unstructured collection of data/metadata to a structured database."
+author: "Ran Li"
+date: "2023-01-25" 
+editor_options: 
+  chunk_output_type: console
+format:
+  html: 
+    code-tools: true
+    code-fold: true
+    df-print: kable
+execute: 
+  warning: false
+---
+
+# SALURBAL Data
+
+For us the fundamental data unit is a single data point. In this regard we store SALURBAL data as a data frame in adherence with [tidy data principles](https://drexel-uhc.github.io/salurbal-fair-renovations/pages/blog/tidy-data/):
+
+1. Each characteristic of the data point must have its own column
+2. Each data point must have its own row
+3. Each value must hvae its own cell
+
+
+Below is an example of tidy SALURBAL data. 
+
+```{r}
+library(datamodelr)
+library(tidyverse)
+library(knitr)
+
+load("C:\\Users\\ranli\\Desktop\\Git local\\SALURBAL Dashboard Portal\\data-pipeline\\clean\\cleaned_datasets.rdata")
+
+df_data = cleaned_datasets%>% 
+  select(var_name,
+         strata_id = var_name_nested,
+         salid = salid1,
+         year,
+         value) %>% 
+  mutate(i = row_number()) %>% 
+  # sample_n(4)
+  slice(183204,256165,59134,145255)  %>% 
+  select(-i) %>% 
+  mutate(strata_id = ifelse(strata_id == var_name,NA, strata_id))
+df_data
+```
+
+
+The table above is a simplified example of tidy SALURBAL data. For each of the four data points we have a unique variable identifier `var_name`, population strata information `strata_id`, salurbal id `salid`, year of data point `year` and the `value` of the data point. 
+
+Looking across the first row. We can see the variable is `PRJPOP_M`, is not stratified, has SALURBAL ID of `562839`, is for the year `2009` and has a value of `878633`. 
+
+Each row is called an observation aka a single SALURBAL data point. Each column is an attribute of the specific data point aka observation. Each cell is considered a value of a attribute/column combination.
+
+In other words. 
+- Each observation is a SALURBAL data point. 
+- Observations are represented as rows.
+- Attributes of each observation are represented as columns. 
+- There is exactly one type of observational unit per table.
+
+A dataset is a collection of values. Each value below to both a attribute and observation. A variable contains all values that measure the same attribute across units. An observation contains all values measured onet he same unit across attributes.  
+
+**Now that we have this datastructure, we need to link metadata to these data points. SALURBAL metadata is stored within a relational database schema**
+
+# Intro to relational database  
+
+
+A relational database is just a collection of flat files (tables) that have relationships with each other. There are two basic building blocks to a relational database: **tables** and **fields**.Tables have fields (aka columns). These fields have relationship to fields in other tables. How do we show these relationships. So how do we show that?
+
+A nice simple way of doing this is to take each table and make a rectangle out of it, listing all the fields we know about. 
+
+For example the SALURBAL data table and a codebook table can be represented as:
+
+```{r}
+#| fig.height=4.5
+dm_read_yaml("salurbal-template.yml") %>% 
+  dm_create_graph(rankdir = "TB") %>% 
+  dm_render_graph()
+```
+
+
+**How do we represent the relationship between these two tables? In come primary keys and foreign keys.**
+
+-   **Primary key (underlined)** is a unique identifier for each entity (e.g. student or class) in a table. It is used to uniquely identify each record in the table and to establish relationships with other tables.
+-   **Foreign key (labeled with ~)** is a field in a table that references the primary key of another table. It is used to establish a link between data in two tables and to enforce referential integrity. A foreign key in one table corresponds to the primary key of another table, creating a relationship between the two tables.
+
+**We can use an metadata schematic aka schema aka entity-relationship (ER) diagram to show the relationship between the tables in our database.** 
+
+
+
+# SALURBAL Metadata Schemas
+
+For SALURBAL, during this renovation process we have found that the metadata availability and the relationship of the metadata to our data varies depending on the dataset. During the renovation process we capture this relationship in a CSV table called linkage.csv. 
+
+Below are some examples of the types of relationships we have encountered; both schematics and linkage.csv is used to shown these relationships. 
+
+## APSL1AD
+
+The Air Pollution dataset APSL1AD  is an example of a simple metadata to data relationship. The schema and linkage.csv are displayed here; interpretations of the schema can be found below. 
+
+::: {.panel-tabset}
+
+## Schema
+
+```{r}
+#| fig.height=4.5
+dm_read_yaml("salurbal-aps.yml") %>% 
+  dm_create_graph(rankdir = "LR") %>% 
+  dm_render_graph()
+```
+
+## linkage.csv
+
+```{r}
+read.csv("https://raw.githubusercontent.com/Drexel-UHC/salurbal-fair-renovations/main/datasets/APSL1AD/3-linkage.csv") %>% 
+  as_tibble() %>% 
+  replace(is.na(.), "") %>% 
+  kable(align = 'lcccc')
+```
+
+:::
+
+
+#### Data
+
+Every row in our Data table is a unique SALURBAL data point. This unique data point can be identified by using a combination of primary keys which are underlined. 
+
+
+#### Metadata
+
+We only have one type of linkage in this dataset. All our metadata fields can be linked by the field `var_name`; so we only have one metadata table  `codebook_by_var`. 
+
+- `codebook_by_var.var_name` is a primary key because every observation/row in this table will have a different `var_name`. This primary key is underlined. 
+- `codebook_by_var.var_name` is a foreign key because it is a field used to establish a link to a primary key within our Data table. This foreign key is labeled with a ~. 
+
+## LEMEDIAN
+
+The Life Expectancy dataset (LEMEDIAN)  is an example of a slightly more complex metadata to data relationship. The schema and linkage.csv are displayed here; interpretations of the schema can be found below. 
+
+::: {.panel-tabset}
+
+## Schema
+
+```{r}
+#| fig.height=6
+dm_read_yaml("salurbal-lemedian.yml") %>% 
+  dm_create_graph(rankdir = "LR") %>% 
+  dm_render_graph() 
+```
+
+## linkage.csv
+
+```{r}
+read.csv("https://raw.githubusercontent.com/Drexel-UHC/salurbal-fair-renovations/main/datasets/LEMEDIAN_L1/3-linkage.csv") %>% 
+  as_tibble() %>% 
+  mutate(field = field %>% str_remove_all('\\t')) %>% 
+  mutate_all(as.character) %>% 
+  replace(is.na(.), "") %>% 
+  kable(align = 'lcccc')
+```
+
+:::
+
+
+
+#### Data
+
+Every row in our Data table is a unique SALURBAL data point. This unique data point can be identified by using a combination of primary keys which are underlined. 
+
+Note that the original data CSV file for LEMEDIAN is cross sectional and does not include year information. So in this case, year is going actually a piece of metadata we bring in linked by var_name and iso2. 
+
+#### Metadata
+
+We have two types of linkage in this dataset. So we have two metadata tables  `codebook_by_var` and `codebook_by_var_iso2`.
+
+
+- `codebook_by_var.var_name` is a **primary key (underlined)** because every observation/row in this table will have a different `var_name`. It is also a **foreign key (~)** because it is a field used to establish a link to a primary key within our Data table.
+- `codebook_by_var_iso2.var_name` and `codebook_by_var_iso2.iso2` are **primary keys (underlined)** because there be one and only one row for each combination of iso2 and var_name. They are also a **foreign key (~)** because we will use them to establish a link to a primary key within our Data table.

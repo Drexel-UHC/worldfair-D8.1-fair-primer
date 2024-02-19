@@ -1,0 +1,38 @@
+---
+pagetitle: "SALURBAL - Documentation"
+page-layout: custom
+section-divs: false
+toc: false
+css: index.css
+---
+ 
+::: {.hero-banner}    
+  
+<!-- ::: {.hero-image .hero-image-left} -->
+<!-- ![](images/hero-hex-2.png){fig-alt="hexagon background"} -->
+<!-- ::: -->
+
+::: {.content-block}
+
+# SALURBAL Data Portal Documentation
+
+### This site documents the SALURBAL portal initiative within the context of FAIR data principles 
+
+- Document and justify new data and codebook standards
+- Increase transparency of these standards for future datasets/codebooks
+- Provide detailed instructions on how to renovate legacy SALURBAL datasets/codebooks
+- FAIR Implementation Profile for WP08
+- Report on standardization/database progress
+
+::: {.hero-buttons}
+[FAIR Implementation](pages/fair/){.btn-action .btn .btn-info .btn-lg role="button"}
+[Renovation](pages/manuals/){.btn-action .btn .btn-warning .btn-lg role="button"}
+::: 
+
+:::
+
+<!-- ::: {.hero-image .hero-image-right} -->
+<!-- ![](images/hero-hex-2.png){fig-alt="hexagon background"}  -->
+<!-- ::: -->
+
+:::

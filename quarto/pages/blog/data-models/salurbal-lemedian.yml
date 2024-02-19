@@ -1,0 +1,50 @@
+# data model segments
+
+- segment: &metadata Metadata
+- segment: &data Data
+ 
+
+# Tables and columns
+
+- table: codebook_by_var
+  segment: *metadata
+  display: accent6
+  columns:
+    var_name:   {key: yes, ref: Data}
+    dataset_id:
+    domain: 
+    subdomain: 
+    var_label: 
+    var_def: 
+    value_type:
+    units:
+    coding:
+    strata_description:
+    dataset_notes:
+    limitations:
+    acknowledgements:
+    file_data:
+    file_codebook:
+    longitudinal:
+    censor:
+    license:
+    fair:
+- table: codebook_by_var_iso2
+  segment: *metadata
+  display: accent6
+  columns:
+    var_name:   {key: yes, ref: Data}
+    iso2: {key: yes, ref: Data}
+    year:
+    source:
+    public:
+- table: Data
+  display: accent2
+  columns:
+    var_name: {key: yes}
+    var_name_raw:  {key: yes}
+    iso2:  {key: yes}
+    strata_id: {key: yes}
+    geo:   {key: yes}
+    salid1:   {key: yes}
+    value:

@@ -1,0 +1,206 @@
+---
+title: "Step 3: evaluate metadata linkage"
+subtitle: "The pairing between variable and metadata is not always one to one. For each variable we need to specify where each piece of metadata comes from."
+pagetitle: "Renovation - Step 3"
+execute: 
+  echo: false
+  warning: false
+  error: false
+editor_options: 
+  chunk_output_type: console
+---
+ 
+```{r}
+## Data prep
+library(tidyverse)
+library(reactable)
+library(shiny)
+
+load("../fair/files/quarto-f2-objects.rdata")
+load("../fair/files/quarto-f3-objects.rdata")
+
+## Reactable theming
+salurbal_reactable = reactableTheme(
+  color = "#5e666d",
+  backgroundColor = "#e6ebee",
+  borderColor = "black",
+  stripedColor = "black",
+  highlightColor = "bfc5c9",
+  headerStyle = list(
+    fontWeight = "bolder",
+    fontSize = 'larger',
+    borderColor = "#555"
+  ),
+  searchInputStyle = list(width = "98%",
+                          backgroundColor = "#e6ebee",
+                          margin = "auto",
+                          marginTop = "3px",
+                          marginBottom = "3px")
+)
+
+## Row styling 
+get_row_color = function(description_tmp){
+  colorTmp = case_when(
+    str_detect(description_tmp,"IDENTIFIERS")~"#f4d7ad",
+    str_detect(description_tmp,"STRATA DETAILS")~"#b3e9d5",
+    str_detect(description_tmp,"CATEGORIZATION")~"#a3ccdf",
+    str_detect(description_tmp,"INTERNAL")~"#ebd7f3",
+    str_detect(description_tmp,"DETAILS")~"#c5fbc5",
+    TRUE~"#e6ebee"
+  )
+}
+## Local objects
+strata_vars = c('var_name','strata_1_name','strata_1_value','strata_2_name','strata_2_value')
+```
+
+:::{.callout-important}
+
+## Things you will need 
+
+- **Step 3 template**:  <a href="../fair/files/linkage.csv" download>📥 linkage.csv</a>
+- **[Codebook field definitions](../fair/findable-f2.qmd#codebook-codebook)**
+:::
+
+# Description
+
+The goal is to evaluate what type of linkage works best for each metadata field. Details about this step can be found in the documentation for the [F3 principle](../fair/findable-f3.qmd). 
+
+
+**`linkage.csv` is a table that describes how the linkage for each of the codebook fields. Starting with this template (<a href="../fair/files/linkage.csv" download>📥 linkage.csv</a>), for each codebook field (row) you should write a value of '1' in the column cells if any variable falls under that linkage type.**
+
+The interactive table below represents how you should fill out for the dataset you are try to process.
+
+::: {.column-screen-inset-right}
+
+```{r}
+read_csv("../fair/files/ex_APS_codebook_evaluation.csv") %>% 
+  mutate(by_var = NA) %>% 
+  reactable(
+    pagination = FALSE, 
+    highlight = TRUE,  
+    sortable = F,
+    height = 500,
+    defaultPageSize = 20,
+    defaultColDef = colDef(width = 150),
+    columns = list(
+      field = colDef(
+        width  = 150
+      ),
+      by_var = colDef( 
+        sortable = FALSE,
+        cell = function() checkboxInput('', '',value = T )
+      ),
+      by_var_iso2 = colDef( 
+        sortable = FALSE,
+        cell = function() checkboxInput('', '', )
+      ),
+      by_var_year = colDef( 
+        sortable = FALSE,
+        cell = function() checkboxInput('', '', )
+      ),
+      by_var_strata = colDef( 
+        sortable = FALSE,
+        cell = function() checkboxInput('', '', )
+      )
+    ),
+   
+    theme = salurbal_reactable
+  )
+```
+
+:::
+
+
+# Deliverable: `linkage.csv`
+
+:::{.callout-important}
+Step 3 template:  <a href="../fair/files/linkage.csv" download>📥 linkage.csv</a>
+:::
+
+
+::: {.panel-tabset}
+
+
+##  Air Pollution Dataset (APS)
+
+All codebook fields are linkable only by_variable for the APS dataset so we for all codebook fields we only check (fill out the cell as '1') the by_var column. 
+
+```{r}
+df1 = read_csv("../fair/files/ex_APS_codebook_evaluation.csv")
+
+htmltools::browsable(
+  tagList(
+    tags$button("Download linkage.csv for APS", onclick = "Reactable.downloadDataCSV('step3_aps')"),
+df1  %>% 
+  reactable(
+         elementId = "step3_aps",
+
+    pagination = FALSE, 
+    highlight = TRUE,  
+    sortable = F,
+    height = 500,
+    defaultPageSize = 20,
+    defaultColDef = colDef(width = 150),
+    theme = salurbal_reactable
+  )
+))
+```
+
+## SEC Census dataset (CNS) 
+
+Most of the codebook fields in the CNS dataset are linkable only be variable except for:
+
+- `source` vary by `var_name`+`iso2` for some variables but other do not for other variables; so this row has both `by_var` and `by_var_iso2` filled out. 
+
+```{r}
+df2 = read_csv("../fair/files/ex_CNS_codebook_evaluation.csv")
+
+htmltools::browsable(
+  tagList(
+    tags$button("Download linkage.csv for CNS", onclick = "Reactable.downloadDataCSV('step3_cns')"),
+
+      
+
+df2  %>% 
+  reactable(
+       elementId = "step3_cns",
+       pagination = FALSE, 
+    highlight = TRUE,  
+    sortable = F,
+    height = 500,
+    defaultPageSize = 20,
+    defaultColDef = colDef(width = 150),
+    theme = salurbal_reactable
+  )
+))
+```
+
+## Health Survey (SVY) 
+
+Most of the codebook fields in the SVY dataset are linkable only be variable except for:
+
+- `var_def` vary by `var_name`+`strata` for some variables but other do not for other variables; so this row has both `by_var` and `by_var_strata` filled out. 
+- `source` vary by `var_name`+`iso2` for some variables but other do not for other variables; so this row has both `by_var` and `by_var_iso2` filled out. 
+
+```{r}
+df3 = read_csv("../fair/files/ex_SVY_codebook_evaluation.csv")
+
+htmltools::browsable(
+  tagList(
+    tags$button("Download linkage.csv for SVY", onclick = "Reactable.downloadDataCSV('step3_svy')"),
+
+      df3  %>% 
+  reactable(
+    pagination = FALSE, 
+          elementId = "step3_svy",
+ highlight = TRUE,  
+    sortable = F,
+    height = 500,
+    defaultPageSize = 20,
+    defaultColDef = colDef(width = 150),
+    theme = salurbal_reactable
+  )
+  ))
+```
+
+:::

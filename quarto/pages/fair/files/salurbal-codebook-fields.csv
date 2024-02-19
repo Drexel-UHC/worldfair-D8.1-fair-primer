@@ -1,0 +1,40 @@
+field,description,coding
+var_name,(IDENTIFIERS) SALURBAL wide unique variable identifier,Character- all upper case. No spaces or special characters.
+dataset_id,(IDENTIFIERS) dataset id,"character. Dataset id is operationalized by the origianl file name. For example, for the dataset from APSL1AD_02152022.csv the dataset id should be APS. See examples in the next tab. Formatting:  No spaces; use underdash to separate words."
+iso2,(IDENTIFIERS) Optional identifier only used for metadata that varies by country. iso2,Character- all lower case. For metadata that differ by country please organize enter a row for each country or groups of countries. You can write single iso2 or a string of iso2 seperated by commas.
+strata_id,(IDENTIFIERS) Optional identifier only used for metadata that varies by strata.  Stratification identifer.,"Character - concatenation of strata_1_name, strata_1_value, strata_2_name, strata_2_value seperated by underdashes. Not that if any strata field is empty then do not concatate anything or underdash"
+year,(IDENTIFIERS) Optional identifier only used for metadata that varies by year.  Year for which data value represents,Character four character -  YYYY
+domain,(CATEGORIZATION) Domain which variable belongs to. Highest level of variable categorization.,Character. Should fall into the DMC curated list of acceptable domains.
+subdomain,(CATEGORIZATION) Subdomain which variable belongs to. Lower level of variable categorization.,Character.
+var_label,(DETAILS) Short human readable variable label.,Character. Aim to be less than 30 characters. Hard limit at 75 characters.
+var_def,(DETAILS) Details definition of what the variable is about.  If categorical include coding here.,Character. No length limit.
+value_type,(DETAILS) What type of data is the value.,"Must be one of the following:
+- double (continuous values)
+- discrete (integer values )
+- categorical (non-numeric groups or categories)"
+units,(DETAILS) This is the short label to be appended to the data value. It will be used for annotating text or visualizations with a unit label (e.g. cases per 100k).,Characters
+coding,(DETAILS) This is an optional internal field that describes in details the measurement,Characters
+strata_description,(DETAILS) This should describe in detail what strata are available for this variable. Please include details about each strata if applicable.,Character. Try to be as details as possible. If variable is not stratafied the value should be NA.
+source,(DETAILS) Data source,"Character
+
+**Note if this varies by country please leave as NA in the variable level codebook and attach this field in the supplementatary by iso2-yr codebook."
+dataset_notes,(DETAILS) Any additional information can be added here. For example some dataset or file specific notes could be added here.,"Character
+"
+limitations,(DETAILS) Place to describe any limitaitons for this variable.,NA
+acknowledgements,(DETAILS) Any acklowdgements for this variable,NA
+file_data,(INTERNAL) File name of the data file used for this dataset,Character.
+file_codebook,(INTERNAL) File name of the codebook file used for this dataset,Character.
+longitudinal,(INTERNAL) Is this variable qualified for longitudinal analysis or visualizations?,"Binary: 1-yes or 2-no
+
+**Note if this varies by country please leave as NA in the variable level codebook and attach this field in the supplementatary by iso2-yr codebook."
+public,"(INTERNAL) Is it okay to make the data and metadata for this variable publicly available for visualization and download?
+","Binary: 1-yes or 2-no
+
+**Note if this varies by country please leave as NA in the variable level codebook and attach this field in the supplementatary by iso2-yr codebook."
+censor,"(INTERNAL) If the data is not public. Can we show the metadata (e.g. show the data is avilable to be searched but not visualizaed or downloaded). This way others can request data if needed.
+","Binary: 1-yes or 2-no
+
+**Note if this varies by country please leave as NA in the variable level codebook and attach this field in the supplementatary by iso2-yr codebook."
+license,"(INTERNAL) What is the license for this variable 
+","Categorical. Options include ""CC BY"" or TBD by Kari and Goro."
+fair,(INTERNAL) Has this metadata for this variable been updated for FAIR principles. If renovated as per new standards then yes. Otherwise no.,Binary: 1-yes or 2-no

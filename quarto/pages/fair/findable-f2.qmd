@@ -1,0 +1,237 @@
+---
+title: "F2. Data are described with rich metadata (defined by R1 below)"
+subtitle: "ELI5: Comprehensive codebooks that cover community needs"
+pagetitle: "SALURBAL - F2"
+execute: 
+  echo: false
+  warning: false
+  error: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+## Data prep
+library(tidyverse)
+library(readxl)
+library(reactable)
+load("files/quarto-f2-objects.rdata")
+
+
+## Reactable theming
+salurbal_reactable = reactableTheme(
+              color = "#5e666d",
+              backgroundColor = "#e6ebee",
+              borderColor = "black",
+              stripedColor = "black",
+              highlightColor = "bfc5c9",
+              headerStyle = list(
+                fontWeight = "bolder",
+                 fontSize = 'larger',
+                borderColor = "#555"
+              ),
+              searchInputStyle = list(width = "98%",
+                                      backgroundColor = "#e6ebee",
+                                      margin = "auto",
+                                      marginTop = "3px",
+                                      marginBottom = "3px")
+            )
+
+## Row styling
+get_row_color = function(description_tmp){
+  colorTmp = case_when(
+    str_detect(description_tmp,"\\(IDENTIFIERS")~"#f4d7ad",
+    str_detect(description_tmp,"\\(DATA")~"#b3e9d5",
+    str_detect(description_tmp,"\\(CATEGORIZATION")~"#a3ccdf",
+    str_detect(description_tmp,"\\(INTERNAL")~"#ebd7f3",
+    str_detect(description_tmp,"\\(DETAILS")~"#c5fbc5",
+    TRUE~"#e6ebee"
+  )
+}
+```
+
+
+Machines are great for computing can't extrapolate certain things based on context. Consequently, how informative our data portal is will depend on how comprehensive and machine-actionable our data/codebooks are. Below we deocument standards for SALURBAL data/codebooks that improve FAIRness of our project and make a much more comprehensive amount of context accessible to the data portal. 
+
+## Data 
+
+Legacy SALURBAL data tables structure were in general pretty FAIR. The only major change in the renovated data table structure is that we enforce strict rules for our within project variable identifiers. `var_name` is our workhorse identifier which links things at the variable-level - it should  not contain strata information. In some cases metadata is available within variable by country details or data strata and we use `iso2` or `strata_id` to do data-metadata linkage. More details  can be found int the [F3 principle page](findable-f3.qmd).
+
+The first tab below give <a href="files/salurbal-data-fields.csv" download>details on what fields/columns</a>  should be present in renovated SALURBAL data tables and the second shows an <a href="files/salurbal-data-example.csv" download>example data table</a>. The new data columns/fields can be grouped in to the following categories
+
+<ul>
+  <li><span style="background-color:#f4d7ad">**Identifiers**</span>: columns responsible for linkage of data and metadata. `var_name` is our workhorse identifier which links things at the variable-level - it should  not contain strata information</li>
+  <li><span style="background-color:#b3e9d5">**Data**:</span> data related fields including SALID, year of data, geographic level and year.</li>
+  <li><span style="background-color:#ebd7f3">**Internal**</span>: internal project related  metadata (intermediate strata details and file directories ). </li>
+</ul>
+
+
+
+
+::: {.column-screen-inset-right}
+
+
+::: {.panel-tabset}
+
+
+## Data Fields (details)
+ 
+```{r}
+table_data %>% 
+  reactable(
+    pagination = FALSE, 
+    highlight = TRUE, 
+    searchable = TRUE,
+    sortable = F,
+    height = 400,
+    defaultPageSize = 20,
+    defaultColDef = colDef(minWidth = 100),
+    columns = list(
+      field = colDef(
+        maxWidth  = 150
+      )
+    ),
+    rowStyle = function(index) {
+      list(background = get_row_color(table_data[index, "description"]))
+    },
+    theme = salurbal_reactable
+  )
+``` 
+ 
+
+## Data (example) 
+
+```{r}
+## Interactive table 
+df_data_example %>% 
+  reactable(
+    pagination = FALSE, 
+    highlight = TRUE, 
+    searchable = TRUE,
+    sortable = F,
+    height = 400,
+    defaultPageSize = 20,
+    defaultColDef = colDef(minWidth = 200),
+    columns = list(
+      var_name = colDef(
+        sticky = "left",
+        minWidth = 200
+      )
+    ),
+    theme = salurbal_reactable
+    
+  )
+```
+
+:::
+
+
+
+:::
+
+
+
+## Codebooks 
+ 
+
+Machines are great for computing but are quite dumb ... in other words they can't extrapolate certain things that humans can based on context. So making the web application to interface with the SALURBAL data we found that there were fundamental metadata (data about the data) - which may be possible for SALURBAL staff to extrapolate - were missing (either explicitly missing from codebooks in machine unreadable formats). 
+
+Below is a more comprehensive codebook structure to address these gaps. The first tab below give <a href="files/salurbal-codebook-fields.csv" download>details on what fields/columns</a>  should be present in renovated SALURBAL codebooks  and the second shows an <a href="files/salurbal-codebook-example.csv" download>example codebook</a>. The new codebooks columns/fields can be grouped in to the following categories
+
+<ul >
+  <li><span style="background-color:#f4d7ad">**Identifiers**</span>: columns responsible for linkage of data and metadata. `var_name` is our workhorse identifier which links things at the variable-level - it should  not contain strata information</li>
+  <li id="codebook-codebook"><span style="background-color:#a3ccdf">**Categorization**</span>: columns responsible for grouping variables into user friendly domains and subdomains.</li>
+  <li><span style="background-color:#c5fbc5">**Details**:</span> research related variables details, this will be useful for users who want to reuse our data/codebooks.</li>
+  <li ><span style="background-color:#ebd7f3">**Internal**</span>: internal project related  metadata (file directories and access status). </li>
+</ul>
+
+
+
+::: {.column-page }
+
+::: {.panel-sidebar}
+
+<div style="height:200px"></div>
+
+The new codebooks columns/fields can be grouped in to the following categories
+
+<ul>
+  <li><span style="background-color:#f4d7ad">**Identifiers**</span>: columns responsible for linkage of data and metadata  </li>
+
+  <li><span style="background-color:#a3ccdf">**Categorization**</span>: columns responsible for categorising variables into domain or subdomain </li>
+
+  <li><span style="background-color:#c5fbc5">**Details**:</span> research related variables details, this will be useful for users who want to reuse our data/codebooks.</li>
+    <li><span style="background-color:#ebd7f3">**Internal**</span>: internal project related  metadata</li>
+</ul>
+
+
+:::
+
+::: {.panel-tabset}
+
+
+## Codebook fields (details) 
+```{r}
+table_codebook %>% 
+  reactable(
+    pagination = FALSE, 
+    highlight = TRUE, 
+    searchable = TRUE,
+    sortable = F,
+    height = 600,
+    defaultPageSize = 20,
+    defaultColDef = colDef(minWidth = 100),
+    columns = list(
+      field = colDef(
+        maxWidth  = 150
+      )
+    ),
+    rowStyle = function(index) {
+      list(background = get_row_color(table_codebook[index, "description"]))
+    },
+    theme = salurbal_reactable
+  )
+```
+
+
+## Codebook (example)
+```{r}
+
+df_codebook_example %>% 
+  mutate_all(~str_trunc(.x,50,"right")) %>% 
+  reactable(
+    pagination = FALSE, 
+    highlight = TRUE, 
+    searchable = TRUE,
+    sortable = F,
+    height = 500,
+    defaultPageSize = 20,
+    defaultColDef = colDef(minWidth = 200),
+    columns = list(
+      var_name = colDef(
+        sticky = "left",
+        minWidth = 200
+      )
+    ),
+    theme = salurbal_reactable
+    
+  )
+```
+
+
+:::
+
+
+
+:::
+
+
+
+## TLDR (To Long Did not Read)
+
+In trying to make a FAIR data portal we found two major challenges: 1) our existing codebooks were not accessible or comprehensive enough to support creating a FAIR data portal 2) no existing way to link complex metadata (by strata, country) to data. This page documents a proposed data and codebooks standard that will guide the FAIR renovation of existing datasets and serve as templates for future datasets. 
+
+
+- a set of identifer fields (`var_name`, `strata_fields`) to link metadata and data at a variable level while accounting for complex by strata/country/year metadata
+- More comprehensive codebooks to explicitly codify important metadata (identifiers, strata details, categories, internal info, research details)
+ 

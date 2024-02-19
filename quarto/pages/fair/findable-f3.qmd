@@ -1,0 +1,172 @@
+---
+title: "F3. Metadata clearly and explicitly include the identifier of the data they describe."
+subtitle: "ELI5: Metadata is linkable to data"
+pagetitle: "SALURBAL - F3"
+execute: 
+  echo: false
+  warning: false
+  error: false
+editor_options: 
+  chunk_output_type: console
+---
+ 
+
+```{r}
+## Data prep
+library(tidyverse)
+library(reactable)
+library(shiny)
+load("files/quarto-f3-objects.rdata")
+load("files/quarto-f2-objects.rdata")
+
+## Reactable theming
+salurbal_reactable = reactableTheme(
+  color = "#5e666d",
+  backgroundColor = "#e6ebee",
+  borderColor = "black",
+  stripedColor = "black",
+  highlightColor = "bfc5c9",
+  headerStyle = list(
+    fontWeight = "bolder",
+    fontSize = 'larger',
+    borderColor = "#555"
+  ),
+  searchInputStyle = list(width = "98%",
+                          backgroundColor = "#e6ebee",
+                          margin = "auto",
+                          marginTop = "3px",
+                          marginBottom = "3px")
+)
+
+## Row styling
+get_row_color = function(description_tmp){
+  colorTmp = case_when(
+    str_detect(description_tmp,"IDENTIFIERS")~"#f4d7ad",
+    str_detect(description_tmp,"STRATA DETAILS")~"#b3e9d5",
+    str_detect(description_tmp,"CATEGORIZATION")~"#a3ccdf",
+    str_detect(description_tmp,"INTERNAL")~"#ebd7f3",
+    str_detect(description_tmp,"DETAILS")~"#c5fbc5",
+    TRUE~"#e6ebee"
+  )
+}
+```
+
+## Description
+
+The SALURBAL database is a collection of data variables; each variable has a unique identifier var_name (F1). If life were simple, metadata would matched 1 to 1 with each variable and we could do linkage with just var_name. However, the pairing between variable and individual metadata fields are not always one to one. SALURBAL metadata/data linkage scenarios are listed below based on prevalence.
+
+1. **simple**: (Very common) Metadata links 1:1 to data at the variable level via `var_name` (e.g. domain, subdomain .. ETC). This linkage specific codebook would be called `codebook.csv`
+2. **by_country** (Very common)  This may be a common complexity where metadata differs by variable + country and needs to be linked by `var_name` and `iso2`(e.g. data source or censor status). This linkage specific codebook would be called `codebook_by_iso2.csv`
+3. **by_year** (Uncommon?) metadata differs by variable + country and needs to be linked by `var_name` and `year`(e.g. data source or censor status). This linkage specific codebook would be called `codebook_by_year.csv`
+4. **by_strata** (Rare) This case is rare but should be noted. Here metadata differs by variable + strata thus needs to be linked by `var_name` and `strata_id`. (e.g. var_def or intepretation). This linkage specific codebook would be called `codebook_by_strata.csv`
+
+The direct consequence of having multiple linkages between data and metadata is that for each dataset we need to **1) evaluate what type of linkage works best for each metadata field** then **2)secondly operationalize seperate linkage specific codebooks for each of those linkages**. We will discuss each of these two steps further below. 
+
+
+## 1. Evaluate metadata linkage
+
+The first step is to evaluate what type of linkage works best for each metadata field. The interactive table represents how youshould fill out for the dataset you are try to process. Moreover you can download <a href="files/salurbal_codebook_evaluation.csv" download>salurbal_codebook_evaluation.csv</a> which is a csv template for the require metadata fields which shows by default all metadata have simple linkage; use this as a starting point to evaluate the metadata linkage for your dataset.
+
+#### Guidelines
+ 
+- this **linkage categorization for each field is mutually exclusive** (only one category per field). For now we assume linkage complexity exists at one level (by a single identifier) lest try this for now and deal with more complex later.
+- <a href="files/salurbal_codebook_evaluation.csv" download>salurbal_codebook_evaluation.csv</a> is **template** containing a table of require metadata and possible linkage types.
+- the template provided assumes everything is simple (which most of the time it is). Please **go through each field and assign a linkage type** by asking your team 'is this field going to vary by ....' then update the template based on your reply. 
+ 
+ 
+::: {.column-screen-inset-right}
+
+```{r}
+ 
+df_codebook_evaluation %>% 
+  reactable(
+    pagination = FALSE, 
+    highlight = TRUE,  
+    sortable = F,
+    height = 500,
+    defaultPageSize = 20,
+    defaultColDef = colDef(minWidth = 150),
+    columns = list(
+      field = colDef(
+        width  = 150
+      ),
+      description = colDef(
+        minWidth = 350
+      ),
+      simple = colDef( 
+        sortable = FALSE,
+        cell = function() checkboxInput('', '',value = T )
+      ),
+      by_country = colDef( 
+        sortable = FALSE,
+        cell = function() checkboxInput('', '', )
+      ),
+      by_year = colDef( 
+        sortable = FALSE,
+        cell = function() checkboxInput('', '', )
+      ),
+      by_strata = colDef( 
+        sortable = FALSE,
+        cell = function() checkboxInput('', '', )
+      )
+    ),
+    rowStyle = function(index) {
+      list(background = get_row_color(df_codebook_evaluation[index, "description"]))
+    },
+    theme = salurbal_reactable
+  )
+```
+
+:::
+
+## 2. Operationalize linkage specific codebooks
+
+
+
+::: {.callout-note collapse=true}
+
+##  Why linkage specific codebooks vs a fully merged codebook?
+
+I think its better to compartmentalize each linkage to its own table because seperation of concerns makes it very transparent which meta data fields are in which linkage tables. Fully merged codebooks that account for potential linkage complexity are often bloated and harder to QC or work with in the data pipeline. 
+
+:::
+
+
+After we have evaluated the metadata linkage for a dataset. We will know which codebook and codebook variations to prepare. For each dataset we could potentiall have up to four:
+
+1. **codebook_simple.csv**: (Very common) will link to the data via only a single identifer  `var_name` and contain all the metadata fields that were categorized as 'simple'.
+2. **codebook_by_country.csv** (Very common) will link to the data via  `var_name` and `iso2`; it will contain all the metadata fields that were categorized as 'by_country'
+
+3. **codebook_by_year.csv** (Uncommon?) will link to the data via  `var_name` and `year`; it will contain all the metadata fields that were categorized as 'by_country'
+4. **codebook_by_strata.csv** (Rare) will link to the data via  `var_name` and `strata_id`; it will contain all the metadata fields that were categorized as 'by_country'.
+Metadata links to data via
+
+ 
+## Integration into data pipeline
+
+###  Simple linkage
+
+
+![](images/f3-example-simple.png){width='100%'}
+
+
+###  By country 
+
+
+![](images/f3-example-country.png){width='100%'}
+
+
+###  By Year 
+
+
+![](images/f3-example-year.png){width='100%'}
+
+
+
+
+###  By Strata
+
+![](images/f3-example-strata.png){width='100%'}
+
+
+

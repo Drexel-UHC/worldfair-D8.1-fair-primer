@@ -1,0 +1,11 @@
+- table: Student
+  columns:
+    StudentID: {key: yes}
+    ClassID:   {ref: Class}
+    FirstName: 
+
+- table: Class
+  columns:
+    ClassID: {key: yes}
+    Title:
+    Location: 

@@ -1,0 +1,11 @@
+- table: Student
+  columns:
+    StudentID:
+    ClassID:  
+    FirstName: 
+
+- table: Class
+  columns:
+    ClassID: 
+    Title:
+    Location: 
