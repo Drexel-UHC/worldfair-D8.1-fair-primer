@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.241">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>SALURBAL - FAIR Renovation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../pages/manuals/step1.html" rel="next">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../../site_libs/react-17.0.0/react.min.js"></script>
+<script src="../../site_libs/react-17.0.0/react-dom.min.js"></script>
+<script src="../../site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="../../site_libs/reactable-binding-0.3.0/reactable.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="SALURBAL logo." class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/fair/index.html">
+ <span class="menu-text">FAIR Implementation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/database/qc.html">
+ <span class="menu-text">Database</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LACUrbanHealth"><i class="bi bi-twitter" role="img" aria-label="SALURBAL Twitter">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Drexel-UHC/salurbal-project-dashboard"><i class="bi bi-github" role="img" aria-label="SALURBAL GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">SALURBAL - Renovation Workflow</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/manuals/index.html" class="sidebar-item-text sidebar-link active">Renovation Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/manuals/step1.html" class="sidebar-item-text sidebar-link">Step 1: assign var_name</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/manuals/step2.html" class="sidebar-item-text sidebar-link">Step 2: summarize strata information</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/manuals/step3.html" class="sidebar-item-text sidebar-link">Step 3: evaluate metadata linkage</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/manuals/step4.html" class="sidebar-item-text sidebar-link">Step 4: renovate codebooks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/manuals/step5.html" class="sidebar-item-text sidebar-link">Step 5: renovate data</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#deliverables-at-each-step" id="toc-deliverables-at-each-step" class="nav-link" data-scroll-target="#deliverables-at-each-step">Deliverables at each step</a></li>
+  <li><a href="#deliverables-summary" id="toc-deliverables-summary" class="nav-link" data-scroll-target="#deliverables-summary">Deliverables summary</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Drexel-UHC/salurbal-project-dashboard/edit/main/pages/manuals/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Drexel-UHC/salurbal-project-dashboard/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">SALURBAL - Renovation Workflow</h1>
+<p class="subtitle lead">This workflow goes through the steps needed to generate FAIR SALURBAL data.</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Due to the heterogeneity in existing SALURBAL data/codebooks, the process of how each dataset is renovate will differ. The Renovation manuals pages will provide guidance for the FAIR renovation of SALURBAL data as well as provide instructions for new SALURBAL datasets. The steps are summarized in the list below.</p>
+<ul>
+<li><strong>Step 1: Assign <code>var_name</code> to each variable</strong></li>
+<li><strong>Step 2: Summarize strata information for each variable</strong></li>
+<li><strong>Step 3: Evaluate metadata linkage</strong></li>
+<li><strong>Step 4: Renovate codebooks</strong></li>
+<li><strong>Step 5: Renovate data.csv</strong></li>
+</ul>
+</section>
+<section id="deliverables-at-each-step" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="deliverables-at-each-step">Deliverables at each step</h2>
+<p>The deliverables at each step are displayed in the tabs below. Within each step there are tabs that contain examples (table + downloadable csv) of deliverables for three different datasets.</p>
+<div class="column-screen-inset-right">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">1. var_name.csv</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">2. strata.csv</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false">3. linkage.csv</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-4" role="tab" aria-controls="tabset-9-4" aria-selected="false">4. codebook.csv</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-5" role="tab" aria-controls="tabset-9-5" aria-selected="false">5. data.csv</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<p><strong><code>var_name.csv</code>is a table summarizing var_name called . It should contain two columns:</strong></p>
+<ul>
+<li><code>var_name</code></li>
+<li><code>dataset_id</code></li>
+</ul>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Air Pollution Dataset (APS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">SEC Census dataset (CNS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Health Survey (SVY)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step1_aps')">Download var_name.csv for APS</button>
+<div id="step1_aps" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step1_aps">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["APSNO2GRIDPTS","APSNO2MEAN","APSNO2MEDIAN","APSNO2STD","APSPM25GRIDPTS","APSPM25MEAN","APSPM25MEDIAN","APSPM25STD","APSPM25THRES"],"dataset_id":["APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"dataset_id","name":"dataset_id","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step1_aps","dataKey":"e4fae4f7c2170e70d4600c74b98eddae"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step1_cns')">Download var_name.csv for CNS</button>
+<div id="step1_cns" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step1_cns">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["CNSCROWD25BR","CNSCROWD3RM","CNSFLOOR","CNSLABFEM","CNSLABPART","CNSMINHS","CNSMINPR","CNSMINUN","CNSSEWANY","CNSSEWNET","CNSST1517","CNSUNEMP","CNSWALLDUR1","CNSWALLDUR2","CNSWALLDUR3","CNSWATIN","CNSWATNET","CNSWATPIPE"],"dataset_id":["SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD","SEC_Census_L1AD"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"dataset_id","name":"dataset_id","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step1_cns","dataKey":"dc5611e333f19256e39942d28e870093"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step1_svy')">Download var_name.csv for SVY</button>
+<div id="step1_svy" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step1_svy">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["SVYBMIOBESE","SVYBMIOVOB","SVYBMISOBESE","SVYBMISOVOB","SVYBMISUWT","SVYBMIUWT","SVYDBDX1","SVYDBDX2","SVYHLTHFP","SVYHTMED","SVYMAM2YRS","SVYPAP3YRS","SVYSMKCUR"],"dataset_id":["APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD","APSL1AD"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"dataset_id","name":"dataset_id","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step1_svy","dataKey":"5b10ef20f6bca088c916740a09dbeee4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<p><strong><code>strata.csv</code> is a table that contains all possible strata_id for each variable. This will organize strata information ‘long’ meaning if a variable is stratified there should be multiple rows per variable. It should contain the following columns </strong></p>
+<ul>
+<li><code>var_name</code></li>
+<li><code>strata_1_name</code>: name of the first strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.</li>
+<li><code>strata_1_value</code> value of the first strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.</li>
+<li><code>strata_2_name</code> name of the second strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.</li>
+<li><code>strata_2_value</code> value of the second strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.</li>
+</ul>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Air Pollution Dataset (APS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">SEC Census dataset (CNS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Health Survey (SVY)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step2_aps')">Download strata.csv for APS</button>
+<div id="step2_aps" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step2_aps">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["APSNO2GRIDPTS","APSNO2MEAN","APSNO2MEDIAN","APSNO2STD","APSPM25GRIDPTS","APSPM25MEAN","APSPM25MEDIAN","APSPM25STD","APSPM25THRES"],"strata_1_name":[null,null,null,null,null,null,null,null,null],"strata_1_raw":[null,null,null,null,null,null,null,null,null],"strata_1_value":[null,null,null,null,null,null,null,null,null],"strata_2_name":[null,null,null,null,null,null,null,null,null],"strata_2_raw":[null,null,null,null,null,null,null,null,null],"strata_2_value":[null,null,null,null,null,null,null,null,null]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"strata_1_name","name":"strata_1_name","type":"character","minWidth":150},{"accessor":"strata_1_raw","name":"strata_1_raw","type":"logical","minWidth":150},{"accessor":"strata_1_value","name":"strata_1_value","type":"character","minWidth":150},{"accessor":"strata_2_name","name":"strata_2_name","type":"character","minWidth":150},{"accessor":"strata_2_raw","name":"strata_2_raw","type":"logical","minWidth":150},{"accessor":"strata_2_value","name":"strata_2_value","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step2_aps","dataKey":"f4ea7376b79ac352d4314fa565385310"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step2_cns')">Download strata.csv for CNS</button>
+<div id="step2_cns" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step2_cns">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["CNSCROWD25BR","CNSCROWD3RM","CNSFLOOR","CNSLABFEM","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINUN","CNSMINUN","CNSMINUN","CNSSEWANY","CNSSEWNET","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSWALLDUR1","CNSWALLDUR2","CNSWALLDUR3","CNSWATIN","CNSWATNET","CNSWATPIPE"],"strata_1_name":[null,null,null,null,"Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex",null,null,"Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex",null,null,null,null,null,null],"strata_1_raw":[null,null,null,null,"9","1","0","ratio","9","1","0","ratio","9","1","0","9","1","0",null,null,"9","1","0","ratio","9","1","0","ratio",null,null,null,null,null,null],"strata_1_value":[null,null,null,null,"Overall","Male","Female","Ratio","Overall","Male","Female","Ratio","Overall","Male","Female","Overall","Male","Female",null,null,"Overall","Male","Female","Ratio","Overall","Male","Female","Ratio",null,null,null,null,null,null],"strata_2_name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"strata_2_raw":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"strata_2_value":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"strata_1_name","name":"strata_1_name","type":"character","minWidth":150},{"accessor":"strata_1_raw","name":"strata_1_raw","type":"character","minWidth":150},{"accessor":"strata_1_value","name":"strata_1_value","type":"character","minWidth":150},{"accessor":"strata_2_name","name":"strata_2_name","type":"character","minWidth":150},{"accessor":"strata_2_raw","name":"strata_2_raw","type":"logical","minWidth":150},{"accessor":"strata_2_value","name":"strata_2_value","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step2_cns","dataKey":"af5cb9848293b478c0a78c2d1c21c5c9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step2_svy')">Download strata.csv for SVY</button>
+<div id="step2_svy" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step2_svy">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX2","SVYDBDX2","SVYDBDX2","SVYDBDX2","SVYDBDX2","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYMAM2YRS","SVYMAM2YRS","SVYMAM2YRS","SVYMAM2YRS","SVYPAP3YRS","SVYPAP3YRS","SVYPAP3YRS","SVYPAP3YRS","SVYPAP3YRS","SVYPAP3YRS","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR"],"strata_1_name":["Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex"],"strata_1_raw":["9","9","9","0","0","0","0","0","1","1","1","1","1","0","0","0","9","9","9","0","0","0","0","0","1","1","1","1","1","0","0","0","9","9","9","0","0","0","0","0","1","1","1","1","1","9","9","9","0","0","0","0","0","1","1","1","1","1","9","9","9","0","0","0","0","0","1","1","1","1","1","9","9","9","0","0","0","0","0","1","1","1","1","1","0","0","0","9","9","9","0","0","0","0","0","1","1","1","1","1","9","0","0","1","1","9","9","9","0","0","0","0","0","1","1","1","1","1","9","9","9","0","0","0","0","0","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","9","9","9","0","0","0","0","0","1","1","1","1","1"],"strata_1_value":["Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Female","Female","Female","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Female","Female","Female","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Female","Female","Female","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Overall","Female","Female","Male","Male","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Overall","Overall","Overall","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male"],"strata_2_name":["StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation","StandardPopulation"],"strata_2_raw":["SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","CountrySexPooled","SalurbalSexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","SalurbalSexSpecific","CountrySexSpecific","SalurbalSexPooled","TrueCity20-49","CountrySexSpecific20-49","SalurbalSexSpecific20-49","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","CountrySexPooled","SalurbalSexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","SalurbalSexSpecific","CountrySexSpecific","SalurbalSexPooled","TrueCity20-49","CountrySexSpecific20-49","SalurbalSexSpecific20-49","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","CountrySexPooled","SalurbalSexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","SalurbalSexSpecific","CountrySexSpecific","SalurbalSexPooled","TrueCity20-49","CountrySexSpecific20-49","SalurbalSexSpecific20-49","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","SalurbalSexPooled","SalurbalSexSpecific","SalurbalSexSpecific","SalurbalSexPooled","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","TrueCity50-79","CountrySexSpecific50-79","SalurbalSexSpecific50-79","RateBasedOnSample50-59,NoPopStd","TrueCity25-49","CountrySexSpecific25-49","SalurbalSexSpecific25-49","TrueCity30-49","CountrySexSpecific30-49","SalurbalSexSpecific30-49","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific"],"strata_2_value":["SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","CountrySexPooled","SalurbalSexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","SalurbalSexSpecific","CountrySexSpecific","SalurbalSexPooled","TrueCity20-49","CountrySexSpecific20-49","SalurbalSexSpecific20-49","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","CountrySexPooled","SalurbalSexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","SalurbalSexSpecific","CountrySexSpecific","SalurbalSexPooled","TrueCity20-49","CountrySexSpecific20-49","SalurbalSexSpecific20-49","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","CountrySexPooled","SalurbalSexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","SalurbalSexSpecific","CountrySexSpecific","SalurbalSexPooled","TrueCity20-49","CountrySexSpecific20-49","SalurbalSexSpecific20-49","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","SalurbalSexPooled","SalurbalSexSpecific","SalurbalSexSpecific","SalurbalSexPooled","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific","TrueCity50-79","CountrySexSpecific50-79","SalurbalSexSpecific50-79","RateBasedOnSample50-59,NoPopStd","TrueCity25-49","CountrySexSpecific25-49","SalurbalSexSpecific25-49","TrueCity30-49","CountrySexSpecific30-49","SalurbalSexSpecific30-49","SalurbalSexPooled","CountrySexPooled","TrueCity","CountrySexSpecific","TrueCity","SalurbalSexPooled","SalurbalSexSpecific","CountrySexPooled","SalurbalSexPooled","CountrySexPooled","SalurbalSexSpecific","TrueCity","CountrySexSpecific"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"strata_1_name","name":"strata_1_name","type":"character","minWidth":150},{"accessor":"strata_1_raw","name":"strata_1_raw","type":"character","minWidth":150},{"accessor":"strata_1_value","name":"strata_1_value","type":"character","minWidth":150},{"accessor":"strata_2_name","name":"strata_2_name","type":"character","minWidth":150},{"accessor":"strata_2_raw","name":"strata_2_raw","type":"character","minWidth":150},{"accessor":"strata_2_value","name":"strata_2_value","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step2_svy","dataKey":"d2298bdf2fa6ddeff3573b8dfb2895d3"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<p><strong><code>linkage.csv</code> is a table that describes how the linkage for each of the codebook fields. Starting with this template (<a href="../fair/files/linkage.csv" download="">📥 linkage.csv</a>), for each codebook field (row) you should write a value of ‘1’ in the column cells if any variable falls under that linkage type.</strong></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Air Pollution Dataset (APS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">SEC Census dataset (CNS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Health Survey (SVY)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>All codebook fields are linkable only by_variable for the APS dataset so we for all codebook fields we only check (fill out the cell as ‘1’) the by_var column.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step3_aps')">Download linkage.csv for APS</button>
+<div id="step3_aps" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step3_aps">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"field":["dataset_id","domain","subdomain","var_label","var_def","value_type","units","coding","strata_description","source","dataset_notes","limitations","acknowledgements","file","longitudinal","public","censor","license","fair"],"by_var":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"by_var_iso2":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"by_var_year":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"by_var_strata":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"accessor":"field","name":"field","type":"character","width":150},{"accessor":"by_var","name":"by_var","type":"numeric","width":150},{"accessor":"by_var_iso2","name":"by_var_iso2","type":"logical","width":150},{"accessor":"by_var_year","name":"by_var_year","type":"logical","width":150},{"accessor":"by_var_strata","name":"by_var_strata","type":"logical","width":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step3_aps","dataKey":"702a15038dc7432f8545a47c1ddbe6bc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Most of the codebook fields in the CNS dataset are linkable only be variable except for:</p>
+<ul>
+<li><code>source</code> vary by <code>var_name</code>+<code>iso2</code> for some variables but other do not for other variables; so this row has both <code>by_var</code> and <code>by_var_iso2</code> filled out.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step3_cns')">Download linkage.csv for CNS</button>
+<div id="step3_cns" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step3_cns">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"field":["dataset_id","domain","subdomain","var_label","var_def","value_type","units","coding","strata_description","source","dataset_notes","limitations","acknowledgements","file","longitudinal","public","censor","license","fair"],"by_var":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"by_var_iso2":["NA","NA","NA","NA","NA","NA","NA","NA","NA",1,"NA","NA","NA","NA","NA","NA","NA","NA","NA"],"by_var_year":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"by_var_strata":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"accessor":"field","name":"field","type":"character","width":150},{"accessor":"by_var","name":"by_var","type":"numeric","width":150},{"accessor":"by_var_iso2","name":"by_var_iso2","type":"numeric","width":150},{"accessor":"by_var_year","name":"by_var_year","type":"logical","width":150},{"accessor":"by_var_strata","name":"by_var_strata","type":"logical","width":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step3_cns","dataKey":"1c07308ef9e3640360d692dcfd756a6e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>Most of the codebook fields in the SVY dataset are linkable only be variable except for:</p>
+<ul>
+<li><code>var_def</code> vary by <code>var_name</code>+<code>strata</code> for some variables but other do not for other variables; so this row has both <code>by_var</code> and <code>by_var_strata</code> filled out.</li>
+<li><code>source</code> vary by <code>var_name</code>+<code>iso2</code> for some variables but other do not for other variables; so this row has both <code>by_var</code> and <code>by_var_iso2</code> filled out.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<button onclick="Reactable.downloadDataCSV('step3_svy')">Download linkage.csv for SVY</button>
+<div id="step3_svy" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="step3_svy">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"field":["dataset_id","domain","subdomain","var_label","var_def","value_type","units","coding","strata_description","source","dataset_notes","limitations","acknowledgements","file","longitudinal","public","censor","license","fair"],"by_var":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"by_var_iso2":["NA","NA","NA","NA","NA","NA","NA","NA","NA",1,"NA","NA","NA","NA","NA","NA","NA","NA","NA"],"by_var_year":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"by_var_strata":["NA","NA","NA","NA",1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"accessor":"field","name":"field","type":"character","width":150},{"accessor":"by_var","name":"by_var","type":"numeric","width":150},{"accessor":"by_var_iso2","name":"by_var_iso2","type":"numeric","width":150},{"accessor":"by_var_year","name":"by_var_year","type":"logical","width":150},{"accessor":"by_var_strata","name":"by_var_strata","type":"numeric","width":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"elementId":"step3_svy","dataKey":"54f2a39b7fecc937640042d737b022a0"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-4-tab">
+<p><strong>For each data set review the metadta linkage evaluation. For each unique linkage that is present in your dataset you will need to prepare the assosiated codebook.</strong> The thought process and deliverables for our three example datasets can be seen below.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Air Pollution Dataset (APS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">SEC Census dataset (CNS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false">Health Survey (SVY)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p><strong>Based on the <a href="../fair/files/ex_APS_codebook_evaluation.csv" download="">APS codebook evaluation</a> we saw that all the metadata are categorized as simple; therefor our step -4-codebooks deliverable for this dataset contains one file - codebook_simple.csv</strong></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">codebook_simple.csv</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-292616df73014a072b35" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-292616df73014a072b35">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["APSPM25GRIDPTS","APSPM25MEAN","APSPM25STD","APSPM25MEDIAN","APSPM25THRES","APSNO2GRIDPTS","APSNO2MEAN","APSNO2STD","APSNO2MEDIAN"],"domain":["Physical and Natural Enviro...","Physical and Natural Enviro...","Physical and Natural Enviro...","Physical and Natural Enviro...","Physical and Natural Enviro...","Physical and Natural Enviro...","Physical and Natural Enviro...","Physical and Natural Enviro...","Physical and Natural Enviro..."],"subdomain":["Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution"],"var_label":["Number of PM2.5 grid point ...","Average PM2.5 concentration","Standard Deviation of PM2.5","Median PM2.5 concentration","Average PM2.5 is above WHO ...","Number of NO2 grid point ce...","Area-weighted average NO2","Area-weighted Standard Devi...","Area-weighted median NO2"],"var_def":["Number of grid point centro...","Arithmetic mean of PM2.5 me...","Standard deviation of PM2.5...","Median of PM2.5 measurement...","Indicator if the average PM...","Number of grid point centro...","Weighted arithmetic mean of...","Weighted standard deviation...","Weighted median of NO2 meas..."],"value_type":[null,null,null,null,null,null,null,null,null],"units":[null,"micromilligrams per cubic m...","micromilligrams per cubic m...","micromilligrams per cubic m...",null,null,"parts per billion (ppb)","parts per billion (ppb)","parts per billion (ppb)"],"coding":["999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available","0=10 or less\r\n1=Greater tha...","999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available"],"interpretation":["A higher number indicates m...","A higher value indicates hi...","A higher value indictates m...","A higher value indicates hi...","A value of 1 indicates the ...","A higher number indicates m...","A higher value indicates hi...","A higher value indictates m...","A higher value indicates hi..."],"strata_description":[null,null,null,null,null,null,null,null,null],"source":["Atmospheric Composition Ana...","Atmospheric Composition Ana...","Atmospheric Composition Ana...","Atmospheric Composition Ana...","Atmospheric Composition Ana...","Atmospheric Composition Ana...","Atmospheric Composition Ana...","Atmospheric Composition Ana...","Atmospheric Composition Ana..."],"dataset_notes":[null,null,null,null,null,null,null,null,null],"limitations":[null,null,null,null,null,null,null,null,null],"acknowledgment":["Citation: Hammer, M. S.; et...","Citation: Hammer, M. S.; et...","Citation: Hammer, M. S.; et...","Citation: Hammer, M. S.; et...","Citation: Hammer, M. S.; et...","Citation: Hammer, M. S.; et...","Citation: Hammer, M. S.; et...","Citation: Hammer, M. S.; et...","Citation: Hammer, M. S.; et..."],"file":["raw-data/physical environme...","raw-data/physical environme...","raw-data/physical environme...","raw-data/physical environme...","raw-data/physical environme...","raw-data/physical environme...","raw-data/physical environme...","raw-data/physical environme...","raw-data/physical environme..."],"working_group":["Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC"],"longitudinal":["TRUE","TRUE","TRUE","TRUE","TRUE","TRUE","TRUE","TRUE","TRUE"],"public":["1","1","1","1","1","1","1","1","1"],"censor":["FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE"],"fair":["0","0","0","0","0","0","0","0","0"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"domain","name":"domain","type":"character","minWidth":150},{"accessor":"subdomain","name":"subdomain","type":"character","minWidth":150},{"accessor":"var_label","name":"var_label","type":"character","minWidth":150},{"accessor":"var_def","name":"var_def","type":"character","minWidth":150},{"accessor":"value_type","name":"value_type","type":"character","minWidth":150},{"accessor":"units","name":"units","type":"character","minWidth":150},{"accessor":"coding","name":"coding","type":"character","minWidth":150},{"accessor":"interpretation","name":"interpretation","type":"character","minWidth":150},{"accessor":"strata_description","name":"strata_description","type":"character","minWidth":150},{"accessor":"source","name":"source","type":"character","minWidth":150},{"accessor":"dataset_notes","name":"dataset_notes","type":"character","minWidth":150},{"accessor":"limitations","name":"limitations","type":"character","minWidth":150},{"accessor":"acknowledgment","name":"acknowledgment","type":"character","minWidth":150},{"accessor":"file","name":"file","type":"character","minWidth":150},{"accessor":"working_group","name":"working_group","type":"character","minWidth":150},{"accessor":"longitudinal","name":"longitudinal","type":"character","minWidth":150},{"accessor":"public","name":"public","type":"character","minWidth":150},{"accessor":"censor","name":"censor","type":"character","minWidth":150},{"accessor":"fair","name":"fair","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"ffc4c75676d4d2f935affffa91d913ac"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p><strong>Based on the <a href="../fair/files/ex_CNS_codebook_evaluation.csv" download="">CNS codebook evaluation</a> we saw:</strong></p>
+<ul>
+<li>17 simple fields</li>
+<li>2 by_country fields (source, public)</li>
+</ul>
+<p><strong>Therefore we need to prepare two codebooks for this dataset (see below).</strong></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">codebook_simple.csv</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">codebook_by_iso2.csv</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-c3f647ec1ed60aa71b4c" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-c3f647ec1ed60aa71b4c">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["CNSCROWD25BR","CNSCROWD3RM","CNSFLOOR","CNSLABFEM","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINUN","CNSMINUN","CNSMINUN","CNSSEWANY","CNSSEWNET","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSWALLDUR1","CNSWALLDUR2","CNSWALLDUR3","CNSWATIN","CNSWATNET","CNSWATPIPE"],"domain":["Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi...","Social, Economic, and Servi..."],"subdomain":["Housing","Housing","Housing","Employment","Employment","Employment","Employment","Employment","Education","Education","Education","Education","Education","Education","Education","Education","Education","Education","Housing","Housing","Education","Education","Education","Education","Employment","Employment","Employment","Employment","Housing","Housing","Housing","Housing","Housing","Housing"],"var_label":["Overcrowding: Proportion of...","Overcrowding:  Proportion o...","Proportion of dwellings wit...","The proportion of the total...","The labor force participati...","The labor force participati...","The labor force participati...","The ratio of the labor forc...","Proportion of the populatio...","Proportion of the male popu...","Proportion of the female po...","The ratio of the female to ...","Proportion of the populatio...","Proportion of the male popu...","Proportion of the female po...","Proportion of the populatio...","Proportion of the male popu...","Proportion of the female po...","Proportion of households co...","Proportion of households co...","Proportion of the populatio...","Proportion of the male popu...","Proportion of the female po...","The ratio of the proportion...","The unemployment rate among...","The unemployment rate among...","The unemployment rate among...","The ratio of the unemployme...","Proportion of dwellings wit...","Proportion of dwellings wit...","Proportion of dwellings wit...","Proportion of households wi...","Proportion of households wi...","Proportion of households wi..."],"var_def":["Overcrowding: Proportion of...","Overcrowding:  Proportion o...","Proportion of dwellings wit...","The proportion of the total...","The labor force participati...","The labor force participati...","The labor force participati...","The ratio of the labor forc...","Proportion of the populatio...","Proportion of the male popu...","Proportion of the female po...","The ratio of the female to ...","Proportion of the populatio...","Proportion of the male popu...","Proportion of the female po...","Proportion of the populatio...","Proportion of the male popu...","Proportion of the female po...","Proportion of households co...","Proportion of households co...","Proportion of the populatio...","Proportion of the male popu...","Proportion of the female po...","The ratio of the proportion...","The unemployment rate among...","The unemployment rate among...","The unemployment rate among...","The ratio of the unemployme...","Proportion of dwellings wit...","Proportion of dwellings wit...","Proportion of dwellings wit...","Proportion of households wi...","Proportion of households wi...","Proportion of households wi..."],"value_type":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"units":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"coding":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"interpretation":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"strata_description":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"dataset_notes":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"limitations":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"acknowledgment":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"file":["raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C...","raw-data/SEC/Codebook_SEC_C..."],"working_group":["Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC"],"longitudinal":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"censor":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"fair":["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"domain","name":"domain","type":"character","minWidth":150},{"accessor":"subdomain","name":"subdomain","type":"character","minWidth":150},{"accessor":"var_label","name":"var_label","type":"character","minWidth":150},{"accessor":"var_def","name":"var_def","type":"character","minWidth":150},{"accessor":"value_type","name":"value_type","type":"character","minWidth":150},{"accessor":"units","name":"units","type":"character","minWidth":150},{"accessor":"coding","name":"coding","type":"character","minWidth":150},{"accessor":"interpretation","name":"interpretation","type":"character","minWidth":150},{"accessor":"strata_description","name":"strata_description","type":"character","minWidth":150},{"accessor":"dataset_notes","name":"dataset_notes","type":"character","minWidth":150},{"accessor":"limitations","name":"limitations","type":"character","minWidth":150},{"accessor":"acknowledgment","name":"acknowledgment","type":"character","minWidth":150},{"accessor":"file","name":"file","type":"character","minWidth":150},{"accessor":"working_group","name":"working_group","type":"character","minWidth":150},{"accessor":"longitudinal","name":"longitudinal","type":"character","minWidth":150},{"accessor":"censor","name":"censor","type":"character","minWidth":150},{"accessor":"fair","name":"fair","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"0b72ab9a6d9e504023a8af3d196142f6"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-73993d508a842dfd6506" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-73993d508a842dfd6506">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["CNSCROWD25BR","CNSCROWD25BR","CNSCROWD25BR","CNSCROWD3RM","CNSCROWD3RM","CNSCROWD3RM","CNSFLOOR","CNSFLOOR","CNSFLOOR","CNSLABFEM","CNSLABFEM","CNSLABFEM","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINUN","CNSMINUN","CNSMINUN","CNSMINUN","CNSMINUN","CNSMINUN","CNSMINUN","CNSMINUN","CNSMINUN","CNSSEWANY","CNSSEWANY","CNSSEWANY","CNSSEWNET","CNSSEWNET","CNSSEWNET","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSWALLDUR1","CNSWALLDUR1","CNSWALLDUR1","CNSWALLDUR2","CNSWALLDUR2","CNSWALLDUR2","CNSWALLDUR3","CNSWALLDUR3","CNSWALLDUR3","CNSWATIN","CNSWATIN","CNSWATIN","CNSWATNET","CNSWATNET","CNSWATNET","CNSWATPIPE","CNSWATPIPE","CNSWATPIPE"],"iso2":["BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE"],"public":["1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1"],"source":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"iso2","name":"iso2","type":"character","minWidth":150},{"accessor":"public","name":"public","type":"character","minWidth":150},{"accessor":"source","name":"source","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"9b0d60c439f8cc76f464bfc25c8d2707"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<p><strong>Based on the <a href="../fair/files/ex_SVY_codebook_evaluation.csv" download="">SVY codebook evaluation</a> we saw:</strong></p>
+<ul>
+<li>15 simple fields</li>
+<li>2 by_country fields (source, public, censor)</li>
+<li>2 by_strata (var_def, interpretation)</li>
+</ul>
+<p><strong>Therefore we need to prepare three codebooks for this dataset (see below).</strong></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">codebook_simple.csv</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">codebook_by_iso2.csv</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">codebook_by_strata.csv</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-1d6bc2710002cde1ed89" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-1d6bc2710002cde1ed89">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["SVYDBDX1","SVYDBDX2","SVYHTMED","SVYBMIOBESE","SVYBMISOBESE","SVYBMIOVOB","SVYBMISOVOB","SVYBMIUWT","SVYBMISUWT","SVYHLTHFP","SVYSMKCUR","SVYPAP3YRS","SVYMAM2YRS"],"domain":["Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors","Health Risk Factors"],"subdomain":["Diabetes","Diabetes","Hypertension","Anthropometry","Anthropometry","Anthropometry","Anthropometry","Anthropometry","Anthropometry","Health Status","Tobacco Use","Health Care","Health Care"],"var_label":["Prevelance Estimate for Dia...","Prevalence Estimate for Dia...","Prevalence Estimate for Cur...","Prevelence Estimate for Obe...","Prevelence Estimate for Obe...","Prevalence Estimate for Ove...","Prevalence Estimate for Ove...","Prevalence Estimate for Und...","Prevalence Estimate for Und...","Prevalence Estimate for Sel...","Prevalence Estimate for Cur...","Prevalence Estimate for Pap...","Prevalence Estimate for Mam..."],"value_type":[null,null,null,null,null,null,null,null,null,null,null,null,null],"units":[null,null,null,null,null,null,null,null,null,null,null,null,null],"coding":[null,null,null,null,null,null,null,null,null,null,null,null,null],"strata_description":[null,null,null,null,null,null,null,null,null,null,null,null,null],"dataset_notes":[null,null,null,null,null,null,null,null,null,null,null,null,null],"limitations":[null,null,null,null,null,null,null,null,null,null,null,null,null],"acknowledgment":[null,null,null,null,null,null,null,null,null,null,null,null,null],"file":["raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h...","raw-data/health mortality/h..."],"working_group":["Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC","Climate - UHC"],"longitudinal":[null,null,null,null,null,null,null,null,null,null,null,null,null],"censor":[null,null,null,null,null,null,null,null,null,null,null,null,null],"fair":["0","0","0","0","0","0","0","0","0","0","0","0","0"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"domain","name":"domain","type":"character","minWidth":150},{"accessor":"subdomain","name":"subdomain","type":"character","minWidth":150},{"accessor":"var_label","name":"var_label","type":"character","minWidth":150},{"accessor":"value_type","name":"value_type","type":"character","minWidth":150},{"accessor":"units","name":"units","type":"character","minWidth":150},{"accessor":"coding","name":"coding","type":"character","minWidth":150},{"accessor":"strata_description","name":"strata_description","type":"character","minWidth":150},{"accessor":"dataset_notes","name":"dataset_notes","type":"character","minWidth":150},{"accessor":"limitations","name":"limitations","type":"character","minWidth":150},{"accessor":"acknowledgment","name":"acknowledgment","type":"character","minWidth":150},{"accessor":"file","name":"file","type":"character","minWidth":150},{"accessor":"working_group","name":"working_group","type":"character","minWidth":150},{"accessor":"longitudinal","name":"longitudinal","type":"character","minWidth":150},{"accessor":"censor","name":"censor","type":"character","minWidth":150},{"accessor":"fair","name":"fair","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"7312aefb4465dfd68e5803024a8a121e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-28c57be53713f9bfe57a" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-28c57be53713f9bfe57a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX2","SVYDBDX2","SVYDBDX2","SVYHTMED","SVYHTMED","SVYHTMED","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYPAP3YRS","SVYPAP3YRS","SVYPAP3YRS","SVYMAM2YRS","SVYMAM2YRS","SVYMAM2YRS"],"iso2":["BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE","BR","CL","PE"],"public":["1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1","1","0","1"],"source":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"iso2","name":"iso2","type":"character","minWidth":150},{"accessor":"public","name":"public","type":"character","minWidth":150},{"accessor":"source","name":"source","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"1e5f5a9ebe8306b8207926b736bf9cfc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-ef3185cdd5808de64142" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-ef3185cdd5808de64142">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX1","SVYDBDX2","SVYDBDX2","SVYDBDX2","SVYDBDX2","SVYHTMED","SVYHTMED","SVYHTMED","SVYHTMED","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMIOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMISOBESE","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMIOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMISOVOB","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMIUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYBMISUWT","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYHLTHFP","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYSMKCUR","SVYPAP3YRS","SVYPAP3YRS","SVYPAP3YRS","SVYPAP3YRS","SVYMAM2YRS","SVYMAM2YRS","SVYMAM2YRS","SVYMAM2YRS"],"strata_id":["sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60","sex_male_stdPop_30","sex_female_stdPop_30","sex_male_stdPop_60","sex_female_stdPop_60"],"var_def":["Prevelance Estimate for Dia...","Prevelance Estimate for Dia...","Prevelance Estimate for Dia...","Prevelance Estimate for Dia...","Prevalence Estimate for Dia...","Prevalence Estimate for Dia...","Prevalence Estimate for Dia...","Prevalence Estimate for Dia...","Prevalence Estimate for Cur...","Prevalence Estimate for Cur...","Prevalence Estimate for Cur...","Prevalence Estimate for Cur...","Prevelence Estimate for Obe...","Prevelence Estimate for Obe...","Prevelence Estimate for Obe...","Prevelence Estimate for Obe...","Prevelence Estimate for Obe...","Prevelence Estimate for Obe...","Prevelence Estimate for Obe...","Prevelence Estimate for Obe...","Prevalence Estimate for Ove...","Prevalence Estimate for Ove...","Prevalence Estimate for Ove...","Prevalence Estimate for Ove...","Prevalence Estimate for Ove...","Prevalence Estimate for Ove...","Prevalence Estimate for Ove...","Prevalence Estimate for Ove...","Prevalence Estimate for Und...","Prevalence Estimate for Und...","Prevalence Estimate for Und...","Prevalence Estimate for Und...","Prevalence Estimate for Und...","Prevalence Estimate for Und...","Prevalence Estimate for Und...","Prevalence Estimate for Und...","Prevalence Estimate for Sel...","Prevalence Estimate for Sel...","Prevalence Estimate for Sel...","Prevalence Estimate for Sel...","Prevalence Estimate for Cur...","Prevalence Estimate for Cur...","Prevalence Estimate for Cur...","Prevalence Estimate for Cur...","Prevalence Estimate for Pap...","Prevalence Estimate for Pap...","Prevalence Estimate for Pap...","Prevalence Estimate for Pap...","Prevalence Estimate for Mam...","Prevalence Estimate for Mam...","Prevalence Estimate for Mam...","Prevalence Estimate for Mam..."],"interpretation":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"strata_id","name":"strata_id","type":"character","minWidth":150},{"accessor":"var_def","name":"var_def","type":"character","minWidth":150},{"accessor":"interpretation","name":"interpretation","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"3a1ab6e30aa70e4fbc858b4f2848aa37"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-5-tab">
+<p><strong>For each dataset you should have a data.csv as a deliverable</strong></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Air Pollution Dataset (APS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">SEC Census dataset (CNS)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false">Health Survey (SVY)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<p><strong>aps_data.csv</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-b3572c032019301d185e" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-b3572c032019301d185e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["APSNO2MEDIAN","APSNO2MEAN","APSNO2MEAN","APSPM25GRIDPTS","APSNO2GRIDPTS","APSPM25STD","APSPM25MEDIAN","APSPM25MEAN","APSPM25MEDIAN","APSPM25GRIDPTS","APSNO2STD","APSNO2STD","APSNO2GRIDPTS","APSPM25MEDIAN","APSPM25GRIDPTS","APSPM25STD","APSNO2MEAN","APSPM25THRES","APSPM25MEAN","APSNO2MEAN","APSPM25GRIDPTS","APSPM25MEAN","APSNO2MEDIAN","APSNO2STD","APSPM25STD","APSNO2STD","APSNO2GRIDPTS","APSNO2GRIDPTS","APSPM25MEDIAN","APSPM25MEAN","APSPM25GRIDPTS","APSPM25GRIDPTS","APSNO2MEDIAN","APSPM25STD","APSNO2STD","APSNO2MEAN","APSPM25MEAN","APSNO2MEAN","APSPM25STD","APSNO2STD","APSPM25MEAN","APSPM25GRIDPTS","APSPM25STD","APSNO2STD","APSNO2MEAN","APSNO2MEAN","APSNO2GRIDPTS","APSNO2STD","APSPM25MEAN","APSNO2GRIDPTS"],"iso2":["BR","BR","MX","MX","MX","MX","BR","MX","CL","BR","BR","MX","BR","CO","CO","BR","CO","PE","BR","CL","AR","BR","BR","CO","CL","BR","BR","CL","BR","CO","MX","PE","BR","BR","CL","MX","BR","BR","CL","MX","PE","AR","PE","MX","BR","BR","CL","BR","MX","MX"],"strata_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"value":["999998","0.2181460636","0.4418814243","6120","999998","999998","17","18.836308795","8.1999998093","9372","999998","999998","14","16.299999237","8832","3.8878411133","0.3194525196","1","18.089824064","0.1766634207","168024","12.088406531","0.0949768048","999998","11.537632428","0.0537869197","999998","999998","10.199999809","18.373456233","50796","4656","0.2588326035","2.1640789432","0.0849626704","0.4935348088","8.8657613855","0.2757041702","21.773713561","999998","18.111506788","33996","7.9159363067","999998","0.0680536596","0.5901720058","999998","0.0676830016","7.6959494856","57"],"geo":["L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD"],"salid1":["562262","562835","328185","328663","328686","328464","562726","328991","278757","562402","562640","328940","562939","625504","625968","562397","625896","294456","562878","278437","514103","562159","562549","625121","278909","562464","562774","278157","562826","625742","328457","294160","562891","562262","278246","328585","562728","562526","278315","328237","294558","514523","294456","328165","562442","562758","278157","562170","328560","328380"],"year":["2017","2010","2006","2010","2017","1997","2004","1999","1998","2009","2016","2020","1999","2018","2010","2015","2005","2009","2016","2002","2012","2003","2011","2013","2018","2007","2020","2016","2000","2014","2017","2020","2008","2008","1996","2009","2013","2005","1999","2017","2002","1998","2004","2014","2003","1998","2018","2012","2003","1999"],"strata_1_name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"strata_1_value":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"strata_2_name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"strata_2_value":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"file":["APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"iso2","name":"iso2","type":"character","minWidth":150},{"accessor":"strata_id","name":"strata_id","type":"logical","minWidth":150},{"accessor":"value","name":"value","type":"character","minWidth":150},{"accessor":"geo","name":"geo","type":"character","minWidth":150},{"accessor":"salid1","name":"salid1","type":"character","minWidth":150},{"accessor":"year","name":"year","type":"character","minWidth":150},{"accessor":"strata_1_name","name":"strata_1_name","type":"character","minWidth":150},{"accessor":"strata_1_value","name":"strata_1_value","type":"character","minWidth":150},{"accessor":"strata_2_name","name":"strata_2_name","type":"character","minWidth":150},{"accessor":"strata_2_value","name":"strata_2_value","type":"character","minWidth":150},{"accessor":"file","name":"file","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"ddc2088636c2dc2c33b9bea880d68dfa"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<p><strong>cns_data.csv</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-58d5a1cc03b196419534" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-58d5a1cc03b196419534">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["CNSST1517","CNSST1517","CNSLABPART","CNSST1517","CNSWALLDUR1","CNSST1517","CNSMINPR","CNSUNEMP","CNSLABPART","CNSMINPR","CNSLABPART","CNSWATPIPE","CNSLABFEM","CNSLABFEM","CNSLABPART","CNSMINPR","CNSLABFEM","CNSST1517","CNSWALLDUR3","CNSLABPART","CNSUNEMP","CNSLABFEM","CNSMINPR","CNSWALLDUR2","CNSWALLDUR3","CNSUNEMP","CNSLABPART","CNSMINPR","CNSWATNET","CNSCROWD3RM","CNSST1517","CNSMINPR","CNSWALLDUR3","CNSST1517","CNSWALLDUR3","CNSUNEMP","CNSLABPART","CNSMINHS","CNSFLOOR","CNSST1517","CNSLABPART","CNSWATIN","CNSWATNET","CNSWATIN","CNSMINPR","CNSST1517","CNSST1517","CNSUNEMP","CNSWALLDUR2","CNSUNEMP"],"iso2":["MX","BR","BR","BR","CO","BR","BR","BR","BR","MX","CL","BR","BR","BR","PE","PE","MX","CO","BR","BR","PE","PE","BR","BR","BR","CO","PE","BR","MX","AR","BR","CO","CO","BR","NI","MX","BR","AR","PE","BR","MX","BR","BR","BR","AR","MX","CL","AR","BR","BR"],"strata_id":["Sex_Overall","Sex_Overall","Sex_Overall","Sex_Female",null,"Sex_Female","Sex_Overall","Sex_Overall","Sex_Ratio","Sex_Female","Sex_Ratio",null,null,null,"Sex_Male","Sex_Female",null,"Sex_Female",null,"Sex_Overall","Sex_Overall",null,"Sex_Male",null,null,"Sex_Female","Sex_Male","Sex_Overall",null,null,"Sex_Female","Sex_Female",null,"Sex_Overall",null,"Sex_Male","Sex_Overall","Sex_Female",null,"Sex_Male","Sex_Ratio",null,null,null,"Sex_Female","Sex_Overall","Sex_Female","Sex_Ratio",null,"Sex_Ratio"],"value":["74.440863366","83.236804484","61.056545239","87.298725266","64.818438","83.249195517","67.37358022","3.0119026723","0.7759829283","81.541489013","0.584958017","99.740444545","45.444070634","46.158472311","73.007082741","72.507674821","33.762081831","85.793192","98.872624707","64.860144862","3.8680568929","40.338969596","69.827584847","99.086769464","99.621010526","16.418812","75.76259231","43.29807087","89.810292861","5.4603809762","82.205185002","77.20615","99.88421","85.669953993","82.036815304","2.7973111118","61.075840111","39.029172719","73.564796735","82.286030383","0.6008378247","97.871115833","90.018136181","88.368869028","82.270200361","72.157749515","97.169811321","2.3114632593","99.37355531","2.3194572795"],"geo":["L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD"],"salid1":["328712","562349","562178","562320","625759","562925","562668","562462","562348","328826","278206","562922","562894","562699","294456","294282","328375","625672","562769","562691","294851","294988","562777","562406","562800","625687","294825","562333","328539","514178","562939","625968","625555","562922","343574","328165","562559","514947","294851","562348","328135","562392","562633","562707","514609","328562","278494","514178","562925","562948"],"year":["2010","2010","2010","2010","2005","2010","2010","2010","2010","2010","2017","2010","2010","2010","2007","2007","2010","2018","2010","2010","2007","2017","2010","2010","2010","2018","2017","2010","2010","2010","2010","2005","2018","2010","2005","2010","2010","2010","2017","2010","2010","2010","2010","2010","2010","2010","2017","2010","2010","2010"],"strata_1_name":["Sex","Sex","Sex","Sex",null,"Sex","Sex","Sex","Sex","Sex","Sex",null,null,null,"Sex","Sex",null,"Sex",null,"Sex","Sex",null,"Sex",null,null,"Sex","Sex","Sex",null,null,"Sex","Sex",null,"Sex",null,"Sex","Sex","Sex",null,"Sex","Sex",null,null,null,"Sex","Sex","Sex","Sex",null,"Sex"],"strata_1_value":["Overall","Overall","Overall","Female",null,"Female","Overall","Overall","Ratio","Female","Ratio",null,null,null,"Male","Female",null,"Female",null,"Overall","Overall",null,"Male",null,null,"Female","Male","Overall",null,null,"Female","Female",null,"Overall",null,"Male","Overall","Female",null,"Male","Ratio",null,null,null,"Female","Overall","Female","Ratio",null,"Ratio"],"strata_2_name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"strata_2_value":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"file":["SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv","SEC_Census_L1AD_06232021.csv"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"iso2","name":"iso2","type":"character","minWidth":150},{"accessor":"strata_id","name":"strata_id","type":"character","minWidth":150},{"accessor":"value","name":"value","type":"character","minWidth":150},{"accessor":"geo","name":"geo","type":"character","minWidth":150},{"accessor":"salid1","name":"salid1","type":"character","minWidth":150},{"accessor":"year","name":"year","type":"character","minWidth":150},{"accessor":"strata_1_name","name":"strata_1_name","type":"character","minWidth":150},{"accessor":"strata_1_value","name":"strata_1_value","type":"character","minWidth":150},{"accessor":"strata_2_name","name":"strata_2_name","type":"character","minWidth":150},{"accessor":"strata_2_value","name":"strata_2_value","type":"character","minWidth":150},{"accessor":"file","name":"file","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"56151da901d8566400408b1fa4adef72"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<p><strong>svy_data.csv</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-1b9286554f1915250ee0" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-1b9286554f1915250ee0">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["SVYBMIUWT","SVYBMIOBESE","SVYSMKCUR","SVYBMIOVOB","SVYHTMED","SVYBMIOVOB","SVYHTMED","SVYHTMED","SVYBMIOVOB","SVYHTMED","SVYBMIOBESE","SVYBMIUWT","SVYBMIOBESE","SVYSMKCUR","SVYBMIOBESE","SVYBMIUWT","SVYDBDX1","SVYBMIOBESE","SVYBMIUWT","SVYHTMED","SVYMAM2YRS","SVYHTMED","SVYBMIOBESE","SVYBMIOVOB","SVYBMIOVOB","SVYSMKCUR","SVYHTMED","SVYBMIUWT","SVYBMIOVOB","SVYHTMED","SVYSMKCUR","SVYHTMED","SVYSMKCUR","SVYSMKCUR","SVYDBDX1","SVYBMIOBESE","SVYSMKCUR","SVYBMIUWT","SVYBMISOBESE","SVYBMIUWT","SVYDBDX1","SVYBMIOBESE","SVYBMIOVOB","SVYBMIOBESE","SVYBMIOBESE","SVYBMIUWT","SVYBMISUWT","SVYDBDX1","SVYSMKCUR","SVYBMIUWT"],"iso2":["CO","CL","MX","MX","BR","MX","MX","MX","MX","MX","MX","MX","CL","MX","CL","MX","CL","CO","PE","MX","BR","CL","MX","MX","CO","MX","MX","MX","BR","AR","AR","CL","CL","MX","BR","MX","BR","MX","AR","CO","MX","MX","BR","MX","MX","BR","AR","CO","CL","MX"],"strata_id":["Sex_Overall_Standard Population_True City","Sex_Male_Standard Population_Country Sex Specific","Sex_Female_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Salurbal Sex Specific","Sex_Female_Standard Population_Salurbal Sex Specific","Sex_Female_Standard Population_Country Sex Specific","Sex_Overall_Standard Population_Salurbal Sex Pooled","Sex_Female_Standard Population_Salurbal Sex Specific 20-49","Sex_Female_Standard Population_Salurbal Sex Pooled","Sex_Female_Standard Population_Country Sex Specific 20-49","Sex_Female_Standard Population_True City","Sex_Male_Standard Population_Salurbal Sex Specific","Sex_Overall_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Salurbal Sex Pooled","Sex_Female_Standard Population_Salurbal Sex Pooled","Sex_Female_Standard Population_Salurbal Sex Specific","Sex_Overall_Standard Population_Salurbal Sex Pooled","Sex_Female_Standard Population_Salurbal Sex Specific","Sex_Female_Standard Population_True City","Sex_Female_Standard Population_True City 50-79","Sex_Overall_Standard Population_True City","Sex_Female_Standard Population_True City","Sex_Male_Standard Population_Salurbal Sex Specific","Sex_Female_Standard Population_Country Sex Specific","Sex_Overall_Standard Population_True City","Sex_Male_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Salurbal Sex Specific","Sex_Male_Standard Population_Country Sex Specific","Sex_Overall_Standard Population_Salurbal Sex Pooled","Sex_Female_Standard Population_Salurbal Sex Pooled","Sex_Female_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Country Sex Specific","Sex_Female_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Country Sex Specific","Sex_Male_Standard Population_Country Sex Specific","Sex_Male_Standard Population_Salurbal Sex Specific","Sex_Overall_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_True City","Sex_Female_Standard Population_Country Sex Pooled","Sex_Male_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Salurbal Sex Pooled","Sex_Overall_Standard Population_True City","Sex_Female_Standard Population_Country Sex Specific","Sex_Male_Standard Population_Country Sex Pooled","Sex_Overall_Standard Population_Salurbal Sex Pooled","Sex_Male_Standard Population_Country Sex Pooled","Sex_Male_Standard Population_Country Sex Specific","Sex_Male_Standard Population_Salurbal Sex Specific"],"value":["0.0443426132900725","0.300370494740239","0.0579749334632633","0.781151333228552","0.0809134037484001","0.757643051751982","0.124958510161609","0.140930386550267","0.735672803032523","0.128274752898498","0.379377569147745","0.0112954762268946","0.195211045263653","0.178975851818086","0.211998912982238","0.0121822063380611","0.0772112849388255","0.223081789306237","0.00780761913556795","0.120191902951536","0.507012837423006","0.135021690933263","0.345991583953327","0.680461561558253","0.424922819821468","0.15337285913835","0.0553920736046246","0.00962311289381109","0.616635343898989","0.122884465457916","0.209425073394706","0.127972403790473","0.463612779120417","0.0955324593306429","0.0558215799230648","0.275668536441049","0.205876122990375","0.0129901197095651","0.182302930485782","0.0306501215086076","0.10969991495047","0.267685417631157","0.62863285071423","0.317005607317163","0.42843597813536","0.0193144387925586","0.0198957053720737","0.0258043478269077","0.407237681108777","0.0122594837394782"],"geo":["L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD"],"salid1":["625158","278206","328408","328560","562839","328527","328581","328196","328594","328600","328310","328663","278939","328443","278138","328928","278246","625742","294282","328725","562839","278449","328776","328240","625983","328375","328527","328520","562474","514983","514673","278142","278494","328826","562684","328853","562176","328185","514383","625995","328853","328306","562633","328884","328478","562915","514722","625641","278494","328488"],"year":["2010","2017","2018","2018","2013","2012","2012","2016","2012","2012","2006","2012","2010","2018","2003","2018","2010","2010","2016","2016","2013","2003","2006","2006","2007","2012","2006","2018","2013","2005","2013","2003","2003","2018","2013","2006","2013","2012","2005","2007","2016","2018","2013","2006","2006","2013","2013","2007","2010","2016"],"strata_1_name":["Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex","Sex"],"strata_1_value":["Overall","Male","Female","Male","Male","Female","Female","Overall","Female","Female","Female","Female","Male","Overall","Male","Female","Female","Overall","Female","Female","Female","Overall","Female","Male","Female","Overall","Male","Male","Male","Overall","Female","Female","Male","Female","Male","Male","Male","Overall","Male","Male","Female","Male","Male","Overall","Female","Male","Overall","Male","Male","Male"],"strata_2_name":["Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population"],"strata_2_value":["True City","Country Sex Specific","Salurbal Sex Pooled","Salurbal Sex Pooled","Salurbal Sex Specific","Salurbal Sex Specific","Country Sex Specific","Salurbal Sex Pooled","Salurbal Sex Specific 20-49","Salurbal Sex Pooled","Country Sex Specific 20-49","True City","Salurbal Sex Specific","Salurbal Sex Pooled","Salurbal Sex Pooled","Salurbal Sex Pooled","Salurbal Sex Specific","Salurbal Sex Pooled","Salurbal Sex Specific","True City","True City 50-79","True City","True City","Salurbal Sex Specific","Country Sex Specific","True City","Salurbal Sex Pooled","Salurbal Sex Specific","Country Sex Specific","Salurbal Sex Pooled","Salurbal Sex Pooled","Salurbal Sex Pooled","Country Sex Specific","Salurbal Sex Pooled","Country Sex Specific","Country Sex Specific","Salurbal Sex Specific","Salurbal Sex Pooled","Salurbal Sex Pooled","True City","Country Sex Pooled","Salurbal Sex Pooled","Salurbal Sex Pooled","True City","Country Sex Specific","Country Sex Pooled","Salurbal Sex Pooled","Country Sex Pooled","Country Sex Specific","Salurbal Sex Specific"],"file":["adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv","adult_survey_prevalence_city_02222022.csv"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":150},{"accessor":"iso2","name":"iso2","type":"character","minWidth":150},{"accessor":"strata_id","name":"strata_id","type":"character","minWidth":150},{"accessor":"value","name":"value","type":"character","minWidth":150},{"accessor":"geo","name":"geo","type":"character","minWidth":150},{"accessor":"salid1","name":"salid1","type":"character","minWidth":150},{"accessor":"year","name":"year","type":"character","minWidth":150},{"accessor":"strata_1_name","name":"strata_1_name","type":"character","minWidth":150},{"accessor":"strata_1_value","name":"strata_1_value","type":"character","minWidth":150},{"accessor":"strata_2_name","name":"strata_2_name","type":"character","minWidth":150},{"accessor":"strata_2_value","name":"strata_2_value","type":"character","minWidth":150},{"accessor":"file","name":"file","type":"character","minWidth":150}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"cc5dfd063cf257b0465ea746c28869d8"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><strong>Based on the <a href="../fair/files/ex_SVY_codebook_evaluation.csv" download="">SVY codebook evaluation</a> we saw:</strong></p>
+<ul>
+<li>15 simple fields</li>
+<li>2 by_country fields (source, public, censor)</li>
+<li>2 by_strata (var_def, interpretation)</li>
+</ul>
+<p><strong>Therefore we need to prepare three codebooks for this dataset (see below).</strong></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="deliverables-summary" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="deliverables-summary">Deliverables summary</h2>
+<p>So for the three examples we provided here are the final deliverable files.</p>
+<div class="column-screen-inset-right">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-ba67564e69cb43156b47" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ba67564e69cb43156b47">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"dataset":["Air Pollution (APS)","SEC census (CNS)","Health Survey (SVY)"],"strata_summary.csv":["x","x","x"],"metadata_evaluation.csv":["x","x","x"],"data.csv":["x","x","x"],"codebook_simple.csv":["x","x","x"],"codebook_by_country.csv":[null,"x","x"],"codebook_by_strata.csv":[null,null,"x"],"codebook_by_year.csv":[null,null,null]},"columns":[{"accessor":"dataset","name":"dataset","type":"character","minWidth":200},{"accessor":"strata_summary.csv","name":"strata_summary.csv","type":"character","minWidth":200},{"accessor":"metadata_evaluation.csv","name":"metadata_evaluation.csv","type":"character","minWidth":200},{"accessor":"data.csv","name":"data.csv","type":"character","minWidth":200},{"accessor":"codebook_simple.csv","name":"codebook_simple.csv","type":"character","minWidth":200},{"accessor":"codebook_by_country.csv","name":"codebook_by_country.csv","type":"character","minWidth":200},{"accessor":"codebook_by_strata.csv","name":"codebook_by_strata.csv","type":"character","minWidth":200},{"accessor":"codebook_by_year.csv","name":"codebook_by_year.csv","type":"logical","minWidth":200}],"sortable":false,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"smaller","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"bc2f4740f5bfe6017c463d5322b5910b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../pages/manuals/step1.html" class="pagination-link">
+        <span class="nav-page-text">Step 1: assign var_name</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LACUrbanHealth">
+      <i class="bi bi-twitter" role="img" aria-label="SALURBAL Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Drexel-UHC/salurbal-project-dashboard">
+      <i class="bi bi-github" role="img" aria-label="SALURBAL GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
+
+
+
+</body></html>

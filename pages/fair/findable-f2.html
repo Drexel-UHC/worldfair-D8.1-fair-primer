@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.241">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>SALURBAL - F2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../pages/fair/findable-f3.html" rel="next">
+<link href="../../pages/fair/findable-f1.html" rel="prev">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../../site_libs/react-17.0.0/react.min.js"></script>
+<script src="../../site_libs/react-17.0.0/react-dom.min.js"></script>
+<script src="../../site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="../../site_libs/reactable-binding-0.3.0/reactable.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="SALURBAL logo." class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../pages/fair/index.html" aria-current="page">
+ <span class="menu-text">FAIR Implementation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/database/qc.html">
+ <span class="menu-text">Database</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LACUrbanHealth"><i class="bi bi-twitter" role="img" aria-label="SALURBAL Twitter">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Drexel-UHC/salurbal-project-dashboard"><i class="bi bi-github" role="img" aria-label="SALURBAL GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">F2. Data are described with rich metadata (defined by R1 below)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/index.html" class="sidebar-item-text sidebar-link">FAIR Principles</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Findable</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/findable-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/findable-f1.html" class="sidebar-item-text sidebar-link">F1. Globally unique and persistent Identifiers</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/findable-f2.html" class="sidebar-item-text sidebar-link active">F2. Comprehensive metadata</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/findable-f3.html" class="sidebar-item-text sidebar-link">F3. Metadata linkable to data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/findable-f4.html" class="sidebar-item-text sidebar-link">F4. Searchable resource</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/accessible.html" class="sidebar-item-text sidebar-link">Accessible</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/interoperable.html" class="sidebar-item-text sidebar-link">Interoperable</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/fair/reusable.html" class="sidebar-item-text sidebar-link">Reusable</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
+  <li><a href="#codebooks" id="toc-codebooks" class="nav-link" data-scroll-target="#codebooks">Codebooks</a></li>
+  <li><a href="#tldr-to-long-did-not-read" id="toc-tldr-to-long-did-not-read" class="nav-link" data-scroll-target="#tldr-to-long-did-not-read">TLDR (To Long Did not Read)</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Drexel-UHC/salurbal-project-dashboard/edit/main/pages/fair/findable-f2.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Drexel-UHC/salurbal-project-dashboard/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">F2. Data are described with rich metadata (defined by R1 below)</h1>
+<p class="subtitle lead">ELI5: Comprehensive codebooks that cover community needs</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<p>Machines are great for computing can’t extrapolate certain things based on context. Consequently, how informative our data portal is will depend on how comprehensive and machine-actionable our data/codebooks are. Below we deocument standards for SALURBAL data/codebooks that improve FAIRness of our project and make a much more comprehensive amount of context accessible to the data portal.</p>
+<section id="data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Legacy SALURBAL data tables structure were in general pretty FAIR. The only major change in the renovated data table structure is that we enforce strict rules for our within project variable identifiers. <code>var_name</code> is our workhorse identifier which links things at the variable-level - it should not contain strata information. In some cases metadata is available within variable by country details or data strata and we use <code>iso2</code> or <code>strata_id</code> to do data-metadata linkage. More details can be found int the <a href="../../pages/fair/findable-f3.html">F3 principle page</a>.</p>
+<p>The first tab below give <a href="files/salurbal-data-fields.csv" download="">details on what fields/columns</a> should be present in renovated SALURBAL data tables and the second shows an <a href="files/salurbal-data-example.csv" download="">example data table</a>. The new data columns/fields can be grouped in to the following categories</p>
+<ul>
+<li>
+<span style="background-color:#f4d7ad"><strong>Identifiers</strong></span>: columns responsible for linkage of data and metadata. <code>var_name</code> is our workhorse identifier which links things at the variable-level - it should not contain strata information
+</li>
+<li>
+<span style="background-color:#b3e9d5"><strong>Data</strong>:</span> data related fields including SALID, year of data, geographic level and year.
+</li>
+<li>
+<span style="background-color:#ebd7f3"><strong>Internal</strong></span>: internal project related metadata (intermediate strata details and file directories ).
+</li>
+</ul>
+<div class="column-screen-inset-right">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Data Fields (details)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Data (example)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-f085414bcf1488a969b5" class="reactable html-widget" style="width:auto;height:400px;"></div>
+<script type="application/json" data-for="htmlwidget-f085414bcf1488a969b5">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"field":["var_name","dataset_id","iso2","geo","salid1","value","year"],"description":["(IDENTIFIERS) SALURBAL wide unique variable identifier","(IDENTIFIERS) dataset id","(IDENTIFIERS) iso2 of the country","(DATA) Geographic unit of data","(DATA) SALID1","(DATA) Data value","(DATA) Year for which data value represents"],"coding":["Character- all upper case. No spaces or special characters.","character. Operationalized from file name. No spaces; use underdash to separate words.","character. Iso2.","character. Currently only L1AD.","character. six digit SALID1","character. We can parse things later.","Character four character -  YYYY"]},"columns":[{"accessor":"field","name":"field","type":"character","minWidth":100,"maxWidth":150},{"accessor":"description","name":"description","type":"character","minWidth":100},{"accessor":"coding","name":"coding","type":"character","minWidth":100}],"sortable":false,"searchable":true,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"rowStyle":[{"background":"#f4d7ad"},{"background":"#f4d7ad"},{"background":"#f4d7ad"},{"background":"#b3e9d5"},{"background":"#b3e9d5"},{"background":"#b3e9d5"},{"background":"#b3e9d5"}],"height":"400px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"4a7c27c2f41ecc55610375854b40dc40"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-9c4d827e382d5819f12f" class="reactable html-widget" style="width:auto;height:400px;"></div>
+<script type="application/json" data-for="htmlwidget-9c4d827e382d5819f12f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["APSPM25MEAN","CNSMINHS","SVYBMISOBESE"],"dataset_id":["APS","SEC_CENSUS","adault_survey_prevalence"],"iso2":["AR","AR","AR"],"strata_id":[null,"sex_male","sex_male_standardPopulation_trueCity"],"geo":["L1AD","L1AD","L1AD"],"salid1":["######","######","######"],"value":["11.951496162","36.395913774","0.22574520479552601"],"year":["2010","2010","2013"],"strata_1_name":[null,"sex","sex"],"strata_1_value":[null,"male","male"],"strata_2_name":[null,null,"standardPopulation"],"strata_2_value":[null,null,"trueCity"],"file":["APS_02152022_test3.xlsx","SEC_CENSUS_20210624.xlsx","adult_survey_prevalence_02222022.xlsx"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":200,"sticky":"left"},{"accessor":"dataset_id","name":"dataset_id","type":"character","minWidth":200},{"accessor":"iso2","name":"iso2","type":"character","minWidth":200},{"accessor":"strata_id","name":"strata_id","type":"character","minWidth":200},{"accessor":"geo","name":"geo","type":"character","minWidth":200},{"accessor":"salid1","name":"salid1","type":"character","minWidth":200},{"accessor":"value","name":"value","type":"character","minWidth":200},{"accessor":"year","name":"year","type":"character","minWidth":200},{"accessor":"strata_1_name","name":"strata_1_name","type":"character","minWidth":200},{"accessor":"strata_1_value","name":"strata_1_value","type":"character","minWidth":200},{"accessor":"strata_2_name","name":"strata_2_name","type":"character","minWidth":200},{"accessor":"strata_2_value","name":"strata_2_value","type":"character","minWidth":200},{"accessor":"file","name":"file","type":"character","minWidth":200}],"sortable":false,"searchable":true,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"400px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"6531e5a3985ad67a4a9ad99eb599f31d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="codebooks" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="codebooks">Codebooks</h2>
+<p>Machines are great for computing but are quite dumb … in other words they can’t extrapolate certain things that humans can based on context. So making the web application to interface with the SALURBAL data we found that there were fundamental metadata (data about the data) - which may be possible for SALURBAL staff to extrapolate - were missing (either explicitly missing from codebooks in machine unreadable formats).</p>
+<p>Below is a more comprehensive codebook structure to address these gaps. The first tab below give <a href="files/salurbal-codebook-fields.csv" download="">details on what fields/columns</a> should be present in renovated SALURBAL codebooks and the second shows an <a href="files/salurbal-codebook-example.csv" download="">example codebook</a>. The new codebooks columns/fields can be grouped in to the following categories</p>
+<ul>
+<li>
+<span style="background-color:#f4d7ad"><strong>Identifiers</strong></span>: columns responsible for linkage of data and metadata. <code>var_name</code> is our workhorse identifier which links things at the variable-level - it should not contain strata information
+</li>
+<li id="codebook-codebook">
+<span style="background-color:#a3ccdf"><strong>Categorization</strong></span>: columns responsible for grouping variables into user friendly domains and subdomains.
+</li>
+<li>
+<span style="background-color:#c5fbc5"><strong>Details</strong>:</span> research related variables details, this will be useful for users who want to reuse our data/codebooks.
+</li>
+<li>
+<span style="background-color:#ebd7f3"><strong>Internal</strong></span>: internal project related metadata (file directories and access status).
+</li>
+</ul>
+<div class="column-page">
+<div class="panel-grid layout-sidebar ms-md-0 layout-sidebar-left">
+<div class="panel-sidebar card bg-light p-2 g-col-24 g-col-lg-7">
+<div style="height:200px">
+
+</div>
+<p>The new codebooks columns/fields can be grouped in to the following categories</p>
+<ul>
+<li>
+<span style="background-color:#f4d7ad"><strong>Identifiers</strong></span>: columns responsible for linkage of data and metadata
+</li>
+<li>
+<span style="background-color:#a3ccdf"><strong>Categorization</strong></span>: columns responsible for categorising variables into domain or subdomain
+</li>
+<li>
+<span style="background-color:#c5fbc5"><strong>Details</strong>:</span> research related variables details, this will be useful for users who want to reuse our data/codebooks.
+</li>
+<li>
+<span style="background-color:#ebd7f3"><strong>Internal</strong></span>: internal project related metadata
+</li>
+</ul>
+</div>
+<div class="panel-tabset g-col-24 g-col-lg-17 pt-3 pt-lg-0">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Codebook fields (details)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Codebook (example)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-8d90706714fec31ec843" class="reactable html-widget" style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-8d90706714fec31ec843">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"field":["var_name","dataset_id","iso2","strata_id","year","domain","subdomain","var_label","var_def","value_type","units","coding","strata_description","source","dataset_notes","limitations","acknowledgements","file_data","file_codebook","longitudinal","public","censor","license","fair"],"description":["(IDENTIFIERS) SALURBAL wide unique variable identifier","(IDENTIFIERS) dataset id","(IDENTIFIERS) Optional identifier only used for metadata that varies by country. iso2","(IDENTIFIERS) Optional identifier only used for metadata that varies by strata.  Stratification identifer.","(IDENTIFIERS) Optional identifier only used for metadata that varies by year.  Year for which data value represents","(CATEGORIZATION) Domain which variable belongs to. Highest level of variable categorization.","(CATEGORIZATION) Subdomain which variable belongs to. Lower level of variable categorization.","(DETAILS) Short human readable variable label.","(DETAILS) Details definition of what the variable is about.  If categorical include coding here.","(DETAILS) What type of data is the value.","(DETAILS) This is the short label to be appended to the data value. It will be used for annotating text or visualizations with a unit label (e.g. cases per 100k).","(DETAILS) This is an optional internal field that describes in details the measurement","(DETAILS) This should describe in detail what strata are available for this variable. Please include details about each strata if applicable.","(DETAILS) Data source","(DETAILS) Any additional information can be added here. For example some dataset or file specific notes could be added here.","(DETAILS) Place to describe any limitaitons for this variable.","(DETAILS) Any acklowdgements for this variable","(INTERNAL) File name of the data file used for this dataset","(INTERNAL) File name of the codebook file used for this dataset","(INTERNAL) Is this variable qualified for longitudinal analysis or visualizations?","(INTERNAL) Is it okay to make the data and metadata for this variable publicly available for visualization and download?\r\n","(INTERNAL) If the data is not public. Can we show the metadata (e.g. show the data is avilable to be searched but not visualizaed or downloaded). This way others can request data if needed.\r\n","(INTERNAL) What is the license for this variable \r\n","(INTERNAL) Has this metadata for this variable been updated for FAIR principles. If renovated as per new standards then yes. Otherwise no."],"coding":["Character- all upper case. No spaces or special characters.","character. Dataset id is operationalized by the origianl file name. For example, for the dataset from APSL1AD_02152022.csv the dataset id should be APS. See examples in the next tab. Formatting:  No spaces; use underdash to separate words.","Character- all lower case. For metadata that differ by country please organize enter a row for each country or groups of countries. You can write single iso2 or a string of iso2 seperated by commas.","Character - concatenation of strata_1_name, strata_1_value, strata_2_name, strata_2_value seperated by underdashes. Not that if any strata field is empty then do not concatate anything or underdash","Character four character -  YYYY","Character. Should fall into the DMC curated list of acceptable domains.","Character.","Character. Aim to be less than 30 characters. Hard limit at 75 characters.","Character. No length limit.","Must be one of the following:\r\n- double (continuous values)\r\n- discrete (integer values )\r\n- categorical (non-numeric groups or categories)","Characters","Characters","Character. Try to be as details as possible. If variable is not stratafied the value should be NA.","Character\r\n\r\n**Note if this varies by country please leave as NA in the variable level codebook and attach this field in the supplementatary by iso2-yr codebook.","Character\r\n",null,null,"Character.","Character.","Binary: 1-yes or 2-no\r\n\r\n**Note if this varies by country please leave as NA in the variable level codebook and attach this field in the supplementatary by iso2-yr codebook.","Binary: 1-yes or 2-no\r\n\r\n**Note if this varies by country please leave as NA in the variable level codebook and attach this field in the supplementatary by iso2-yr codebook.","Binary: 1-yes or 2-no\r\n\r\n**Note if this varies by country please leave as NA in the variable level codebook and attach this field in the supplementatary by iso2-yr codebook.","Categorical. Options include \"CC BY\" or TBD by Kari and Goro.","Binary: 1-yes or 2-no"]},"columns":[{"accessor":"field","name":"field","type":"character","minWidth":100,"maxWidth":150},{"accessor":"description","name":"description","type":"character","minWidth":100},{"accessor":"coding","name":"coding","type":"character","minWidth":100}],"sortable":false,"searchable":true,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"rowStyle":[{"background":"#f4d7ad"},{"background":"#f4d7ad"},{"background":"#f4d7ad"},{"background":"#f4d7ad"},{"background":"#f4d7ad"},{"background":"#a3ccdf"},{"background":"#a3ccdf"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#c5fbc5"},{"background":"#ebd7f3"},{"background":"#ebd7f3"},{"background":"#ebd7f3"},{"background":"#ebd7f3"},{"background":"#ebd7f3"},{"background":"#ebd7f3"},{"background":"#ebd7f3"}],"height":"600px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"5b7ad4feba4811c8564e7d0e369486ee"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="htmlwidget-ad8c8c386c02c3c34305" class="reactable html-widget" style="width:auto;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-ad8c8c386c02c3c34305">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["APSPM25MEAN","CNSMINHS","SVYBMISOBESE"],"dataset_id":["APS","SEC_CENSUS","adault_survey_prevalence"],"iso2":[null,null,null],"strata_id":[null,null,null],"year":[null,null,null],"domain":["Physical and Natural Environment","Social Environment","Health Risk Factors"],"subdomain":["Air Pollution","Education","Anthropometry"],"var_label":["Average PM2.5 concentration","Completed secondary education or above","\r\nObesity prevalence"],"var_def":["Arithmetic mean of PM2.5 measurements for all g...","Proportion of population  aged 25 or older who ...","Prevelence Estimate for Obese as measured BMI W..."],"value_type":[null,null,null],"units":["ug/m3","proportion","cases per 100k"],"coding":["micromilligrams per cubic meter","proportion is a value from 0-1",null],"strata_description":[null,"Education attainment is vailable by sex includi...","Prevelence Estimate for Obese as measured BMI W..."],"source":[null,null,null],"dataset_notes":[null,null,"The datasets contain estimated life expectancy ..."],"limitations":[null,null,null],"acknowledgements":["Citation: Hammer, M. S.; et al, Global Estimate...",null,null],"file_data":["APS_02152022_test3.xlsx","SEC_CENSUS_20210624.xlsx","adult_survey_prevalence_02222022.xlsx"],"file_codebook":["Codebook_APS_02152022_test3.xlsx","Codebook_SEC_CENSUS_20210624.xlsx","Codebook_adult_survey_prevalence_02222022.xlsx"],"longitudinal":["1","0","0"],"public":["1","1","1"],"censor":["0","0","0"],"license":["CC BY","CC BY","CC BY"],"fair":["1","0","0"]},"columns":[{"accessor":"var_name","name":"var_name","type":"character","minWidth":200,"sticky":"left"},{"accessor":"dataset_id","name":"dataset_id","type":"character","minWidth":200},{"accessor":"iso2","name":"iso2","type":"character","minWidth":200},{"accessor":"strata_id","name":"strata_id","type":"character","minWidth":200},{"accessor":"year","name":"year","type":"character","minWidth":200},{"accessor":"domain","name":"domain","type":"character","minWidth":200},{"accessor":"subdomain","name":"subdomain","type":"character","minWidth":200},{"accessor":"var_label","name":"var_label","type":"character","minWidth":200},{"accessor":"var_def","name":"var_def","type":"character","minWidth":200},{"accessor":"value_type","name":"value_type","type":"character","minWidth":200},{"accessor":"units","name":"units","type":"character","minWidth":200},{"accessor":"coding","name":"coding","type":"character","minWidth":200},{"accessor":"strata_description","name":"strata_description","type":"character","minWidth":200},{"accessor":"source","name":"source","type":"character","minWidth":200},{"accessor":"dataset_notes","name":"dataset_notes","type":"character","minWidth":200},{"accessor":"limitations","name":"limitations","type":"character","minWidth":200},{"accessor":"acknowledgements","name":"acknowledgements","type":"character","minWidth":200},{"accessor":"file_data","name":"file_data","type":"character","minWidth":200},{"accessor":"file_codebook","name":"file_codebook","type":"character","minWidth":200},{"accessor":"longitudinal","name":"longitudinal","type":"character","minWidth":200},{"accessor":"public","name":"public","type":"character","minWidth":200},{"accessor":"censor","name":"censor","type":"character","minWidth":200},{"accessor":"license","name":"license","type":"character","minWidth":200},{"accessor":"fair","name":"fair","type":"character","minWidth":200}],"sortable":false,"searchable":true,"pagination":false,"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"height":"500px","theme":{"color":"#5e666d","backgroundColor":"#e6ebee","borderColor":"black","stripedColor":"black","highlightColor":"bfc5c9","headerStyle":{"fontWeight":"bolder","fontSize":"larger","borderColor":"#555"},"searchInputStyle":{"width":"98%","backgroundColor":"#e6ebee","margin":"auto","marginTop":"3px","marginBottom":"3px"}},"dataKey":"a7f73bd1498926d924aab29260dcb406"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tldr-to-long-did-not-read" class="level2">
+<h2 class="anchored" data-anchor-id="tldr-to-long-did-not-read">TLDR (To Long Did not Read)</h2>
+<p>In trying to make a FAIR data portal we found two major challenges: 1) our existing codebooks were not accessible or comprehensive enough to support creating a FAIR data portal 2) no existing way to link complex metadata (by strata, country) to data. This page documents a proposed data and codebooks standard that will guide the FAIR renovation of existing datasets and serve as templates for future datasets.</p>
+<ul>
+<li>a set of identifer fields (<code>var_name</code>, <code>strata_fields</code>) to link metadata and data at a variable level while accounting for complex by strata/country/year metadata</li>
+<li>More comprehensive codebooks to explicitly codify important metadata (identifiers, strata details, categories, internal info, research details)</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../pages/fair/findable-f1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">F1. Globally unique and persistent Identifiers</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../pages/fair/findable-f3.html" class="pagination-link">
+        <span class="nav-page-text">F3. Metadata linkable to data</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LACUrbanHealth">
+      <i class="bi bi-twitter" role="img" aria-label="SALURBAL Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Drexel-UHC/salurbal-project-dashboard">
+      <i class="bi bi-github" role="img" aria-label="SALURBAL GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
+
+
+
+</body></html>

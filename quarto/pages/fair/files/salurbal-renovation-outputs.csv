@@ -1,4 +1,0 @@
-dataset,strata_summary.csv,metadata_evaluation.csv,data.csv,codebook_simple.csv,codebook_by_country.csv,codebook_by_strata.csv,codebook_by_year.csv
-Air Pollution (APS),x,x,x,x,,,
-SEC census (CNS),x,x,x,x,x,,
-Health Survey (SVY),x,x,x,x,x,x,

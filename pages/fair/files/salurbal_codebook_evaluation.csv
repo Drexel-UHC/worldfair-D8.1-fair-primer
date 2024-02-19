@@ -1,0 +1,23 @@
+field,description,simple,by_country,by_year,by_strata
+domain,(CATEGORIZATION) Domain which variable belongs to. Highest level of variable categorization.,1,NA,NA,NA
+subdomain,(CATEGORIZATION) Subdomain which variable belongs to. Lower level of variable categorization.,1,NA,NA,NA
+var_label,(DETAILS) Short human readable variable label.,1,NA,NA,NA
+var_def,(DETAILS) Details definition of what the variable is about.  If categorical include coding here.,1,NA,NA,NA
+value_type,(DETAILS) What type of data is the value.,1,NA,NA,NA
+units,(DETAILS) This is the short label to be appended to the data value. It will be used for annotating text or visualizations with a unit label (e.g. cases per 100k).,1,NA,NA,NA
+coding,(DETAILS) This is an optional internal field that describes in details the measurement,1,NA,NA,NA
+strata_description,(DETAILS) This should describe in detail what strata are available for this variable. Please include details about each strata if applicable.,1,NA,NA,NA
+source,(DETAILS) Data source,1,NA,NA,NA
+dataset_notes,(DETAILS) Any additional information can be added here. For example some dataset or file specific notes could be added here.,1,NA,NA,NA
+limitations,(DETAILS) Place to describe any limitaitons for this variable.,1,NA,NA,NA
+acknowledgements,(DETAILS) Any acklowdgements for this variable,1,NA,NA,NA
+file_data,(INTERNAL) File name of the data file used for this dataset,1,NA,NA,NA
+file_codebook,(INTERNAL) File name of the codebook file used for this dataset,1,NA,NA,NA
+longitudinal,(INTERNAL) Is this variable qualified for longitudinal analysis or visualizations?,1,NA,NA,NA
+public,"(INTERNAL) Is it okay to make the data and metadata for this variable publicly available for visualization and download?
+",1,NA,NA,NA
+censor,"(INTERNAL) If the data is not public. Can we show the metadata (e.g. show the data is avilable to be searched but not visualizaed or downloaded). This way others can request data if needed.
+",1,NA,NA,NA
+license,"(INTERNAL) What is the license for this variable 
+",1,NA,NA,NA
+fair,(INTERNAL) Has this metadata for this variable been updated for FAIR principles. If renovated as per new standards then yes. Otherwise no.,1,NA,NA,NA

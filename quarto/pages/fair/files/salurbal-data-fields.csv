@@ -1,8 +1,0 @@
-field,description,coding
-var_name,(IDENTIFIERS) SALURBAL wide unique variable identifier,Character- all upper case. No spaces or special characters.
-dataset_id,(IDENTIFIERS) dataset id,character. Operationalized from file name. No spaces; use underdash to separate words.
-iso2,(IDENTIFIERS) iso2 of the country,character. Iso2.
-geo,(DATA) Geographic unit of data,character. Currently only L1AD.
-salid1,(DATA) SALID1,character. six digit SALID1
-value,(DATA) Data value,character. We can parse things later.
-year,(DATA) Year for which data value represents,Character four character -  YYYY

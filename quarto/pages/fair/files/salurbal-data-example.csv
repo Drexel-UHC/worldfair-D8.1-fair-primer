@@ -1,4 +1,0 @@
-var_name,dataset_id,iso2,strata_id,geo,salid1,value,year,strata_1_name,strata_1_value,strata_2_name,strata_2_value,file
-APSPM25MEAN,APS,AR,NA,L1AD,######,11.951496162,2010,NA,NA,NA,NA,APS_02152022_test3.xlsx
-CNSMINHS,SEC_CENSUS,AR,sex_male,L1AD,######,36.395913774,2010,sex,male,NA,NA,SEC_CENSUS_20210624.xlsx
-SVYBMISOBESE,adault_survey_prevalence,AR,sex_male_standardPopulation_trueCity,L1AD,######,0.22574520479552601,2013,sex,male,standardPopulation,trueCity,adult_survey_prevalence_02222022.xlsx

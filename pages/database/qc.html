@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.241">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-09-10">
+<meta name="description" content="Birds eye view of the SALURBAL data base and track the progress of implementing FAIR principles.">
+
+<title>SALURBAL - Database</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../../site_libs/react-17.0.0/react.min.js"></script>
+<script src="../../site_libs/react-17.0.0/react-dom.min.js"></script>
+<script src="../../site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="../../site_libs/reactable-binding-0.3.0/reactable.js"></script>
+<link href="../../site_libs/font-awesome-6.2.0/css/all.min.css" rel="stylesheet">
+<link href="../../site_libs/font-awesome-6.2.0/css/v4-shims.min.css" rel="stylesheet">
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="../../site_libs/proj4js-2.3.15/proj4.js"></script>
+<link href="../../site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
+<script src="../../site_libs/highcharts-9.3.1/highcharts.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/highcharts-3d.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/highcharts-more.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/stock.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/map.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/data.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/exporting.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/drilldown.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/item-series.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/annotations.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/export-data.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/funnel.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/heatmap.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/treemap.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/sankey.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/organization.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/sunburst.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/vector.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/xrange.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/tilemap.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/venn.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/gantt.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/timeline.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/bullet.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/lollipop.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/series-label.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/plugins/motion.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/custom/reset.js"></script>
+<script src="../../site_libs/highcharts-9.3.1/modules/boost.js"></script>
+<script src="../../site_libs/highchart-binding-0.9.4/highchart.js"></script>
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="SALURBAL logo." class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/fair/index.html">
+ <span class="menu-text">FAIR Implementation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../pages/database/qc.html" aria-current="page">
+ <span class="menu-text">Database</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LACUrbanHealth"><i class="bi bi-twitter" role="img" aria-label="SALURBAL Twitter">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Drexel-UHC/salurbal-project-dashboard"><i class="bi bi-github" role="img" aria-label="SALURBAL GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">FAIR SALURBAL Database Summary</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#source" id="toc-source" class="nav-link active" data-scroll-target="#source">1. Source</a>
+  <ul class="collapse">
+  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files">1.1 Files</a></li>
+  <li><a href="#v2-codebooks" id="toc-v2-codebooks" class="nav-link" data-scroll-target="#v2-codebooks">1.2 V2 Codebooks</a></li>
+  <li><a href="#stratification-scheme" id="toc-stratification-scheme" class="nav-link" data-scroll-target="#stratification-scheme">1.3 Stratification Scheme</a></li>
+  </ul></li>
+  <li><a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control">2. Quality Control</a>
+  <ul class="collapse">
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests">2.1 Tests</a></li>
+  <li><a href="#generate-outputs" id="toc-generate-outputs" class="nav-link" data-scroll-target="#generate-outputs">2.2 Generate Outputs</a></li>
+  <li><a href="#validation-of-outputs" id="toc-validation-of-outputs" class="nav-link" data-scroll-target="#validation-of-outputs">2.3 Validation of Outputs</a></li>
+  </ul></li>
+  <li><a href="#database-summary" id="toc-database-summary" class="nav-link" data-scroll-target="#database-summary">3. Database Summary</a>
+  <ul class="collapse">
+  <li><a href="#variables-count" id="toc-variables-count" class="nav-link" data-scroll-target="#variables-count">3.1 Variables Count</a></li>
+  <li><a href="#stratification" id="toc-stratification" class="nav-link" data-scroll-target="#stratification">3.2 Stratification</a></li>
+  <li><a href="#value-type" id="toc-value-type" class="nav-link" data-scroll-target="#value-type">3.3 Value Type</a></li>
+  <li><a href="#longitudinal-data" id="toc-longitudinal-data" class="nav-link" data-scroll-target="#longitudinal-data">3.4 Longitudinal Data</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Drexel-UHC/salurbal-project-dashboard/edit/main/pages/database/qc.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Drexel-UHC/salurbal-project-dashboard/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">FAIR SALURBAL Database Summary</h1>
+</div>
+
+<div>
+  <div class="description">
+    Birds eye view of the SALURBAL data base and track the progress of implementing FAIR principles.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 10, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="source" class="level2">
+<h2 class="anchored" data-anchor-id="source">1. Source</h2>
+<section id="files" class="level3">
+<h3 class="anchored" data-anchor-id="files">1.1 Files</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_codebook_sources <span class="ot">=</span> compiled_codebooks <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(domain,subdomain, file, v2_codebooks) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">codebook =</span> <span class="fu">convert_full_path_to_file_name</span>(file),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">v2_codebooks =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(v2_codebooks),F,v2_codebooks)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(domain, subdomain, codebook,v2_codebooks) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">domain =</span>  <span class="fu">ifelse</span>( <span class="fu">str_detect</span>(codebook,<span class="st">'child'</span>), <span class="fu">paste0</span>(<span class="st">"Child "</span>, domain), domain))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df_datasets_sources <span class="ot">=</span> compiled_datasets <span class="sc">%&gt;%</span>  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(domain,subdomain,file) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(domain, subdomain, file)<span class="sc">%&gt;%</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">domain =</span>  <span class="fu">ifelse</span>( <span class="fu">str_detect</span>(file,<span class="st">'child'</span>), <span class="fu">paste0</span>(<span class="st">"Child "</span>, domain), domain))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>.x <span class="ot">=</span> df_datasets_sources <span class="sc">%&gt;%</span> </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df_codebook_sources) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(file <span class="sc">==</span> <span class="st">'BEC_L1AD_20210824.csv'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>df_sources <span class="ot">=</span> df_datasets_sources <span class="sc">%&gt;%</span> </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df_codebook_sources) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grouper =</span> <span class="fu">paste</span>(file, codebook)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(file, codebook) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span>{</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    n_domain_tmp <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(.x<span class="sc">$</span>domain))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    n_subdomain_tmp <span class="ot">=</span> <span class="fu">nrow</span>(.x)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    name_tmp <span class="ot">=</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">unique</span>(.x<span class="sc">$</span>domain) <span class="sc">==</span> <span class="st">'Child Health Risk Factors'</span> <span class="sc">~</span><span class="st">'Child Health Risk Factors'</span> <span class="sc">%&gt;%</span> <span class="fu">list</span>(),</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      n_subdomain_tmp <span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="fu">unique</span>(.x<span class="sc">$</span>subdomain) <span class="sc">%&gt;%</span> <span class="fu">list</span>(),</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      n_domain_tmp <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="fu">unique</span>(.x<span class="sc">$</span>domain) <span class="sc">%&gt;%</span> <span class="fu">list</span>(),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span><span class="sc">~</span><span class="fu">unique</span>(.x<span class="sc">$</span>domain) <span class="sc">%&gt;%</span> <span class="fu">list</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">unlist</span>()</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">data =</span> name_tmp,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>           <span class="at">file =</span> <span class="fu">unique</span>(.x<span class="sc">$</span>file),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>           <span class="at">codebook =</span> <span class="fu">unique</span>(.x<span class="sc">$</span>codebook),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>           <span class="at">v2_codebooks =</span> <span class="fu">unique</span>(.x<span class="sc">$</span>v2_codebooks))</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Data =</span> data,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Codebook V2</span><span class="st">`</span> <span class="ot">=</span> v2_codebooks,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>         <span class="at">File =</span> file,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>         <span class="at">Codebook =</span> codebook) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Data)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>df_sources <span class="sc">%&gt;%</span> </span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>(</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">defaultPageSize =</span> <span class="dv">20</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>( <span class="at">fontSize =</span> <span class="st">"11px"</span>),</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Codebook V2</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">colDef</span>(</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value) <span class="fu">qc_icon_formatter</span>(value),</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="at">width =</span> <span class="dv">100</span>)),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-7d4d40c595ad8c7a1b12" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7d4d40c595ad8c7a1b12">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Data":["Air Pollution","Child Health Risk Factors","Economy","Employment","Employment","Environmental Impact","Health Risk Factors","Inequality","Life Expectancy","Migration","Physical and Natural Environment","Population Projection Growth","Population Projection Total","Segregation","Social, Economic, and Services Environment","Social, Economic, and Services Environment"],"Codebook V2":[true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],"File":["APSL1AD_02152022.csv","child_survey_prevalence_city_02232022.csv","SECGDPGPC_L1AD_20200124.csv","SEC_Census_L1AD_06232021.csv","SEC_Survey_L1AD_09212020.csv","BEC_L1AD_20210824.csv","adult_survey_prevalence_city_02222022.csv","SEC_GINI_L1AD_01312020.csv","LEMEDIAN_L1_20200824.csv","SEC_MIGRATION_L1AD_06142021.csv","BEC_L1AD_20210824.csv","PRJG_L1AD_20200915.csv","PRJT_L1AD_20200914.csv","SEC_SegregationIdx_L1AD_04252021.csv","SEC_Census_L1AD_06232021.csv","SEC_Survey_L1AD_09212020.csv"],"Codebook":["Codebook_APS_02152022_test3.xlsx","Codebook_child_survey_prevalence_02232022.xlsx","Codebook_SECGDPGPC_L1AD_20200124.xlsx","Codebook_SEC_Survey_09212020.xlsx","Codebook_SEC_CENSUS_20210624.xlsx","BEC_Codebook_20210824.xlsx","Codebook_adult_survey_prevalence_02222022.xlsx","Codebook_SEC_GINI_01312020.xlsx","codebook_LEMEDIAN_L1_20200824.xlsx","Codebook_SEC_MIGRATION_06142021.xlsx","BEC_Codebook_20210824.xlsx","Codebook_PRJG_L1AD_20200915.xlsx","Codebook_PRJT_Population_Total_Projections_20210601.xlsx","Codebook_SEC_SegregationIdx_01192021.xlsx","Codebook_SEC_CENSUS_20210624.xlsx","Codebook_SEC_Survey_09212020.xlsx"]},"columns":[{"accessor":"Data","name":"Data","type":"character"},{"accessor":"Codebook V2","name":"Codebook V2","type":"logical","cell":[{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]}],"width":100},{"accessor":"File","name":"File","type":"character"},{"accessor":"Codebook","name":"Codebook","type":"character"}],"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"style":{"fontSize":"11px"},"dataKey":"66ad761bd269c2928088882823267f36"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="v2-codebooks" class="level3">
+<h3 class="anchored" data-anchor-id="v2-codebooks">1.2 V2 Codebooks</h3>
+<p>SALURBAL codebooks will be updated to include system level metadata. Below compares v1 (old) and v2 (new) codebooks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_v1 <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">field =</span> codebook__bec <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>file) <span class="sc">%&gt;%</span> <span class="fu">names</span>(),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">v1 =</span> T</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df_v2 <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">field =</span> codebook__air_pollution <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>file,<span class="sc">-</span>v2_codebooks) <span class="sc">%&gt;%</span> <span class="fu">names</span>(),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">v2 =</span> T</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>df_example <span class="ot">=</span> codebook__air_pollution <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(var_name <span class="sc">==</span> <span class="st">'APSPM25MEAN'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">as.character</span>(.x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">'field'</span>, <span class="at">values_to =</span> <span class="st">'example'</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>df_codebook_versions <span class="ot">=</span> df_v2 <span class="sc">%&gt;%</span> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df_v1) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df_example) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Field =</span> field, v1, v2, <span class="st">`</span><span class="at">v2 example</span><span class="st">`</span> <span class="ot">=</span> example) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">v1 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(v1),F, v1))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>df_codebook_versions <span class="sc">%&gt;%</span> </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">defaultPageSize =</span> <span class="dv">20</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>( <span class="at">fontSize =</span> <span class="st">"11px"</span>),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">v1</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">colDef</span>(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value) <span class="fu">qc_icon_formatter</span>(value),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">width =</span> <span class="dv">100</span>),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">v2</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">colDef</span>(</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value) <span class="fu">qc_icon_formatter</span>(value),</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">width =</span> <span class="dv">100</span>))</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-12ec08f5f56be483b8c4" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-12ec08f5f56be483b8c4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Field":["domain","subdomain","var_name","var_label","var_def","coding","units","interpretation","source","var_year","notes","limitations","acknowledgment","longitudinal","downloadable","censor"],"v1":[true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false],"v2":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],"v2 example":["Physical and Natural Environment","Air Pollution","APSPM25MEAN","Average PM2.5 concentration","Arithmetic mean of PM2.5 measurements for all grid cells where the centroid falls within the geographic unit","999998 = No data available","micromilligrams per cubic meter (ug/m3)","A higher value indicates higher levels of air pollution","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","1998-2020",null,null,"Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","TRUE","TRUE","FALSE"]},"columns":[{"accessor":"Field","name":"Field","type":"character"},{"accessor":"v1","name":"v1","type":"logical","cell":[{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]}],"width":100},{"accessor":"v2","name":"v2","type":"logical","cell":[{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]}],"width":100},{"accessor":"v2 example","name":"v2 example","type":"character"}],"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"style":{"fontSize":"11px"},"dataKey":"d7126c2f9ed8c0953ca26eb36bb4515a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="stratification-scheme" class="level3">
+<h3 class="anchored" data-anchor-id="stratification-scheme">1.3 Stratification Scheme</h3>
+<p>The table below defines how we will organiation stratification within the data. There are three columns: 1) attribute - grouping varaible (e.g.&nbsp;Sex) 2) attribute_value are the actual strata (e.g.&nbsp;Female, Males…) 3. default is to signal which strata to display in a non-stratified context (e.g.&nbsp;data catalog table or city profiles viz)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_strata <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>default) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(attribute) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>(<span class="at">groupBy =</span> <span class="st">"attribute"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-1bc66b6d9b8b545cddca" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1bc66b6d9b8b545cddca">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"attribute":["Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Age","Sex","Sex","Sex","Sex","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population","Standard Population"],"attribute_value":["1","0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85","Overall","Male","Female","Ratio","Salurbal Sex Pooled","Country Sex Pooled","True City","Country Sex Specific","Salurbal Sex Specific","True City 20-49","Country Sex Specific 20-49","Salurbal Sex Specific 20-49","True City 50-79","Country Sex Specific 50-79","Salurbal Sex Specific 50-79","Rate based on sample 50-59, no pop std","True City 25-49","Country Sex Specific 25-49","Salurbal Sex Specific 25-49","True City 30-49","Country Sex Specific 30-49","Salurbal Sex Specific 30-49"]},"columns":[{"accessor":"attribute","name":"attribute","type":"character"},{"accessor":"attribute_value","name":"attribute_value","type":"character"}],"pivotBy":["attribute"],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"38dd1c7e49b94e99d0e7fbb172f3b14c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="quality-control" class="level2">
+<h2 class="anchored" data-anchor-id="quality-control">2. Quality Control</h2>
+<section id="tests" class="level3">
+<h3 class="anchored" data-anchor-id="tests">2.1 Tests</h3>
+<p>The below displays the results of our individual QC tests. If the test has failed you can click each row to see the a summary of the variables that failed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tests <span class="ot">=</span> <span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">'test_'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">map_df</span>(tests, <span class="sc">~</span>{</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">=</span> <span class="fu">get</span>(.x)(compiled_datasets,compiled_codebooks,<span class="at">role =</span> <span class="st">'test'</span>)   </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Test =</span> result<span class="sc">$</span>test, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Result =</span> result<span class="sc">$</span>pass,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Description =</span> result<span class="sc">$</span>desc,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">faulty =</span> <span class="fu">list</span>(result<span class="sc">$</span>faulty))})<span class="sc">%&gt;%</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Result))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>index_faulty <span class="ot">=</span> <span class="fu">which</span>(<span class="sc">!</span>results<span class="sc">$</span>Result)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>faulty)  <span class="sc">%&gt;%</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">Test  =</span> <span class="fu">colDef</span>(<span class="at">width =</span> <span class="dv">100</span>),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">Result  =</span> <span class="fu">colDef</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value) <span class="fu">qc_icon_formatter</span>(value),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">width =</span> <span class="dv">100</span>)),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">details =</span> <span class="cf">function</span>(index){</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (index<span class="sc">%in%</span>index_faulty){</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        nested_data <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">slice</span>(index) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(faulty) <span class="sc">%&gt;%</span> .[[<span class="dv">1</span>]]</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        is_nestable  <span class="ot">=</span> nested_data <span class="sc">%&gt;%</span> <span class="fu">count</span>(var_name) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(n)<span class="sc">&gt;</span><span class="dv">1</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        index_name <span class="ot">=</span> nested_data <span class="sc">%&gt;%</span> <span class="fu">count</span>(var_name) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(var_name)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        index_nestable <span class="ot">=</span> <span class="fu">which</span>(is_nestable)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">any</span>(is_nestable)){</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>          nested_data1<span class="ot">=</span> nested_data <span class="sc">%&gt;%</span> </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            <span class="fu">select</span>(file, var_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>            <span class="fu">distinct</span>()</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>          nested_data1<span class="ot">=</span> nested_data </span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        htmltools<span class="sc">::</span><span class="fu">div</span>(<span class="at">style =</span> <span class="st">"padding: 16px"</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">reactable</span>(nested_data1, </span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">outlined =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">resizable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">wrap =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">bordered =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">details =</span> <span class="cf">function</span>(index){</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                                   <span class="cf">if</span> (index<span class="sc">%in%</span>index_nestable){</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                                     data_nested2 <span class="ot">=</span> nested_data <span class="sc">%&gt;%</span> </span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">filter</span>(var_name <span class="sc">==</span> index_name[index]) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">select</span>(<span class="sc">-</span>file, <span class="sc">-</span>var_name)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                                     htmltools<span class="sc">::</span><span class="fu">div</span>(<span class="at">style =</span> <span class="st">"padding: 16px"</span>,</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>                                                    <span class="fu">reactable</span>(data_nested2, </span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>                                                              <span class="at">resizable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>                                                              <span class="at">bordered =</span> F,</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>                                                              <span class="at">wrap =</span> <span class="cn">FALSE</span>)) }</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>                                   </span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>                                 }) )  } })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-b0ce2f72a1b167aac84f" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b0ce2f72a1b167aac84f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Test":["Default variable name","Stratification labels","Stratification values","Checkout Variable Labels","Definition","Domain","Subdomain","Variable label"],"Result":[true,true,true,true,false,false,false,false],"Description":["All 197 variables have a single default row in cleaned_codebook.","All stratifcation names + values have labels.","All 197 variables adhere to values as defined the stratification schema - see 1.2","All 197 have check our variable labels (var_name_base +var_name_nested).","3 variables are missing variable definition (var_def).","1 variable is missing domain.","1 variable is missing subdomain.","1 variable is a missing short name (var_label)."]},"columns":[{"accessor":".details","name":"","type":"NULL","sortable":false,"resizable":false,"filterable":false,"searchable":false,"width":45,"align":"center","details":[null,null,null,null,{"name":"div","attribs":{"style":{"padding":"16px"}},"children":[{"name":"Reactable","attribs":{"data":{"file":["BEC_L1AD_20210824.csv","BEC_L1AD_20210824.csv","BEC_L1AD_20210824.csv"],"var_name":["BECELEVATIOVE","BECURBLANDP","BECSTTP"],"var_def":[null,null,null]},"columns":[{"accessor":".details","name":"","type":"NULL","sortable":false,"resizable":false,"filterable":false,"searchable":false,"width":45,"align":"center","details":[null,null,null]},{"accessor":"file","name":"file","type":"character"},{"accessor":"var_name","name":"var_name","type":"character"},{"accessor":"var_def","name":"var_def","type":"character"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"outlined":true,"bordered":true,"nowrap":true,"dataKey":"e28b3ddc478d53e290851ee7b2cccccb","nested":true},"children":[]}]},{"name":"div","attribs":{"style":{"padding":"16px"}},"children":[{"name":"Reactable","attribs":{"data":{"file":["BEC_L1AD_20210824.csv"],"var_raw":["BECELEVATIOVEL1AD"],"var_name":["BECELEVATIOVE"],"domain":[null]},"columns":[{"accessor":".details","name":"","type":"NULL","sortable":false,"resizable":false,"filterable":false,"searchable":false,"width":45,"align":"center","details":[null]},{"accessor":"file","name":"file","type":"character"},{"accessor":"var_raw","name":"var_raw","type":"character"},{"accessor":"var_name","name":"var_name","type":"character"},{"accessor":"domain","name":"domain","type":"character"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"outlined":true,"bordered":true,"nowrap":true,"dataKey":"b6a04e2c0d4f0e536dea9f8713db34a4","nested":true},"children":[]}]},{"name":"div","attribs":{"style":{"padding":"16px"}},"children":[{"name":"Reactable","attribs":{"data":{"file":["BEC_L1AD_20210824.csv"],"var_raw":["BECELEVATIOVEL1AD"],"var_name":["BECELEVATIOVE"],"subdomain":[null]},"columns":[{"accessor":".details","name":"","type":"NULL","sortable":false,"resizable":false,"filterable":false,"searchable":false,"width":45,"align":"center","details":[null]},{"accessor":"file","name":"file","type":"character"},{"accessor":"var_raw","name":"var_raw","type":"character"},{"accessor":"var_name","name":"var_name","type":"character"},{"accessor":"subdomain","name":"subdomain","type":"character"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"outlined":true,"bordered":true,"nowrap":true,"dataKey":"c86c1ded0abc6748e04f0053e6e240b8","nested":true},"children":[]}]},{"name":"div","attribs":{"style":{"padding":"16px"}},"children":[{"name":"Reactable","attribs":{"data":{"file":["BEC_L1AD_20210824.csv"],"var_raw":["BECELEVATIOVEL1AD"],"var_name":["BECELEVATIOVE"],"var_label":[null]},"columns":[{"accessor":".details","name":"","type":"NULL","sortable":false,"resizable":false,"filterable":false,"searchable":false,"width":45,"align":"center","details":[null]},{"accessor":"file","name":"file","type":"character"},{"accessor":"var_raw","name":"var_raw","type":"character"},{"accessor":"var_name","name":"var_name","type":"character"},{"accessor":"var_label","name":"var_label","type":"character"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"outlined":true,"bordered":true,"nowrap":true,"dataKey":"e045f1ce4b660c1f431019bba801c99b","nested":true},"children":[]}]}]},{"accessor":"Test","name":"Test","type":"character","width":100},{"accessor":"Result","name":"Result","type":"logical","cell":[{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]},{"name":"div","attribs":{"title":"Failed","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-exclamation icon","style":{"color":"red"},"aria-hidden":"true","className":"fas fa-circle-exclamation"},"children":[]}]}],"width":100},{"accessor":"Description","name":"Description","type":"character"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"00b1ba21bd247e6ff3a0c2fdfa91de57"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="generate-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="generate-outputs">2.2 Generate Outputs</h3>
+<p>We keep subset data to those that have passed all QC tests then merge with codebook metadata for. This object ‘cleaned_datasets’ will be used for downstream datastore generation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Get outputs from each test</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>outputs <span class="ot">=</span> <span class="fu">map</span>(tests, <span class="sc">~</span>{<span class="fu">get</span>(.x)(compiled_datasets,compiled_codebooks,<span class="at">role =</span> <span class="st">'output'</span>)}) </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Keep only those rows that passed all tests and operationalize other columns</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cleaned_datasets <span class="ot">=</span> purrr<span class="sc">::</span><span class="fu">reduce</span>(outputs, dplyr<span class="sc">::</span>inner_join) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>pass) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## operationalize value_type (categorical/discrete/continuous)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span>{</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    values <span class="ot">=</span> .x<span class="sc">$</span>value</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    .x <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">value_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">any</span>(<span class="fu">str_detect</span>(values,<span class="st">"[:alpha:]"</span>))<span class="sc">~</span><span class="st">"categorical"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">any</span>(<span class="fu">str_detect</span>(values,<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>))<span class="sc">~</span><span class="st">"continuous"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">any</span>(<span class="fu">str_detect</span>(var_label,<span class="fu">c</span>(<span class="st">"Number"</span>,<span class="st">"Minimum"</span>,<span class="st">'Minimim'</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Maximum"</span>,<span class="st">"GDP per capita"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">'City foundation year'</span>)))<span class="sc">~</span><span class="st">"continuous"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span><span class="sc">~</span><span class="st">"discrete"</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Add var_name_base_labels </span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_name_base_label =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    n_attr <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    n_attr <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> attribute1,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    n_attr <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">"{attribute2} ({attribute1_value})"</span>) <span class="sc">%&gt;%</span> <span class="fu">paste0</span>()</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(var_name, var_raw, geo, salid1,country, city,year, value,value_type,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>         <span class="fu">everything</span>())</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># {## Check value_type</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">#   ## Distribution of value_type</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   cleaned_datasets %&gt;% </span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co">#     count(var_name,value_type) %&gt;% </span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     count(value_type)</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co">#   ##  Get list of discrete variables</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">#   cleaned_datasets %&gt;% </span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#     filter(value_type == 'discrete') %&gt;% </span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">#     count(var_name, var_label) %&gt;% View()</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#   }</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co">#' Add longitudinal coding labels. This function will categorize variables based on </span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">#' what year and country available. THere will be four categories:</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co">#'   1. Longitudinal - when variable is longitudinal</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">#'   2. Completely non-longitudinal - when a variable only has a single year value.</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#'   3. Functionally non-longitudinal - when a variable only has a single year value per country; </span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">#'      this is for when data source differ by a few years across country. For example life expectancy is </span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co">#'      '2010-2014' for El Salvador but '2012-2016' for all other countries.</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co">#'   4. Mixed by Country - some countries non-longitudinal but some countries have dta vailable for multiple years.</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>{ <span class="do">##  Prepare  longitudinal_status</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  xwalk_years_available <span class="ot">=</span>  cleaned_datasets <span class="sc">%&gt;%</span> </span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(var_name, subdomain,longitudinal, country, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># filter(!longitudinal)  %&gt;% </span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(subdomain, var_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_modify</span>(<span class="sc">~</span>{</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>      <span class="co"># .x =  cleaned_datasets %&gt;%</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   select(var_name, subdomain,longitudinal, country, year) %&gt;%</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   distinct() %&gt;% filter(var_name == "LEALE")</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>      <span class="co"># .x =  cleaned_datasets %&gt;%</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   select(var_name, subdomain,longitudinal, country, year) %&gt;%</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   distinct() %&gt;% filter(var_name == "CNSMIGR_FORBORN")</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>      years_all <span class="ot">=</span> .x <span class="sc">%&gt;%</span> <span class="fu">count</span>(year) </span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>      years <span class="ot">=</span> <span class="fu">unique</span>(.x<span class="sc">$</span>year)</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>      table_year_country <span class="ot">=</span>  .x <span class="sc">%&gt;%</span> <span class="fu">count</span>(country )</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>      statusTmp <span class="ot">=</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>        <span class="fu">length</span>(years)<span class="sc">==</span><span class="dv">1</span><span class="sc">~</span> <span class="st">"Completely non-longitudinal"</span>,</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>        <span class="fu">all</span>(table_year_country<span class="sc">$</span>n <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">~</span><span class="st">"Functionally non-longitudinal"</span>,</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>        <span class="fu">length</span>(<span class="fu">unique</span>(.x<span class="sc">$</span>longitudinal))<span class="sc">&gt;</span><span class="dv">1</span><span class="sc">~</span><span class="st">"Mixed by Country"</span>,</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>        <span class="fu">unique</span>(.x<span class="sc">$</span>longitudinal)<span class="sc">~</span><span class="st">"Longitudinal"</span>,</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span><span class="sc">~</span><span class="st">"Mixed by Country"</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>        <span class="fu">unique</span>()</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>      <span class="do">## Check for non-numeric outliers</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.na</span>( <span class="fu">min</span>(<span class="fu">as.numeric</span>(years)))<span class="sc">|</span><span class="fu">is.na</span>( <span class="fu">max</span>(<span class="fu">as.numeric</span>(years)))){</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">"ERROR: Non-numeric year value!"</span>)</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>      <span class="do">## standardize year values for 'functionally non-longitudinal values' </span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>      <span class="co"># year_min_tmp = ifelse(</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   str_detect(statusTmp, 'non-longitudinal'),</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   years_all %&gt;% filter(n == max(n)) %&gt;% slice(1) %&gt;% pull(year) %&gt;% as.numeric(),</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   min(as.numeric(years))</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>      <span class="co"># )</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>      <span class="co"># year_max_tmp = ifelse(</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   str_detect(statusTmp, 'non-longitudinal'),</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   years_all %&gt;% filter(n == max(n)) %&gt;% slice(1) %&gt;% pull(year)%&gt;% as.numeric(),</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   min(as.numeric(years))</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>      <span class="co"># )</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tibble</span>(</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_years =</span> <span class="fu">length</span>(years),</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>        <span class="at">year_min =</span>  <span class="fu">min</span>(<span class="fu">as.numeric</span>(years)),</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>        <span class="at">year_max =</span> <span class="fu">max</span>(<span class="fu">as.numeric</span>(years)),</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_countries =</span> <span class="fu">length</span>(<span class="fu">unique</span>(.x<span class="sc">$</span>country)),</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>        <span class="at">chr_years =</span> <span class="fu">paste0</span>(years, <span class="at">collapse =</span> <span class="st">', '</span>),</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>        <span class="at">longitudinal_status =</span> statusTmp</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">years =</span> <span class="fu">list</span>(<span class="fu">as.numeric</span>(<span class="fu">unique</span>(.x<span class="sc">$</span>year))))</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>    }) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(var_name, longitudinal_status, n_years, years, year_min, year_max)</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>  xwalk_var_name_nested <span class="ot">=</span> cleaned_datasets <span class="sc">%&gt;%</span> <span class="fu">select</span>(var_merge, var_name_nested) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_merge))</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>cleaned_codebooks  <span class="ot">=</span> compiled_codebooks <span class="sc">%&gt;%</span> </span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(var_name<span class="sc">%in%</span>cleaned_datasets<span class="sc">$</span>var_name ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(xwalk_years_available) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(xwalk_var_name_nested)</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="do">## Check for that nested var_name codebook entries have var_name_nested</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>checkCodebookNested <span class="ot">=</span> cleaned_codebooks <span class="sc">%&gt;%</span> </span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_count</span>(var_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(var_name, var_merge, var_name_nested, n) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n<span class="sc">&gt;</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(var_merge)<span class="sc">|</span> <span class="fu">is.na</span>(var_name_nested)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>() <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (checkCodebookNested){</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"ERROR: Some neste codebook entries are missing var_merge/var_name_nested"</span>)</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>cleaned_datasets <span class="sc">%&gt;%</span> </span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>( <span class="at">resizable =</span> <span class="cn">TRUE</span>, <span class="at">wrap =</span> <span class="cn">FALSE</span>, <span class="at">bordered =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-e9bf8cd492b56b11dec8" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e9bf8cd492b56b11dec8">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_name":["APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS"],"var_raw":["apsno2gridptsl1ad","apsno2gridptsl1ad","apsno2gridptsl1ad","apsno2gridptsl1ad","apsno2gridptsl1ad","apsno2gridptsl1ad","apsno2gridptsl1ad","apsno2gridptsl1ad","apsno2gridptsl1ad","apsno2gridptsl1ad"],"geo":["L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD","L1AD"],"salid1":["514383","514383","514383","514383","514383","514383","514383","514383","514383","514383"],"country":["Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina"],"city":["Bahia Blanca","Bahia Blanca","Bahia Blanca","Bahia Blanca","Bahia Blanca","Bahia Blanca","Bahia Blanca","Bahia Blanca","Bahia Blanca","Bahia Blanca"],"year":["1996","1997","1998","1999","2000","2001","2002","2003","2004","2005"],"value":["40","40","40","40","40","40","40","40","40","40"],"value_type":["continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous"],"file":["APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv","APSL1AD_02152022.csv"],"domain":["Physical and Natural Environment","Physical and Natural Environment","Physical and Natural Environment","Physical and Natural Environment","Physical and Natural Environment","Physical and Natural Environment","Physical and Natural Environment","Physical and Natural Environment","Physical and Natural Environment","Physical and Natural Environment"],"subdomain":["Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution","Air Pollution"],"var_label":["Number of NO2 grid point centroids","Number of NO2 grid point centroids","Number of NO2 grid point centroids","Number of NO2 grid point centroids","Number of NO2 grid point centroids","Number of NO2 grid point centroids","Number of NO2 grid point centroids","Number of NO2 grid point centroids","Number of NO2 grid point centroids","Number of NO2 grid point centroids"],"var_def":["Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit","Number of grid point centroids used to calculate NO2 average and variance measures for the geographic unit"],"coding":["999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available","999998 = No data available"],"units":[null,null,null,null,null,null,null,null,null,null],"interpretation":["A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics","A higher number indicates more grid points were used to calculate the NO2 metrics"],"source":["Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)","Atmospheric Composition Analysis Group of the Dalhousie University (ATMOS)"],"var_year":["1996-2012","1996-2012","1996-2012","1996-2012","1996-2012","1996-2012","1996-2012","1996-2012","1996-2012","1996-2012"],"notes":[null,null,null,null,null,null,null,null,null,null],"limitations":[null,null,null,null,null,null,null,null,null,null],"acknowledgment":["Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392","Citation: Hammer, M. S.; et al, Global Estimates and Long-Term Trends of Fine Particulate Matter Concentrations (1998-2018)., Environ. Sci. Technol, doi: 10.1021/acs.est.0c01764, 2020 AND van Donkelaar, A., R. V. Martin, et al. (2019). Regional Estimates of Chemical Composition of Fine Particulate Matter using a Combined Geoscience-Statistical Method with Information from Satellites, Models, and Monitors. Environmental Science & Technology, 2019, doi:10.1021/acs.est.8b06392"],"longitudinal":[true,true,true,true,true,true,true,true,true,true],"downloadable":[true,true,true,true,true,true,true,true,true,true],"censor":[false,false,false,false,false,false,false,false,false,false],"v2_codebooks":[true,true,true,true,true,true,true,true,true,true],"prj_target":[null,null,null,null,null,null,null,null,null,null],"prj_start":[null,null,null,null,null,null,null,null,null,null],"attribute1":[null,null,null,null,null,null,null,null,null,null],"attribute1_value":[null,null,null,null,null,null,null,null,null,null],"attribute2_value":[null,null,null,null,null,null,null,null,null,null],"attribute2":[null,null,null,null,null,null,null,null,null,null],"var_merge":[null,null,null,null,null,null,null,null,null,null],"attribute1_label":[null,null,null,null,null,null,null,null,null,null],"attribute2_label":[null,null,null,null,null,null,null,null,null,null],"attribute1_value_label":[null,null,null,null,null,null,null,null,null,null],"attribute2_value_label":[null,null,null,null,null,null,null,null,null,null],"n_attr":[0,0,0,0,0,0,0,0,0,0],"var_name_base":["APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS"],"var_name_nested":["APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS","APSNO2GRIDPTS"],"var_name_base_label":[null,null,null,null,null,null,null,null,null,null]},"columns":[{"accessor":"var_name","name":"var_name","type":"character"},{"accessor":"var_raw","name":"var_raw","type":"character"},{"accessor":"geo","name":"geo","type":"character"},{"accessor":"salid1","name":"salid1","type":"character"},{"accessor":"country","name":"country","type":"character"},{"accessor":"city","name":"city","type":"character"},{"accessor":"year","name":"year","type":"character"},{"accessor":"value","name":"value","type":"character"},{"accessor":"value_type","name":"value_type","type":"character"},{"accessor":"file","name":"file","type":"character"},{"accessor":"domain","name":"domain","type":"character"},{"accessor":"subdomain","name":"subdomain","type":"character"},{"accessor":"var_label","name":"var_label","type":"character"},{"accessor":"var_def","name":"var_def","type":"character"},{"accessor":"coding","name":"coding","type":"character"},{"accessor":"units","name":"units","type":"character"},{"accessor":"interpretation","name":"interpretation","type":"character"},{"accessor":"source","name":"source","type":"character"},{"accessor":"var_year","name":"var_year","type":"character"},{"accessor":"notes","name":"notes","type":"character"},{"accessor":"limitations","name":"limitations","type":"logical"},{"accessor":"acknowledgment","name":"acknowledgment","type":"character"},{"accessor":"longitudinal","name":"longitudinal","type":"logical"},{"accessor":"downloadable","name":"downloadable","type":"logical"},{"accessor":"censor","name":"censor","type":"logical"},{"accessor":"v2_codebooks","name":"v2_codebooks","type":"logical"},{"accessor":"prj_target","name":"prj_target","type":"character"},{"accessor":"prj_start","name":"prj_start","type":"character"},{"accessor":"attribute1","name":"attribute1","type":"character"},{"accessor":"attribute1_value","name":"attribute1_value","type":"character"},{"accessor":"attribute2_value","name":"attribute2_value","type":"character"},{"accessor":"attribute2","name":"attribute2","type":"character"},{"accessor":"var_merge","name":"var_merge","type":"character"},{"accessor":"attribute1_label","name":"attribute1_label","type":"character"},{"accessor":"attribute2_label","name":"attribute2_label","type":"character"},{"accessor":"attribute1_value_label","name":"attribute1_value_label","type":"character"},{"accessor":"attribute2_value_label","name":"attribute2_value_label","type":"character"},{"accessor":"n_attr","name":"n_attr","type":"numeric"},{"accessor":"var_name_base","name":"var_name_base","type":["glue","character"]},{"accessor":"var_name_nested","name":"var_name_nested","type":["glue","character"]},{"accessor":"var_name_base_label","name":"var_name_base_label","type":"character"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"bordered":true,"nowrap":true,"dataKey":"33d51079471fcf78b318808cf5134869"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="validation-of-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="validation-of-outputs">2.3 Validation of Outputs</h3>
+<p>The another round of QC is run to validate the quality of our final output. The results of the validation are shown in the table below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Make sure that all tests pass </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>validaiton_results <span class="ot">=</span> <span class="fu">map_df</span>(tests, <span class="sc">~</span>{</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">=</span> <span class="fu">get</span>(.x)(cleaned_datasets,cleaned_codebooks,<span class="at">role =</span> <span class="st">'test'</span>)   </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Test =</span> result<span class="sc">$</span>test, </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Result =</span> result<span class="sc">$</span>pass,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Description =</span> result<span class="sc">$</span>desc,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">faulty =</span> <span class="fu">list</span>(result<span class="sc">$</span>faulty))})</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>validaiton_results <span class="sc">%&gt;%</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>faulty) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">Test  =</span> <span class="fu">colDef</span>(<span class="at">width =</span> <span class="dv">100</span>),</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">Result  =</span> <span class="fu">colDef</span>(<span class="at">cell =</span> <span class="cf">function</span>(value) <span class="fu">qc_icon_formatter</span>(value), <span class="at">width =</span> <span class="dv">100</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-21e51de502be228a231b" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-21e51de502be228a231b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Test":["Definition","Default variable name","Domain","Stratification labels","Stratification values","Subdomain","Checkout Variable Labels","Variable label"],"Result":[true,true,true,true,true,true,true,true],"Description":["All 194 have variable definition (var_def).","All 194 variables have a single default row in cleaned_codebook.","All 194 have a domain.","All stratifcation names + values have labels.","All 194 variables adhere to values as defined the stratification schema - see 1.2","All 194 have a subdomain","All 194 have check our variable labels (var_name_base +var_name_nested).","All 194 have a shortname"]},"columns":[{"accessor":"Test","name":"Test","type":"character","width":100},{"accessor":"Result","name":"Result","type":"logical","cell":[{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]},{"name":"div","attribs":{"title":"Pass","role":"img"},"children":[{"name":"i","attribs":{"role":"presentation","aria-label":"circle-check icon","style":{"color":"green"},"aria-hidden":"true","className":"far fa-circle-check"},"children":[]}]}],"width":100},{"accessor":"Description","name":"Description","type":"character"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"e9ff20156e49f122284919765e572e12"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="database-summary" class="level2">
+<h2 class="anchored" data-anchor-id="database-summary">3. Database Summary</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n_variables <span class="ot">=</span> cleaned_datasets <span class="sc">%&gt;%</span>  <span class="fu">count</span>(var_name) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n_datasets <span class="ot">=</span> <span class="fu">nrow</span>(df_sources)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>From 16 datasets/codebook pairs we have cleaned 194 variables. Below are some metrics which summarize what is available in our compiled database.</p>
+<section id="variables-count" class="level3">
+<h3 class="anchored" data-anchor-id="variables-count">3.1 Variables Count</h3>
+<p><strong>How many variables for each dataset?</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Sankey</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df_sankey_count <span class="ot">=</span> cleaned_datasets <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(domain,subdomain, var_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">all =</span> <span class="fu">glue</span>(<span class="st">"Cleaned Variables ({n_variables})"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(all,domain, subdomain)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hchart</span>(<span class="fu">data_to_sankey</span>(df_sankey_count), <span class="st">"sankey"</span>, <span class="at">name =</span> <span class="st">"Variable Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-e2ad0dd1e05a413ec1af" style="width:100%;height:742px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e2ad0dd1e05a413ec1af">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":[]}},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"from":"Cleaned Variables (194)","to":"Demographics","weight":11,"id":"Cleaned Variables (194)Demographics"},{"from":"Cleaned Variables (194)","to":"Environmental Impact","weight":2,"id":"Cleaned Variables (194)Environmental Impact"},{"from":"Cleaned Variables (194)","to":"Health Risk Factors","weight":16,"id":"Cleaned Variables (194)Health Risk Factors"},{"from":"Cleaned Variables (194)","to":"Mortality","weight":1,"id":"Cleaned Variables (194)Mortality"},{"from":"Cleaned Variables (194)","to":"Physical and Natural Environment","weight":88,"id":"Cleaned Variables (194)Physical and Natural Environment"},{"from":"Cleaned Variables (194)","to":"Social, Economic, and Services Environment","weight":76,"id":"Cleaned Variables (194)Social, Economic, and Services Environment"},{"from":"Demographics","to":"Migration","weight":9,"id":"DemographicsMigration"},{"from":"Demographics","to":"Population Projection Growth","weight":1,"id":"DemographicsPopulation Projection Growth"},{"from":"Demographics","to":"Population Projection Total","weight":1,"id":"DemographicsPopulation Projection Total"},{"from":"Environmental Impact","to":"Carbon footprint","weight":2,"id":"Environmental ImpactCarbon footprint"},{"from":"Health Risk Factors","to":"Anthropometry","weight":9,"id":"Health Risk FactorsAnthropometry"},{"from":"Health Risk Factors","to":"Diabetes","weight":2,"id":"Health Risk FactorsDiabetes"},{"from":"Health Risk Factors","to":"Health Care","weight":2,"id":"Health Risk FactorsHealth Care"},{"from":"Health Risk Factors","to":"Health Status","weight":1,"id":"Health Risk FactorsHealth Status"},{"from":"Health Risk Factors","to":"Hypertension","weight":1,"id":"Health Risk FactorsHypertension"},{"from":"Health Risk Factors","to":"Tobacco Use","weight":1,"id":"Health Risk FactorsTobacco Use"},{"from":"Mortality","to":"Life Expectancy","weight":1,"id":"MortalityLife Expectancy"},{"from":"Physical and Natural Environment","to":"Air Pollution","weight":9,"id":"Physical and Natural EnvironmentAir Pollution"},{"from":"Physical and Natural Environment","to":"Natural environment metrics","weight":32,"id":"Physical and Natural EnvironmentNatural environment metrics"},{"from":"Physical and Natural Environment","to":"Street design metrics","weight":9,"id":"Physical and Natural EnvironmentStreet design metrics"},{"from":"Physical and Natural Environment","to":"Transportation metrics","weight":20,"id":"Physical and Natural EnvironmentTransportation metrics"},{"from":"Physical and Natural Environment","to":"Urban form metrics","weight":6,"id":"Physical and Natural EnvironmentUrban form metrics"},{"from":"Physical and Natural Environment","to":"Urban landscape metrics","weight":12,"id":"Physical and Natural EnvironmentUrban landscape metrics"},{"from":"Social, Economic, and Services Environment","to":"Economy","weight":1,"id":"Social, Economic, and Services EnvironmentEconomy"},{"from":"Social, Economic, and Services Environment","to":"Education","weight":4,"id":"Social, Economic, and Services EnvironmentEducation"},{"from":"Social, Economic, and Services Environment","to":"Employment","weight":4,"id":"Social, Economic, and Services EnvironmentEmployment"},{"from":"Social, Economic, and Services Environment","to":"Housing","weight":11,"id":"Social, Economic, and Services EnvironmentHousing"},{"from":"Social, Economic, and Services Environment","to":"Inequality","weight":1,"id":"Social, Economic, and Services EnvironmentInequality"},{"from":"Social, Economic, and Services Environment","to":"Labor Force","weight":2,"id":"Social, Economic, and Services EnvironmentLabor Force"},{"from":"Social, Economic, and Services Environment","to":"Labor Participation","weight":1,"id":"Social, Economic, and Services EnvironmentLabor Participation"},{"from":"Social, Economic, and Services Environment","to":"Poverty","weight":2,"id":"Social, Economic, and Services EnvironmentPoverty"},{"from":"Social, Economic, and Services Environment","to":"Segregation","weight":48,"id":"Social, Economic, and Services EnvironmentSegregation"},{"from":"Social, Economic, and Services Environment","to":"Unemployment","weight":2,"id":"Social, Economic, and Services EnvironmentUnemployment"}],"type":"sankey","name":"Variable Count"}],"xAxis":{"type":null,"title":{"text":[]},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="stratification" class="level3">
+<h3 class="anchored" data-anchor-id="stratification">3.2 Stratification</h3>
+<p><strong>How many is our data stratified?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df2a <span class="ot">=</span> cleaned_datasets <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(var_name, subdomain, domain, attribute1) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">attribute1 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(attribute1),<span class="st">"Not Stratified"</span>, <span class="st">"Stratification Available"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">stratified =</span> attribute1, domain )</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># hchart(data_to_sankey(df2a), "sankey", name = "Variable Count")</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>table_strata_by_file <span class="ot">=</span> cleaned_datasets <span class="sc">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(domain, var_name, attribute1, attribute2) <span class="sc">%&gt;%</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">stratified =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(attribute1), <span class="st">'Available'</span>, <span class="st">'Not Available'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(domain,stratified) <span class="sc">%&gt;%</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Order domain</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(domain) <span class="sc">%&gt;%</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_domain =</span> <span class="fu">sum</span>(n))<span class="sc">%&gt;%</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">domain =</span> <span class="fu">fct_reorder</span>(<span class="fu">as.factor</span>(domain), (n_domain)))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>{ <span class="do">## b. Examine strata levels</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="do">## All strata vars</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  dfa <span class="ot">=</span>  cleaned_datasets <span class="sc">%&gt;%</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(file, var_name, attribute1, attribute2) <span class="sc">%&gt;%</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(attribute1))<span class="sc">%&gt;%</span> </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>n)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Single attribute variables</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  df1 <span class="ot">=</span> dfa <span class="sc">%&gt;%</span> </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">is.na</span>(attribute2)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(cleaned_datasets) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(domain, var_name, attribute1,attribute1_value)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># df1</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Double attribute variables</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  df2 <span class="ot">=</span> dfa <span class="sc">%&gt;%</span> </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(attribute2)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(cleaned_datasets) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(domain, var_name,</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>          attribute1,attribute1_value,</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>          attribute2,attribute2_value )</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># df2</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot </span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>dfb <span class="ot">=</span> cleaned_datasets <span class="sc">%&gt;%</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">stratified2 =</span><span class="fu">case_when</span>(</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.na</span>(attribute1)<span class="sc">~</span><span class="st">'Not Stratified'</span>,</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.na</span>(attribute2)<span class="sc">~</span><span class="st">'Single Stratification'</span>,</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span><span class="sc">~</span><span class="st">'Double Stratification'</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>  )  )<span class="sc">%&gt;%</span> </span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(domain,var_name,stratified2,attribute1, attribute2) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">attribute =</span> <span class="fu">paste</span>(attribute1,attribute2, <span class="at">sep  =</span> <span class="st">'+'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>           <span class="fu">str_remove_all</span>(<span class="st">'NA'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>           <span class="fu">str_trim</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>           <span class="fu">ifelse</span>(<span class="fu">str_sub</span>(.,<span class="sc">-</span>1L)<span class="sc">==</span><span class="st">'+'</span>,<span class="fu">str_sub</span>(.,<span class="dv">0</span>,<span class="sc">-</span>1L<span class="dv">-1</span>),. ) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>           <span class="fu">ifelse</span>(.<span class="sc">==</span><span class="st">''</span>,<span class="cn">NA</span>,.),</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>         <span class="at">stratified =</span> <span class="fu">ifelse</span>(stratified2<span class="sc">==</span><span class="st">'Not Stratified'</span>,<span class="st">'Not Stratified'</span>,<span class="st">'Stratified'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(domain,stratified2, attribute)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="fu">hchart</span>(<span class="fu">data_to_sankey</span>(dfb), <span class="st">"sankey"</span>, <span class="at">name =</span> <span class="st">"Stratification Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-e02ec91267a1539b319f" style="width:100%;height:557px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e02ec91267a1539b319f">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":[]}},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"from":"Demographics","to":"Not Stratified","weight":10,"id":"DemographicsNot Stratified"},{"from":"Demographics","to":"Single Stratification","weight":1,"id":"DemographicsSingle Stratification"},{"from":"Environmental Impact","to":"Not Stratified","weight":2,"id":"Environmental ImpactNot Stratified"},{"from":"Health Risk Factors","to":"Double Stratification","weight":13,"id":"Health Risk FactorsDouble Stratification"},{"from":"Health Risk Factors","to":"Not Stratified","weight":3,"id":"Health Risk FactorsNot Stratified"},{"from":"Mortality","to":"Double Stratification","weight":1,"id":"MortalityDouble Stratification"},{"from":"Physical and Natural Environment","to":"Not Stratified","weight":88,"id":"Physical and Natural EnvironmentNot Stratified"},{"from":"Social, Economic, and Services Environment","to":"Not Stratified","weight":68,"id":"Social, Economic, and Services EnvironmentNot Stratified"},{"from":"Social, Economic, and Services Environment","to":"Single Stratification","weight":8,"id":"Social, Economic, and Services EnvironmentSingle Stratification"},{"from":"Double Stratification","to":"Sex+Age","weight":1,"id":"Double StratificationSex+Age"},{"from":"Double Stratification","to":"Sex+Standard Population","weight":13,"id":"Double StratificationSex+Standard Population"},{"from":"Not Stratified","to":null,"weight":171,"id":"Not StratifiedNA"},{"from":"Single Stratification","to":"Sex","weight":9,"id":"Single StratificationSex"}],"type":"sankey","name":"Stratification Count"}],"xAxis":{"type":null,"title":{"text":[]},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>{<span class="do">## Operationalize statistics</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  n_var_with_strata <span class="ot">=</span> table_strata_by_file <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stratified <span class="sc">==</span> <span class="st">"Available"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(n) <span class="sc">%&gt;%</span> <span class="fu">sum</span>()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  n_var_without_strata <span class="ot">=</span> table_strata_by_file <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stratified <span class="sc">!=</span> <span class="st">"Available"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(n) <span class="sc">%&gt;%</span> <span class="fu">sum</span>()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  n_var_with_1_strata <span class="ot">=</span> df1 <span class="sc">%&gt;%</span> <span class="fu">count</span>(var_name) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  n_var_with_2_strata <span class="ot">=</span> df2 <span class="sc">%&gt;%</span> <span class="fu">count</span>(var_name) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Out of 194 variables, only 23 variables are have stratification available. The different stratas available cane be seen below.</p>
+</section>
+<section id="value-type" class="level3">
+<h3 class="anchored" data-anchor-id="value-type">3.3 Value Type</h3>
+<p><strong>What type of data is available?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dfa <span class="ot">=</span> cleaned_datasets <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(var_name, value_type) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(value_type)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>dfa <span class="sc">%&gt;%</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">details =</span> <span class="cf">function</span>(index){</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      dfa_tmp <span class="ot">=</span> cleaned_datasets <span class="sc">%&gt;%</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">count</span>(var_name, var_label, value_type) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(value_type <span class="sc">==</span>dfa <span class="sc">%&gt;%</span> <span class="fu">slice</span>(index) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(value_type) ) </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      htmltools<span class="sc">::</span><span class="fu">div</span>(<span class="at">style =</span> <span class="st">"padding: 16px"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">reactable</span>(dfa_tmp, </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                               <span class="at">outlined =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                               <span class="at">resizable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                               <span class="at">wrap =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">bordered =</span> <span class="cn">TRUE</span>) ) }</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-a6de8340ebb8c00f0efa" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a6de8340ebb8c00f0efa">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"value_type":["continuous","discrete"],"n":[186,8]},"columns":[{"accessor":".details","name":"","type":"NULL","sortable":false,"resizable":false,"filterable":false,"searchable":false,"width":45,"align":"center","details":[{"name":"div","attribs":{"style":{"padding":"16px"}},"children":[{"name":"Reactable","attribs":{"data":{"var_name":["APSNO2GRIDPTS","APSNO2MEAN","APSNO2MEDIAN","APSNO2STD","APSPM25GRIDPTS","APSPM25MEAN","APSPM25MEDIAN","APSPM25STD","BECADAREA","BECADCRCTYAVG","BECADINTDENS","BECADINTDENS3","BECADINTDENS4","BECADLRDENS","BECADSTTDENS","BECADSTTLGAVG","BECADSTTPNODEAVG","BECADSTTPNODESD","BECAERTRAMLNGTH","BECAVGPTCHAREA","BECAWAVGPTCHAREA","BECAWEDGDENS","BECAWMNNNGH","BECAWMNSHPINDX","BECBRTLNGTH","BECBRTPRCTRIP","BECBYLANELNGTH","BECCITYAGE","BECCVPTCHAREA","BECDEMBRT","BECEDGDENS","BECEFFMESHSIZE","BECELEVATIONMAX","BECELEVATIONMEDIAN","BECELEVATIONMIN","BECELEVATIONP25","BECELEVATIONP75","BECELEVATIONSTD","BECERRORWP","BECGASPRICE","BECGASPRICEADJ","BECGSAVGPTCHAREA","BECGSAWAVGPTCHAREA","BECGSAWMNNNGH","BECGSAWMNSHPINDX","BECGSCLUMP","BECGSCOHESION","BECGSEDGDENDS","BECGSMNNNGH","BECGSMNSHPINDX","BECGSNPTCH","BECGSPCT","BECGSPTCHDENS","BECMAXNDVINW","BECMEDNDVINW","BECMINWAGE","BECNUMBRTUS","BECNURBPTCH","BECOPSTTSYSLNGTH","BECPAYCAPBRT","BECPAYCAPSUB","BECPCTPERMWATER","BECPCTSEASONWATER","BECPCTURBAN","BECPERCAPCO2","BECPOPCONC","BECPOPDENS","BECPTCHDENS","BECSLOPEAVE","BECSLOPEMAX","BECSLOPEMEDIAN","BECSLOPEMIN","BECSLOPEP25","BECSLOPEP75","BECSLOPESTD","BECSUBWAYLNGTH","BECSUBWAYPRCTRIP","BECSUPBIKEFAC","BECSUPBRT","BECSUPSUB","BECTGSAREA","BECTOTCO2","BECTPOP","BECTUAREA","CNSCROWD25BR","CNSCROWD3RM","CNSFLOOR","CNSLABFEM","CNSLABPART","CNSLABPART","CNSLABPART","CNSLABPART","CNSMIGRFORBORN","CNSMIGRINFOR","CNSMIGRININT","CNSMIGRININTR","CNSMIGRININTU","CNSMIGRINTOTAL","CNSMIGROUTINT","CNSMIGROUTINTR","CNSMIGROUTINTU","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINHS","CNSMINPR","CNSMINPR","CNSMINPR","CNSMINUN","CNSMINUN","CNSMINUN","CNSSEWANY","CNSSEWNET","CNSST1517","CNSST1517","CNSST1517","CNSST1517","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSUNEMP","CNSWALLDUR1","CNSWALLDUR2","CNSWALLDUR3","CNSWATIN","CNSWATNET","CNSWATPIPE","LEALE","PRJPD","PRJPOP","SECEMPRAT","SECGDPGPPC","SECGINIINC","SECLABFEM","SECLABPART","SECLABPART","SECLABPART","SECLABRAT","SECPOV","SECUNEMP","SECUNEMP","SECUNEMP","SGDISEDPRCP","SGDISEDPRUN","SGDISETBKWM","SGDISETBXWM","SGDISIC1VOT","SGDISIC2VOT","SGDISIC3VOT","SGDISICHVOT","SGDISRCBKWT","SGDISRCBWWT","SGDISRCBXWT","SGISOEDPRIC","SGISOEDUNCP","SGISOETBK","SGISOETBX","SGISOETWM","SGISOIC1","SGISOIC2","SGISOIC3","SGISOICH","SGISORCBK","SGISORCBW","SGISORCBX","SGISORCWT","SGNALL","SGNEDALL","SGNEDPRCP","SGNEDPRIC","SGNEDSCCP","SGNEDUNCP","SGNEMP","SGNETALL","SGNETBK","SGNETBX","SGNETWM","SGNIC1","SGNIC2","SGNIC3","SGNICALL","SGNICH","SGNNAV","SGNRCALL","SGNRCBK","SGNRCBW","SGNRCBX","SGNRCWT","SGNUSE","SGPOP","SVYBMIOBESE","SVYBMIOVOB","SVYBMISOBESE","SVYBMISOVOB","SVYBMISUWT","SVYBMIUWT","SVYDBDX1","SVYDBDX2","SVYHLTHFP","SVYHTMED","SVYMAM2YRS","SVYOVWTCH","SVYPAP3YRS","SVYSMKCUR","SVYSTUNTCH","SVYWASTECH"],"var_label":["Number of NO2 grid point centroids","Area-weighted average NO2","Area-weighted median NO2","Area-weighted Standard Deviation of NO2","Number of PM2.5 grid point centroids","Average PM2.5 concentration","Median PM2.5 concentration","Standard Deviation of PM2.5","Area in km2","Circuity average","Intersection density","Intersection density 3-way","Intersection density 4-way","Large road density","Street density","Street length average","Streets per node average","Streets per node standard deviation","Aerial tram length","Mean patch size","Area-weighted mean patch size","Area-weighted edge density","Area-weighted Mean Nearest Neighbor Distance (meter)","Area-weighted mean shape index","BRT length","BRT price trip","Bicycle lane length","City foundation year","Coefficient of variation of the urban patch size","Demand of BRT","Edge density","Effective Mesh Size","Maximum elevation in geographic unit.","Median elevation in geographic unit.","Minimum elevation in geographic unit.","25th percentile of elevation in geographic unit.","75th percentile of elevation in geographic unit.","Standard deviation of elevation in geographic unit.","Differences between worldpop- and census- based population.","Gasoline prices","Adjusted Gasoline prices","Mean greenspace patch size","Area-weighted mean greenspace patch size","Area-weighted Mean Nearest Neighbor Distance of greenspace patches","Area-weighted mean shape index of greenspace patches","Clumpy of greenspace patches","Cohesion of greenspace patches","Edge density of greenspace patches","Mean Nearest Neighbor Distance of greenspace patches","Mean shape index of greenspace patches","Number of greenspace patches","Percentage of greenspace","Greenspace patch density","Maximum of annual maximum NDVI (water excluded) within boundary","Median of annual maximum NDVI (water excluded) within boundary","Minimim wage","Number of BRT users","Number of urban patches","Open street system length","Payment capacity of BRT","Payment capacity of Subway","Percent area covered by permanent water bodies","Percent area covered by seasonal water bodies","Percentage of urban area","Per capita carbon footprint.","Population concentration","Population density per year.","Patch density","Average slope in geographic unit.","Maximum slope in geographic unit.","Median slope in geographic unit.","Minimum slope in geographic unit.","25th percentile of slope in geographic unit.","75th percentile of slope in geographic unit.","Standard deviation of slope in geographic unit.","Subway length","Subway price trip","Supply of Bike Facilities","Supply of BRT","Supply of Subway","Total greenspace area","Total carbon footprint.","Total population per year.","Total urban area in ha","Overcrowding: Proportion of households with more than 2.5 people per bedroom","Overcrowding:  Proportion of households with more than 3 people per room","Proportion of dwellings with finished floors","The proportion of the total labor force who are female among the population 15 years of age or above","The labor force participation rate among the female population 15 years or above","The labor force participation rate among the male population 15 years or above","The labor force participation rate among the total population 15 years or above","The ratio of the labor force participation rate among females (15+ years of age) to the labor force participation rate among males (15+ years of age)","Proportion of the current population that was born in a different country.","Proportion of the current population that lived in a different country 5 years ago.","Proportion of the current population that lived elsewhere in the same country 5 years ago","Proportion of the current population that lived elsewhere in  NON-SALURBAL (aka rural) areas of the same country 5 years ago.","Proportion of the current population that lived elsewhere in  SALURBAL areas of the same country 5 years ago.","Proportion of the current population that lived elsewhere (both within the same country as well as internationally) 5 years ago.","Proportion of the current population that moved out to another part of the same country in the past 5 years.","Proportion of the current population that moved out to non-SALURBAL (aka rural) areas within the country in the past 5 years.","Proportion fo the current population that moved out to another SALURBAL area within the country in the past 5 years.","Proportion of the female population aged 25 or older who completed secondary education or above","Proportion of the male population aged 25 or older who completed secondary education or above","Proportion of the population aged 25 or older who completed secondary education or above","The ratio of the female to the male proportion of the population aged 25 or older who completed secondary education or above","Proportion of the female population aged 25 or older who completed primary education or above","Proportion of the male population aged 25 or older who completed primary education or above","Proportion of the population aged 25 or older who completed primary education or above","Proportion of the female population aged 25 or older who completed university education or above","Proportion of the male population aged 25 or older who completed university education or above","Proportion of the population aged 25 or older who completed university education or above","Proportion of households connected to a sewage system of any type","Proportion of households connected to a public sewage network","Proportion of the female population aged 15 to 17 attending school","Proportion of the male population aged 15 to 17 attending school","Proportion of the population aged 15 to 17 attending school","The ratio of the proportion of the female population aged 15 to 17 attending school to the proportion of the male population aged 15 to 17 attending school","The ratio of the unemployment rate among females (15+ years of age) to the unemployment rate among males (15+ years of age)","The unemployment rate among the female population 15 years or above in labor force","The unemployment rate among the male population 15 years or above in labor force","The unemployment rate among the total population 15 years or above in labor force","Proportion of dwellings with exterior walls mostly composed of durable materials","Proportion of dwellings with exterior walls mostly made of brick, stone, concrete, cement and/or similar materials (Masonry Walls)","Proportion of dwellings with exterior walls composed of durable materials","Proportion of households with piped water access inside the dwelling","Proportion of households with water from a public network","Proportion of households with piped water","Life Expectancy","Population","Population","The ratio of the unemployment rate among females (15+ years of age) to the unemployment rate among males (15+ years of age)","GDP per capita (purchasing power parity) in constant 2011 international USD","Income-based GINI measure","The proportion of the total labor force who are female among the population 15 years of age or above","The labor force participation rate among the female population 15 years or above","The labor force participation rate among the male population 15 years or above","The labor force participation rate among the total population 15 years or above","The ratio of the labor force participation rate among females (15+ years of age) to the labor force participation rate among males (15+ years of age)","The proportion of the population in the defined geographic area living in households with household income below the national income poverty line","The unemployment rate among the female population 15 years or above","The unemployment rate among the male population 15 years or above","The unemployment rate among the total population 15 years or above","Dissimilarity Index, primary incomplete vs. primary completed","Dissimilarity Index, primary incomplete vs. university completed","Dissimilarity Index based on ethnicity, black vs. white and mestizo","Dissimilarity Index based on ethnicity, black (including Raizal and Palanquero) vs. white and mestizo","Dissimilarity Index, household income, ≤1 minimum wage vs. others","Dissimilarity Index, household income, ≤2 minimum wage vs. others","Dissimilarity Index, household income, ≤3 minimum wage vs. others","Dissimilarity Index, household income, ≤½ minimum wage vs. others","Dissimilarity Index, black vs. white","Dissimilarity Index, brown vs. white","Dissimilarity Index, black and brown combined vs. white","Isolation Index, primary incomplete","Isolation Index, university completed","Isolation index based on ethnicity, black","Isolation index based on ethnicity, black (including Raizal and Palanquero)","Isolation index based on ethnicity, white and mestizo","Isolation Index, household income, ≤1 minimum wage vs. others","Isolation Index, household income, ≤2 minimum wage vs. others","Isolation Index, household income, ≤3 minimum wage vs. others","Isolation Index, household income, ≤½ minimum wage","Isolation Index, black","Isolation Index, brown","Isolation Index, black and brown","Isolation Index, white","Number of all L3 units found in the census data within L1AD","Number of people who responded to the question on educational attainment","Number of people who completed primary school as the highest institution","Number of people who did not complete primary school","Number of people who completed secondary school as the highest institution","Number of people who completed university as the highest institution","Number of unpopulated L3 units within L1AD","Number of people who responded to the question on ethnicity","Number of people, black","Number of people, black (including Raizal andPalanquero)","Number of people, white and mestizo","Number of private households with an income 1 minimum wage","Number of private households with an income 2 minimum wages","Number of private households with an income 3 minimum wages","Number of private households","Number of private households with an income ≤½ minimum wages","Number of L3 units for which data were not available within L1AD","Number of people who responded to the question on race","Number of people, black","Number of people, brown","Number of people, black and brown","Number of people, white","Number of populated and available L3 units within L1AD","Number of people in L1AD used to construct segregation indices","Prevelence Estimate for Obese as measured BMI WHO Classifications where BMI>=30","Prevalence Estimate for Overweight and obese as measured BMI WHO Classifications where BMI>=25","Prevelence Estimate for Obese as measured BMI WHO Classifications where BMI>=30 from self-reported height and weight","Prevalence Estimate for Overweight and obese as measured BMI WHO Classifications where BMI>=25 from self-reported height and weight","Prevalence Estimate for Underweight as measured BMI WHO Classifications where BMI<18.5 from self-reported height and weight","Prevalence Estimate for Underweight as measured BMI WHO Classifications where BMI<18.5","Prevelance Estimate for Diabetes diagnosis V1 (gestational coded as 'no')","Prevalence Estimate for Diabetes diagnosis V2 (gestational coded as 'yes')","Prevalence Estimate for Self-rated Health as Fair/Poor","Prevalence Estimate for Current Pharmacological Treatment for hypertension - hypertension definiton V3","Prevalence Estimate for Mammogram in past 2 years","Prevalence Estimate for Child overweight","Prevalence Estimate for Pap test in past 3 years","Prevalence Estimate for Current smoking","Prevalence Estimate for Child stunting","Prevalence Estimate for Child wasting"],"value_type":["continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous","continuous"],"n":[9275,9275,9275,9275,9275,9275,9275,9275,370,370,370,370,370,370,370,370,370,370,369,371,371,371,371,371,371,371,51,371,371,366,371,371,371,371,371,371,371,371,366,348,348,371,371,371,371,371,371,371,371,371,371,371,371,7049,7049,371,362,371,371,371,371,7049,7049,371,371,345,6092,371,371,371,371,371,371,371,371,371,369,50,366,366,371,371,6092,371,402,427,301,453,453,453,453,453,434,434,434,434,434,434,434,434,434,453,453,453,453,453,453,453,453,453,453,432,432,453,453,453,453,453,453,453,453,453,453,453,397,453,432,2928,5027,20571,114,9646,316,114,114,114,114,114,340,114,114,114,247,120,70,70,152,152,152,152,152,152,152,247,120,70,70,70,152,152,152,152,152,152,152,152,399,247,155,247,155,120,399,70,70,70,70,152,152,152,152,152,399,152,152,152,152,152,399,399,8078,8248,749,749,749,6663,6830,15,2501,6817,505,248,620,6845,248,245]},"columns":[{"accessor":"var_name","name":"var_name","type":"character"},{"accessor":"var_label","name":"var_label","type":"character"},{"accessor":"value_type","name":"value_type","type":"character"},{"accessor":"n","name":"n","type":"numeric"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"outlined":true,"bordered":true,"nowrap":true,"dataKey":"57d9c04150813595a939e5d8fd0a5f1d","nested":true},"children":[]}]},{"name":"div","attribs":{"style":{"padding":"16px"}},"children":[{"name":"Reactable","attribs":{"data":{"var_name":["APSPM25THRES","BECCOAST","BECCZ","BECPRSAERTRAM","BECPRSBRT","BECPRSSUBWAY","EMPMATCHQUALITY","POVMATCHQUALITY"],"var_label":["Average PM2.5 is above WHO guidelines","Coastal city","Major climate zone within boundary","Presence of aerial tram","Presence of a BRT","Presence of subway","Match quality code for population match between L1AD and L1MA/L1MB for Employment measures","Match quality code for population match between L1AD and L1MA/L1MB for Poverty measures"],"value_type":["discrete","discrete","discrete","discrete","discrete","discrete","discrete","discrete"],"n":[9275,371,371,371,371,371,114,340]},"columns":[{"accessor":"var_name","name":"var_name","type":"character"},{"accessor":"var_label","name":"var_label","type":"character"},{"accessor":"value_type","name":"value_type","type":"character"},{"accessor":"n","name":"n","type":"numeric"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"outlined":true,"bordered":true,"nowrap":true,"dataKey":"bb40ba3f16942a1b0dae67daf776c76a","nested":true},"children":[]}]}]},{"accessor":"value_type","name":"value_type","type":"character"},{"accessor":"n","name":"n","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"24bf3925cff3f1d85142148c7efcfcfa"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="longitudinal-data" class="level3">
+<h3 class="anchored" data-anchor-id="longitudinal-data">3.4 Longitudinal Data</h3>
+<p><strong>EDA of longitudinality in SALURBAL data.</strong> Note that whether variables are longitudinal is not available in v1 codebook. pending v2 codebooks they will be assigned by groups themselves and thus should be more accurate. Right now only 9 variables from v2 codebooks (Air Pollution have DMC assigned longitudinal value).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cleaned_codebooks <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(var_name, longitudinal) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(longitudinal) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-d35a1d63de23a44b1b65" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d35a1d63de23a44b1b65">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"longitudinal":[true,null],"n":[9,185],"percent":[0.0463917525773196,0.95360824742268],"valid_percent":[1,"NA"]},"columns":[{"accessor":"longitudinal","name":"longitudinal","type":"logical"},{"accessor":"n","name":"n","type":"numeric"},{"accessor":"percent","name":"percent","type":"numeric"},{"accessor":"valid_percent","name":"valid_percent","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"a45698f51d54521016aee352ff3b6e92"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>But we can back-calculate longitudinality from the data it self, for now we will use these ‘longitudinal_status’ as a metadata field for our datastore. Roughly 65% of the variables are not longitudinal. Here we document the four possible cases of longitudinality which were coded for each variable based on year availability by year.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cleaned_codebooks <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(var_name, subdomain,longitudinal_status) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(longitudinal_status) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(percent)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-5343e62cfdef3093c087" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5343e62cfdef3093c087">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"longitudinal_status":["Completely non-longitudinal","Longitudinal","Mixed by Country","Functionally non-longitudinal"],"n":[101,51,32,10],"percent":[0.520618556701031,0.262886597938144,0.164948453608247,0.0515463917525773]},"columns":[{"accessor":"longitudinal_status","name":"longitudinal_status","type":"character"},{"accessor":"n","name":"n","type":"numeric"},{"accessor":"percent","name":"percent","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"93e4d2bb3cd9eb9ab6c02fc112a0da57"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ul>
+<li><p><strong>Longitudinal</strong> is when variable is longitudinal</p></li>
+<li><p><strong>Completely non-longitudinal</strong> is when a variable only has a single year value.</p></li>
+<li><p><strong>Functionally non-longitudinal</strong> is when a variable only has a single year value per country; this is for when data source differ by a few years across country. For example life expectancy is ‘2010-2014’ for El Salvador but ‘2012-2016’ for all other countries.</p></li>
+<li><p><strong>Mixed</strong> When the variable identified as non-longitudinal but does not fall into the expected two cases above. It has single years for some countries but multiple years for other countries. These come from two subdomains 1) migration and 2) segregation. The distribution of data availabl by year and country for these two datasets are displayed below.</p></li>
+</ul>
+<div style="display: flex;">
+<div>
+<p><strong>Segregation</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Argentina","2":"2010"},{"1":"Brasil","2":"2010"},{"1":"Chile","2":"2002"},{"1":"Chile","2":"2017"},{"1":"Colombia","2":"2005"},{"1":"Colombia","2":"2018"},{"1":"Costa Rica","2":"2011"},{"1":"El Salvador","2":"2007"},{"1":"Guatemala","2":"2002"},{"1":"Mexico","2":"2010"},{"1":"Panama","2":"2010"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p><strong>Migration</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Brasil","2":"2010"},{"1":"Chile","2":"2002"},{"1":"Chile","2":"2017"},{"1":"Costa Rica","2":"2011"},{"1":"El Salvador","2":"2007"},{"1":"Guatemala","2":"2002"},{"1":"Guatemala","2":"2018"},{"1":"Mexico","2":"2010"},{"1":"Mexico","2":"2015"},{"1":"Peru","2":"2007"},{"1":"Peru","2":"2017"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Moving forward we need to to make some decisions about how to address each of these cases during the check out selection and downloads steps.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LACUrbanHealth">
+      <i class="bi bi-twitter" role="img" aria-label="SALURBAL Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Drexel-UHC/salurbal-project-dashboard">
+      <i class="bi bi-github" role="img" aria-label="SALURBAL GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
+
+
+
+</body></html>

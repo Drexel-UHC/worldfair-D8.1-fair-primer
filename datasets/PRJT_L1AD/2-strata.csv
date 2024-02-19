@@ -1,0 +1,6 @@
+var_name,var_name_raw,strata_id,strata_1_name,strata_1_raw,strata_1_value,strata_2_name,strata_2_raw,strata_2_value
+PRJPOP,PRJL1ADPOP,Sex_Overall,Sex,"",Overall,,,
+PRJPOP,PRJL1ADPOPF,Sex_Female,Sex,F,Female,,,
+PRJPOP,PRJL1ADPOPM,Sex_Male,Sex,M,Male,,,
+INCLUDENOUNITCHG,INCLUDE_NOUNITCHG_L1AD,,,,,,,
+INCLUDENOBDRYCHG,INCLUDE_NOBDRYCHG_L1AD,,,,,,,

@@ -1,0 +1,632 @@
+[
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "SALURBAL Feb 2023 Updates\n\n\nGeneral updates on from Feb 2023\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nRenovation Team\n\n\n\n\n\n\n  \n\n\n\n\nSALURBAL Jan 2023 Updates\n\n\nGeneral updates on from Jan 2023\n\n\n\n\n\n\n\n\n\nFeb 6, 2023\n\n\nRan Li\n\n\n\n\n\n\n  \n\n\n\n\nTidy Data: structure and semantics of data\n\n\nSummary of data best practices (tidy data + relational database management) and reflections for SALURBAL.\n\n\n\n\n\n\n\n\n\nJan 31, 2023\n\n\nRan Li\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStructured SALURBAL Data/Metadata: a primer\n\n\nThis post provides a primer on the SALURBAL data model and how we go from an unstructured collection of data/metadata to a structured database.\n\n\n\n\n\n\n\n\n\nJan 25, 2023\n\n\nRan Li\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStaff Intro: Ran\n\n\nHi I am an engineer at the UHC! Here is why FAIR data is important.\n\n\n\n\n\n\n\n\n\nJan 19, 2023\n\n\nRan Li\n\n\n\n\n\n\n  \n\n\n\n\nSALURBAL Dissemination Ideas\n\n\nSALURBAL II Planning Meeting - Data dashboard and other dissemination\n\n\n\n\n\n\n\n\n\nJan 17, 2023\n\n\nRan Li, Usama Bilal\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "Open Source License",
+    "section": "",
+    "text": "Note\n\n\n\nThe analytics corner is not official in any capacity and is just a proof of concept. The language language is still being drafted and a work in progress. Feel free to Edit this page or report an issue.\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe language in this license page is adapted directly from Quarto’s license page. We admire the job that Quarto has done building an open-source community and hope that this policy will help us do the same.\n\n\nUHC Analytics Corner is open source software licensed under the MIT license. We believe that it’s better for everyone if the tools used for research and science are free and open. Reproducibility, widespread sharing of knowledge and techniques, and the leveling of the playing field by eliminating cost barriers are but a few of the shared benefits of free software in science.\nThis project also makes use of several other open-source projects including:\n\n\n\nProject\nLicense\n\n\n\n\nQuarto\nGNU GPL v2\n\n\ntidyverse\nMIT"
+  },
+  {
+    "objectID": "pages/blog/data-models/index.html",
+    "href": "pages/blog/data-models/index.html",
+    "title": "Structured SALURBAL Data/Metadata: a primer",
+    "section": "",
+    "text": "For us the fundamental data unit is a single data point. In this regard we store SALURBAL data as a data frame in adherence with tidy data principles:\n\nEach characteristic of the data point must have its own column\nEach data point must have its own row\nEach value must hvae its own cell\n\nBelow is an example of tidy SALURBAL data.\n\n\nCode\nlibrary(datamodelr)\nlibrary(tidyverse)\nlibrary(knitr)\n\nload(\"C:\\\\Users\\\\ranli\\\\Desktop\\\\Git local\\\\SALURBAL Dashboard Portal\\\\data-pipeline\\\\clean\\\\cleaned_datasets.rdata\")\n\ndf_data = cleaned_datasets%>% \n  select(var_name,\n         strata_id = var_name_nested,\n         salid = salid1,\n         year,\n         value) %>% \n  mutate(i = row_number()) %>% \n  # sample_n(4)\n  slice(183204,256165,59134,145255)  %>% \n  select(-i) %>% \n  mutate(strata_id = ifelse(strata_id == var_name,NA, strata_id))\ndf_data\n\n\n\n\n\n\nvar_name\nstrata_id\nsalid\nyear\nvalue\n\n\n\n\nPRJPOP\nPRJPOP_M\n562839\n2009\n878633\n\n\nSVYHTMED\nSVYHTMED_TOT_PL-SAL\n343574\n2003\n0.172495680497369\n\n\nAPSPM25MEDIAN\nNA\n562474\n2004\n10.199999809\n\n\nBECTPOP\nNA\n562333\n2009\n157306\n\n\n\n\n\n\nThe table above is a simplified example of tidy SALURBAL data. For each of the four data points we have a unique variable identifier var_name, population strata information strata_id, salurbal id salid, year of data point year and the value of the data point.\nLooking across the first row. We can see the variable is PRJPOP_M, is not stratified, has SALURBAL ID of 562839, is for the year 2009 and has a value of 878633.\nEach row is called an observation aka a single SALURBAL data point. Each column is an attribute of the specific data point aka observation. Each cell is considered a value of a attribute/column combination.\nIn other words. - Each observation is a SALURBAL data point. - Observations are represented as rows. - Attributes of each observation are represented as columns. - There is exactly one type of observational unit per table.\nA dataset is a collection of values. Each value below to both a attribute and observation. A variable contains all values that measure the same attribute across units. An observation contains all values measured onet he same unit across attributes.\nNow that we have this datastructure, we need to link metadata to these data points. SALURBAL metadata is stored within a relational database schema"
+  },
+  {
+    "objectID": "pages/blog/data-models/index.html#apsl1ad",
+    "href": "pages/blog/data-models/index.html#apsl1ad",
+    "title": "Structured SALURBAL Data/Metadata: a primer",
+    "section": "APSL1AD",
+    "text": "APSL1AD\nThe Air Pollution dataset APSL1AD is an example of a simple metadata to data relationship. The schema and linkage.csv are displayed here; interpretations of the schema can be found below.\n\nSchemalinkage.csv\n\n\n\n\nCode\ndm_read_yaml(\"salurbal-aps.yml\") %>% \n  dm_create_graph(rankdir = \"LR\") %>% \n  dm_render_graph()\n\n\n\n\n\n\n\n\n\n\n\nCode\nread.csv(\"https://raw.githubusercontent.com/Drexel-UHC/salurbal-fair-renovations/main/datasets/APSL1AD/3-linkage.csv\") %>% \n  as_tibble() %>% \n  replace(is.na(.), \"\") %>% \n  kable(align = 'lcccc')\n\n\n\n\n\nfield\nby_var\n\n\n\n\ndataset_id\n1\n\n\ndomain\n1\n\n\nsubdomain\n1\n\n\nvar_label\n1\n\n\nvar_def\n1\n\n\nvalue_type\n1\n\n\nunits\n1\n\n\ncoding\n1\n\n\nstrata_description\n1\n\n\nsource\n1\n\n\ndataset_notes\n1\n\n\nlimitations\n1\n\n\nacknowledgements\n1\n\n\nfile_data\n1\n\n\nfile_codebook\n1\n\n\nlongitudinal\n1\n\n\npublic\n1\n\n\ncensor\n1\n\n\nlicense\n1\n\n\nfair\n1\n\n\n\n\n\n\n\n\n\nData\nEvery row in our Data table is a unique SALURBAL data point. This unique data point can be identified by using a combination of primary keys which are underlined.\n\n\nMetadata\nWe only have one type of linkage in this dataset. All our metadata fields can be linked by the field var_name; so we only have one metadata table codebook_by_var.\n\ncodebook_by_var.var_name is a primary key because every observation/row in this table will have a different var_name. This primary key is underlined.\ncodebook_by_var.var_name is a foreign key because it is a field used to establish a link to a primary key within our Data table. This foreign key is labeled with a ~."
+  },
+  {
+    "objectID": "pages/blog/data-models/index.html#lemedian",
+    "href": "pages/blog/data-models/index.html#lemedian",
+    "title": "Structured SALURBAL Data/Metadata: a primer",
+    "section": "LEMEDIAN",
+    "text": "LEMEDIAN\nThe Life Expectancy dataset (LEMEDIAN) is an example of a slightly more complex metadata to data relationship. The schema and linkage.csv are displayed here; interpretations of the schema can be found below.\n\nSchemalinkage.csv\n\n\n\n\nCode\ndm_read_yaml(\"salurbal-lemedian.yml\") %>% \n  dm_create_graph(rankdir = \"LR\") %>% \n  dm_render_graph() \n\n\n\n\n\n\n\n\n\n\n\nCode\nread.csv(\"https://raw.githubusercontent.com/Drexel-UHC/salurbal-fair-renovations/main/datasets/LEMEDIAN_L1/3-linkage.csv\") %>% \n  as_tibble() %>% \n  mutate(field = field %>% str_remove_all('\\\\t')) %>% \n  mutate_all(as.character) %>% \n  replace(is.na(.), \"\") %>% \n  kable(align = 'lcccc')\n\n\n\n\n\nfield\nby_var\nby_var_iso2\n\n\n\n\ndataset_id\n1\n\n\n\ndomain\n1\n\n\n\nsubdomain\n1\n\n\n\nvar_label\n1\n\n\n\nvar_def\n1\n\n\n\nvalue_type\n1\n\n\n\nunits\n1\n\n\n\ncoding\n1\n\n\n\nstrata_description\n1\n\n\n\nsource\n\n1\n\n\ndataset_notes\n1\n\n\n\nlimitations\n1\n\n\n\nacknowledgements\n1\n\n\n\nfile_data\n1\n\n\n\nfile_codebook\n1\n\n\n\nlongitudinal\n1\n\n\n\npublic\n\n1\n\n\ncensor\n1\n\n\n\nlicense\n1\n\n\n\nfair\n1\n\n\n\nyear\n\n1\n\n\n\n\n\n\n\n\n\nData\nEvery row in our Data table is a unique SALURBAL data point. This unique data point can be identified by using a combination of primary keys which are underlined.\nNote that the original data CSV file for LEMEDIAN is cross sectional and does not include year information. So in this case, year is going actually a piece of metadata we bring in linked by var_name and iso2.\n\n\nMetadata\nWe have two types of linkage in this dataset. So we have two metadata tables codebook_by_var and codebook_by_var_iso2.\n\ncodebook_by_var.var_name is a primary key (underlined) because every observation/row in this table will have a different var_name. It is also a foreign key (~) because it is a field used to establish a link to a primary key within our Data table.\ncodebook_by_var_iso2.var_name and codebook_by_var_iso2.iso2 are primary keys (underlined) because there be one and only one row for each combination of iso2 and var_name. They are also a foreign key (~) because we will use them to establish a link to a primary key within our Data table."
+  },
+  {
+    "objectID": "pages/blog/feb-2023-updates/index.html#overview",
+    "href": "pages/blog/feb-2023-updates/index.html#overview",
+    "title": "SALURBAL Feb 2023 Updates",
+    "section": "Overview",
+    "text": "Overview\n\nData portal road map\nPast month of work\nRenovation updates\nNext Steps"
+  },
+  {
+    "objectID": "pages/blog/feb-2023-updates/index.html#data-portal-road-map",
+    "href": "pages/blog/feb-2023-updates/index.html#data-portal-road-map",
+    "title": "SALURBAL Feb 2023 Updates",
+    "section": "Data portal road map",
+    "text": "Data portal road map\n\nroadmap link"
+  },
+  {
+    "objectID": "pages/blog/feb-2023-updates/index.html#feb-work-overview",
+    "href": "pages/blog/feb-2023-updates/index.html#feb-work-overview",
+    "title": "SALURBAL Feb 2023 Updates",
+    "section": "Feb Work overview",
+    "text": "Feb Work overview\n\n\nMost of the work in Feb was focused on ’backend` data renovations"
+  },
+  {
+    "objectID": "pages/blog/feb-2023-updates/index.html#renovation-updates",
+    "href": "pages/blog/feb-2023-updates/index.html#renovation-updates",
+    "title": "SALURBAL Feb 2023 Updates",
+    "section": "Renovation Updates",
+    "text": "Renovation Updates\n\nworking with renovation team (Diana, Ana-lu, Kari) to figure out best structure for SALURBAL data\nworking with Jess + Ran to build automation, testing to help during renovation\nMost of our infrastructure and automation is set up to enable scale up renovation in March + April.\nCurrent state of our repository looks like: https://github.com/Drexel-UHC/salurbal-fair-renovations"
+  },
+  {
+    "objectID": "pages/blog/feb-2023-updates/index.html#next-steps",
+    "href": "pages/blog/feb-2023-updates/index.html#next-steps",
+    "title": "SALURBAL Feb 2023 Updates",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nContinue renovation to cover existing SALURBAL data\nMake front end changes + data updates before Mexico Meeting\nPresent data infrastructure + data portal updates in Mexico\nGet feedback from MX meeting + others in April\nMake updates in May\nPublic release in June"
+  },
+  {
+    "objectID": "pages/blog/hello-ran/index.html",
+    "href": "pages/blog/hello-ran/index.html",
+    "title": "Staff Intro: Ran",
+    "section": "",
+    "text": "FAIR data is important because it ensures that data is Findable, Accessible, Interoperable, and Reusable. This means that data is properly labeled, described, and indexed so that it can be easily discovered and accessed by those who need it. Additionally, FAIR data is designed to be interoperable with other data sources, allowing for greater integration and analysis.\nMaking data FAIR also promotes transparency and reproducibility in research. When data is easily accessible and understandable, other researchers can verify and build upon previous work. This helps to ensure that scientific findings are robust and reliable.\nFurthermore, FAIR data also promotes data reuse by making data available for multiple purposes, increasing the value of the data. This is particularly important in today’s data-driven society, where data is increasingly being used to drive decision making and innovation. By making data FAIR, organizations can maximize the value of their data by making it available for use in a wide range of applications.\nIn summary, FAIR data is important because it ensures that data is properly labeled, described, and indexed so that it can be easily discovered and accessed by those who need it. Additionally, it promotes transparency and reproducibility in research and data reuse, thus increasing the value of the data. It is important for organizations to adopt FAIR data principles to maximize the value of their data."
+  },
+  {
+    "objectID": "pages/blog/jan-2023-updates/index.html#overview",
+    "href": "pages/blog/jan-2023-updates/index.html#overview",
+    "title": "SALURBAL Jan 2023 Updates",
+    "section": "Overview",
+    "text": "Overview\n\nPresent GitHub Roadmap for SALURBAL repository/portal\nOverview of SALURBAL 1 infrastructure\nProposal for SALURBAL 2"
+  },
+  {
+    "objectID": "pages/blog/jan-2023-updates/index.html#salurbal-1-roadmap-data-portal",
+    "href": "pages/blog/jan-2023-updates/index.html#salurbal-1-roadmap-data-portal",
+    "title": "SALURBAL Jan 2023 Updates",
+    "section": "SALURBAL 1 Roadmap: Data Portal",
+    "text": "SALURBAL 1 Roadmap: Data Portal\nroadmap link"
+  },
+  {
+    "objectID": "pages/blog/jan-2023-updates/index.html#fair-renovation-intro",
+    "href": "pages/blog/jan-2023-updates/index.html#fair-renovation-intro",
+    "title": "SALURBAL Jan 2023 Updates",
+    "section": "FAIR Renovation Intro",
+    "text": "FAIR Renovation Intro\n\nKey strengths of SALURBAL: multi-national, multi-year, multi-source, harmonized. However, this is also a challenge for data stewardship.\nWe harmonized such complex data have in the past relied on people to organize, distribute and leverage this data\nFAIR renovation is about structuring SALURBAL data and metadata and storing it is machine actionable."
+  },
+  {
+    "objectID": "pages/blog/jan-2023-updates/index.html#renovation-oct---jan-progress",
+    "href": "pages/blog/jan-2023-updates/index.html#renovation-oct---jan-progress",
+    "title": "SALURBAL Jan 2023 Updates",
+    "section": "Renovation Oct - Jan progress",
+    "text": "Renovation Oct - Jan progress\n\nOn boarding of renovation team\nrefining our structure in a way that fits well with SALURBAL data\nestablishing a prototype data warehouse where renovated data will sit"
+  },
+  {
+    "objectID": "pages/blog/jan-2023-updates/index.html#salurbal-2-proposals",
+    "href": "pages/blog/jan-2023-updates/index.html#salurbal-2-proposals",
+    "title": "SALURBAL Jan 2023 Updates",
+    "section": "SALURBAL 2 proposals",
+    "text": "SALURBAL 2 proposals\n\nSALURBAL data warehouse will be primary method of distribution.\n\nsingle source of truth for our project\naccessible documentation of data transformations\nautomated testing for data integrity\nautomate data distribution via a mature data warehousing system\nless human intensive, machine actionable, and more precise/efficient, distribution of data\n\nSALURBAL data warehouse will document and distribute data into various different downstream uses:\n\nManuscripts\nData Portal\nAnalytic tools\nDigital journalism content\n\nMeeting with Usama, Katie, Andrea to be on the same page across SALURBAL 2 Aims."
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#overview",
+    "href": "pages/blog/salurbal-2-digital/index.html#overview",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Overview",
+    "text": "Overview\n\nIntro: why is digital content important?\nSALURBAL digital content infrastructure\nExamples digital content for SALURBAL 1/2\nContext within SALURBAL II aims"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#intro",
+    "href": "pages/blog/salurbal-2-digital/index.html#intro",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Intro",
+    "text": "Intro\nThinking web first and why its important\n\n\nTraditional academia, peer review journals are ideas are exchanged but for non-academics the internet is how ideas are exchanged.\nTo increase impact we have to be able to share our ideas and data via the internet.\nHow do we do this?\nWhat could SALURBAL II digital content look like?"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#how-do-we-do-this",
+    "href": "pages/blog/salurbal-2-digital/index.html#how-do-we-do-this",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "How do we do this?",
+    "text": "How do we do this?\nThe SALURBAL project has a few unique selling points:\n\ncomprehensive harmonized multi-national data assets\nnetworks across latin america\n\n\nIncreasing the the online presence of these two selling points would greatly increase our potential impact. To do this there are two main steps:\n\n\n\nStep 1: Basic Infrastructure\n\nFAIR/machine-actionable renovations of existing datasets\nStrict standards for new dataset/codebook formats\nSet up online interface for data and digital content\n\nStep 2 Digital content (all hosted on SALURBAL portal):\n\nBigger initiatives:\n\nCentralized at SALURBALs\nIdeation -> Design -> Engineering\n\nAnalyst/group level content:\n\nDecentralized analyst/group level content\nGenerated with tools familiar to group Quarto, Shiny, ArcGIS .. ETC"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#step-1-salurbal-infrastructure",
+    "href": "pages/blog/salurbal-2-digital/index.html#step-1-salurbal-infrastructure",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Step 1: SALURBAL infrastructure",
+    "text": "Step 1: SALURBAL infrastructure\nOver the past year we have been working on the SALURBAL data platform.\n\nRenovating our data to be machine-actionable\nSetting up a online data portal\n\nPrimary priority: open access data\nSecondary priority: digital content\n\n\nMoving into SALURBAL 2, we hope to leverage our infrastructure to generate much more digital content."
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#step-2-digital-content",
+    "href": "pages/blog/salurbal-2-digital/index.html#step-2-digital-content",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Step 2: Digital Content",
+    "text": "Step 2: Digital Content\nData driven story telling has seen a recent boom.\n\nNYTBloombergReuters"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#step-2-digital-content-1",
+    "href": "pages/blog/salurbal-2-digital/index.html#step-2-digital-content-1",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Step 2: Digital Content",
+    "text": "Step 2: Digital Content\nBelow we list a few of the trends in digital content that we have/will adapted for SALURBAL.\n\nCity Profiles + Automated reports\nLong form visualization\n\nfor telling stories\nfor explaining models\n\nInteractive blogs\nDashboards"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#city-profiles-automated-reports",
+    "href": "pages/blog/salurbal-2-digital/index.html#city-profiles-automated-reports",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "City Profiles + Automated Reports",
+    "text": "City Profiles + Automated Reports"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#long-form-visualization-story",
+    "href": "pages/blog/salurbal-2-digital/index.html#long-form-visualization-story",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Long form visualization (story)",
+    "text": "Long form visualization (story)\n\nPreview here"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#long-form-visualization-methods",
+    "href": "pages/blog/salurbal-2-digital/index.html#long-form-visualization-methods",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Long form visualization (methods)",
+    "text": "Long form visualization (methods)\n\nPreview here"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#interactive-blogs",
+    "href": "pages/blog/salurbal-2-digital/index.html#interactive-blogs",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Interactive blogs",
+    "text": "Interactive blogs\n\nPreview here"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#dashboards",
+    "href": "pages/blog/salurbal-2-digital/index.html#dashboards",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Dashboards",
+    "text": "Dashboards\n\nPreview here"
+  },
+  {
+    "objectID": "pages/blog/salurbal-2-digital/index.html#fitting-into-salurbal2",
+    "href": "pages/blog/salurbal-2-digital/index.html#fitting-into-salurbal2",
+    "title": "SALURBAL Dissemination Ideas",
+    "section": "Fitting into SALURBAL2",
+    "text": "Fitting into SALURBAL2\n\nAim 1 (data resource + “epi-ish analysis”)\n\nData repository (continuing FAIR data infrastructure, incorporate data, etc.)\nLong form visualizations of results or methods\nInteractive blogs of results\n\nAim 2 (impact of mitigation/adaptation policies)\n\nLong form visualizations of case studies\nDashboards with HIA results (ability to switch levers)\n\nAim 3 (dissemination/engagement)\n\n“All of the above” but much more targeted\nAutomated reports ~ City profiles\n\nAim 4 (capacity building & project governance)\n\n? (Workshops on visualization/programming? Engineering capacity building?)"
+  },
+  {
+    "objectID": "pages/blog/tidy-data/index.html",
+    "href": "pages/blog/tidy-data/index.html",
+    "title": "Tidy Data: structure and semantics of data",
+    "section": "",
+    "text": "These ideas and examples are from Wickham (2014) and Codd’s Rules for Relational Database Systems."
+  },
+  {
+    "objectID": "pages/blog/tidy-data/index.html#introduction",
+    "href": "pages/blog/tidy-data/index.html#introduction",
+    "title": "Tidy Data: structure and semantics of data",
+    "section": "Introduction",
+    "text": "Introduction\nIt is often said that 80% of data analysis is spent on the process of cleaning and preparing the data. Data preparation is not just a first step, but must be repeated many over the course of analysis as new problems come to light or new data is collected. Despite the amount of time it takes, there has been surprisingly little research on how to clean data well.\nThe principles of tidy data provide a standard way to organise data values within a dataset. A standard makes initial data cleaning easier because you don’t need to start from scratch and reinvent the wheel every time. The tidy data standard has been designed to facilitate initial exploration and analysis of the data, and to simplify the development of data analysis tools that work well together.\nThe principles of tidy data are closely tied to those of relational databases and Codd’s relational algebra (Codd 1990), but are framed in a language familiar to statisticians."
+  },
+  {
+    "objectID": "pages/blog/tidy-data/index.html#characteristics-of-a-tidy-dataset",
+    "href": "pages/blog/tidy-data/index.html#characteristics-of-a-tidy-dataset",
+    "title": "Tidy Data: structure and semantics of data",
+    "section": "Characteristics of a tidy dataset",
+    "text": "Characteristics of a tidy dataset\n\nStructure\n\nDatastructure describes the physical layout of a dataset.\nDatasets are rectangular tables made up of rows and columns.\nColumns are almost always labeled, rows are sometimes labeeled.\n\n\n\nSemantics\n\nThe semantics of a dataset describe its meaning\nA dataset is a collection of values.\nValues are organized in two ways. Every value belongs to a variable and an observation.\n\nA variable contains all values that measure the same underlying attribute (like height, temperature, duration) across units.\nAn observation contains all values measured on the same unit (like a person, or a day, or a race) across attributes.\n\n\n\nAbove dataset is shown in three different structures. Table 3 reoragnizes the data to make the values, variables and observations (semantics) more clear. The dataset contains 18 values representing three variables and six observations. Variables name - person, trt treatment and result value of some test. The observation depends on the exerpiemtnal design which in this case is a completely cross design, so the obervation type for this table is crossed (person, treatment).\nNote in a given analysis, there may be multiple levels of observation. For example, in a trial of new allergy medication we might have three observational types: demographic data collected from each person (age, sex, race), medical data collected from each person on each day (number of sneezes, redness of eyes), and meterological data collected on each day (temperature, pollen count).\nIt is important to keep in mind the meaning/semantic (observations and variables) of your data when designing dataset structure (rows and columns).\n\n\nTidy data\nTidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is messy or tidy depending on how many row, columns and tables are matched with observations, vairables and types. In tidy data:\n\nEach variable forms a column\nEach observation forms a row\nEach type of observational unit forms a table.\n\nThese rules are just Codd’s 3rd normal form but framed in statistical language and focusing on a single dataset rather than interconnection. Messy data is any other arrangement of the data.\n\nTable 3 is the tidy version of these data. Each row represents an observation, the result of one treatment on one person, and each column is a variable.\nTidy data makes it easy for a computer to extract needed variables because it provides a standard way of structuring a dataset. Compare Table 3 to Table 1: in Table 1 you need to use different strategies to extract different variables. At the end of the day, the order of variables and observations (tidy vs messy) may not effect the results of an analysis, but tidy data is immediately machine actionabl, thus reusable, interoperable nd suited for performant vectorized computing - aka it will save you a lot of man hours!\nA good way to design your datasets (what are observations and what are variables), is to think about their role in the analysis: are values fixed by the design of the data collection, or are they measured during the course of the experiment? Fixed variables describe the experimental design and are known in advance. Computer scientists often call fixed variables dimensions, and statistician usually denote them with subscripts. Measured variables are what we actually measure in the study. Fixed variables should come first, followed by measured variables, each ordered so that related variables are contiguous. Rows can then be ordered by the first variable, breaking ties with the second and subsequent (fixed) variables. This is the convention adopted by all tabular displays in this paper."
+  },
+  {
+    "objectID": "pages/blog/tidy-data/index.html#examples-of-common-messy-data",
+    "href": "pages/blog/tidy-data/index.html#examples-of-common-messy-data",
+    "title": "Tidy Data: structure and semantics of data",
+    "section": "Examples of common messy data",
+    "text": "Examples of common messy data\n\nColumn headers are values, not variable names\nWhile this raw format is very useful for some applications (e.g.good format for data entry, or matrix calculations) it is not machine actionable or tidy; to tidy it we need to pivot it making the dataset longer.\n\n\n\nMultiple variables stored in one column\nAfter you pivot your data, one common issue is that column variable names becomes a combination of multiple underlying variable names. Here we need to decompose this into its individual variables.\n\n\n\nMultiple types in one table\nWithin a project, data is available at multiple levels, on different types of observational units. During tidying, each type of observational unit should be stored in its own table. This is closely related to the idea of database normalisation, where each facet is expressed in only one place. [[case3.png]]\nThe Billboards data is an example of this type of messiness. The raw dataset contains two types of observations (song) and (song rank each week), this manifests as duplications of facts about the song: artist and time are repeated for each everysong in the week. This can be broken down into seperate tables aka database normalization.\nNote that Normalisation is useful for tidying and eliminating inconsistencies. However, there are few data analysis tools that work directly with relational data, so analysis usually also requires denormalisation or the merging the datasets back into one table.Normalisation is useful for tidying and eliminating inconsistencies. However, there are few data analysis tools that work directly with relational data, so analysis usually also requires denormalisation or the merging the datasets back into one table.\n\n\nOne type in multiple tables.\nIt’s also common to find data values about a single type of observational unit spread out over multiple tables or files. These tables and files are often split up by another variable, so that each represents a single year, person, or location. As long as the format for individual records is consistent, this is an easy problem to fix via importing, merging and oeprationalizeing file-name metadata."
+  },
+  {
+    "objectID": "pages/database/index.html",
+    "href": "pages/database/index.html",
+    "title": "Database status",
+    "section": "",
+    "text": "Note\n\n\n\nCOMING SOON"
+  },
+  {
+    "objectID": "pages/database/qc.html",
+    "href": "pages/database/qc.html",
+    "title": "FAIR SALURBAL Database Summary",
+    "section": "",
+    "text": "df_codebook_sources = compiled_codebooks %>% \n  count(domain,subdomain, file, v2_codebooks) %>% \n  mutate(codebook = convert_full_path_to_file_name(file),\n         v2_codebooks = ifelse(is.na(v2_codebooks),F,v2_codebooks)) %>%\n  drop_na() %>% \n  select(domain, subdomain, codebook,v2_codebooks) %>% \n  mutate(domain =  ifelse( str_detect(codebook,'child'), paste0(\"Child \", domain), domain))\n\ndf_datasets_sources = compiled_datasets %>%  \n  count(domain,subdomain,file) %>% \n  drop_na() %>% \n  select(domain, subdomain, file)%>% \n  mutate(domain =  ifelse( str_detect(file,'child'), paste0(\"Child \", domain), domain))\n\n\n.x = df_datasets_sources %>% \n  left_join(df_codebook_sources) %>% \n  filter(file == 'BEC_L1AD_20210824.csv')\ndf_sources = df_datasets_sources %>% \n  left_join(df_codebook_sources) %>% \n  mutate(grouper = paste(file, codebook)) %>% \n  group_by(file, codebook) %>% \n  group_modify(~{\n    n_domain_tmp = length(unique(.x$domain))\n    n_subdomain_tmp = nrow(.x)\n    name_tmp = case_when(\n      unique(.x$domain) == 'Child Health Risk Factors' ~'Child Health Risk Factors' %>% list(),\n      n_subdomain_tmp ==1 ~ unique(.x$subdomain) %>% list(),\n      n_domain_tmp > 1 ~ unique(.x$domain) %>% list(),\n      TRUE~unique(.x$domain) %>% list()) %>% \n      unique() %>% \n      unlist()\n    tibble(data = name_tmp,\n           file = unique(.x$file),\n           codebook = unique(.x$codebook),\n           v2_codebooks = unique(.x$v2_codebooks))\n  }) %>% \n  ungroup() %>% \n  select(Data = data,\n         `Codebook V2` = v2_codebooks,\n         File = file,\n         Codebook = codebook) %>% \n  arrange(Data)\n\ndf_sources %>% \n  reactable(\n    defaultPageSize = 20,\n    style = list( fontSize = \"11px\"),\n    columns = list(\n      `Codebook V2`  = colDef(\n        cell = function(value) qc_icon_formatter(value),\n        width = 100)),\n  )\n\n\n\n\n\n\n\n\n\nSALURBAL codebooks will be updated to include system level metadata. Below compares v1 (old) and v2 (new) codebooks.\n\ndf_v1 = tibble(\n  field = codebook__bec %>% select(-file) %>% names(),\n  v1 = T\n)\n\ndf_v2 = tibble(\n  field = codebook__air_pollution %>% select(-file,-v2_codebooks) %>% names(),\n  v2 = T\n)\n\ndf_example = codebook__air_pollution %>% \n  filter(var_name == 'APSPM25MEAN') %>% \n  mutate_all(~as.character(.x)) %>% \n  pivot_longer(cols = everything(), names_to = 'field', values_to = 'example')\n\n\ndf_codebook_versions = df_v2 %>% \n  left_join(df_v1) %>% \n  left_join(df_example) %>% \n  select(Field = field, v1, v2, `v2 example` = example) %>% \n  mutate(v1 = ifelse(is.na(v1),F, v1))\n\ndf_codebook_versions %>% \n  reactable(\n    defaultPageSize = 20,\n    style = list( fontSize = \"11px\"),\n    columns = list(\n      `v1`  = colDef(\n        cell = function(value) qc_icon_formatter(value),\n        width = 100),\n      `v2`  = colDef(\n        cell = function(value) qc_icon_formatter(value),\n        width = 100))\n  )\n\n\n\n\n\n\n\n\n\nThe table below defines how we will organiation stratification within the data. There are three columns: 1) attribute - grouping varaible (e.g. Sex) 2) attribute_value are the actual strata (e.g. Female, Males…) 3. default is to signal which strata to display in a non-stratified context (e.g. data catalog table or city profiles viz)\n\ndf_strata %>% \n  select(-default) %>% \n  arrange(attribute) %>% \n  reactable(groupBy = \"attribute\")"
+  },
+  {
+    "objectID": "pages/database/qc.html#quality-control",
+    "href": "pages/database/qc.html#quality-control",
+    "title": "FAIR SALURBAL Database Summary",
+    "section": "2. Quality Control",
+    "text": "2. Quality Control\n\n2.1 Tests\nThe below displays the results of our individual QC tests. If the test has failed you can click each row to see the a summary of the variables that failed.\n\ntests = ls(pattern = 'test_')\nresults = map_df(tests, ~{\n  result = get(.x)(compiled_datasets,compiled_codebooks,role = 'test')   \n  tibble(\n    Test = result$test, \n    Result = result$pass,\n    Description = result$desc,\n    faulty = list(result$faulty))})%>% \n  arrange(desc(Result))\nindex_faulty = which(!results$Result)\nresults %>% \n  select(-faulty)  %>% \n  reactable(\n    columns = list(\n      Test  = colDef(width = 100),\n      Result  = colDef(\n        cell = function(value) qc_icon_formatter(value),\n        width = 100)),\n    details = function(index){\n      if (index%in%index_faulty){\n        nested_data <- results %>% slice(index) %>% pull(faulty) %>% .[[1]]\n        is_nestable  = nested_data %>% count(var_name) %>% pull(n)>1\n        index_name = nested_data %>% count(var_name) %>% pull(var_name)\n        index_nestable = which(is_nestable)\n        if (any(is_nestable)){\n          nested_data1= nested_data %>% \n            select(file, var_name) %>% \n            distinct()\n        } else {\n          nested_data1= nested_data \n        }\n        htmltools::div(style = \"padding: 16px\",\n                       reactable(nested_data1, \n                                 outlined = TRUE,\n                                 resizable = TRUE,\n                                 wrap = FALSE,\n                                 bordered = TRUE,\n                                 details = function(index){\n                                   if (index%in%index_nestable){\n                                     data_nested2 = nested_data %>% \n                                       filter(var_name == index_name[index]) %>% \n                                       select(-file, -var_name)\n                                     htmltools::div(style = \"padding: 16px\",\n                                                    reactable(data_nested2, \n                                                              resizable = TRUE,\n                                                              bordered = F,\n                                                              wrap = FALSE)) }\n                                   \n                                 }) )  } })\n\n\n\n\n\n\n\n\n2.2 Generate Outputs\nWe keep subset data to those that have passed all QC tests then merge with codebook metadata for. This object ‘cleaned_datasets’ will be used for downstream datastore generation.\n\n## Get outputs from each test\noutputs = map(tests, ~{get(.x)(compiled_datasets,compiled_codebooks,role = 'output')}) \n\n## Keep only those rows that passed all tests and operationalize other columns\ncleaned_datasets = purrr::reduce(outputs, dplyr::inner_join) %>% \n  select(-pass) %>% \n  ## operationalize value_type (categorical/discrete/continuous)\n  group_by(var_name) %>% \n  group_modify(~{\n    values = .x$value\n    .x %>% mutate( value_type = case_when(\n      any(str_detect(values,\"[:alpha:]\"))~\"categorical\",\n      any(str_detect(values,\"\\\\.\"))~\"continuous\",\n      any(str_detect(var_label,c(\"Number\",\"Minimum\",'Minimim',\n                                 \"Maximum\",\"GDP per capita\",\n                                 'City foundation year')))~\"continuous\",\n      TRUE~\"discrete\"\n    ))\n  }) %>% \n  ungroup() %>%\n  ## Add var_name_base_labels \n  mutate(var_name_base_label = case_when(\n    n_attr == 0 ~ NA_character_,\n    n_attr == 1 ~ attribute1,\n    n_attr == 2 ~ glue(\"{attribute2} ({attribute1_value})\") %>% paste0()\n  )) %>% \n  select(var_name, var_raw, geo, salid1,country, city,year, value,value_type,\n         everything())\n# {## Check value_type\n#   ## Distribution of value_type\n#   cleaned_datasets %>% \n#     count(var_name,value_type) %>% \n#     count(value_type)\n#   ##  Get list of discrete variables\n#   cleaned_datasets %>% \n#     filter(value_type == 'discrete') %>% \n#     count(var_name, var_label) %>% View()\n#   }\n#' Add longitudinal coding labels. This function will categorize variables based on \n#' what year and country available. THere will be four categories:\n#'   1. Longitudinal - when variable is longitudinal\n#'   2. Completely non-longitudinal - when a variable only has a single year value.\n#'   3. Functionally non-longitudinal - when a variable only has a single year value per country; \n#'      this is for when data source differ by a few years across country. For example life expectancy is \n#'      '2010-2014' for El Salvador but '2012-2016' for all other countries.\n#'   4. Mixed by Country - some countries non-longitudinal but some countries have dta vailable for multiple years.\n{ ##  Prepare  longitudinal_status\n  xwalk_years_available =  cleaned_datasets %>% \n    select(var_name, subdomain,longitudinal, country, year) %>% \n    distinct() %>% \n    # filter(!longitudinal)  %>% \n    group_by(subdomain, var_name) %>% \n    group_modify(~{\n      # .x =  cleaned_datasets %>%\n      #   select(var_name, subdomain,longitudinal, country, year) %>%\n      #   distinct() %>% filter(var_name == \"LEALE\")\n      # .x =  cleaned_datasets %>%\n      #   select(var_name, subdomain,longitudinal, country, year) %>%\n      #   distinct() %>% filter(var_name == \"CNSMIGR_FORBORN\")\n      \n      years_all = .x %>% count(year) \n      years = unique(.x$year)\n      table_year_country =  .x %>% count(country )\n      statusTmp = case_when(\n        length(years)==1~ \"Completely non-longitudinal\",\n        all(table_year_country$n == 1) ~\"Functionally non-longitudinal\",\n        length(unique(.x$longitudinal))>1~\"Mixed by Country\",\n        unique(.x$longitudinal)~\"Longitudinal\",\n        TRUE~\"Mixed by Country\"\n      ) %>% \n        unique()\n      \n      ## Check for non-numeric outliers\n      if (is.na( min(as.numeric(years)))|is.na( max(as.numeric(years)))){\n        stop(\"ERROR: Non-numeric year value!\")\n      }\n      \n      ## standardize year values for 'functionally non-longitudinal values' \n      # year_min_tmp = ifelse(\n      #   str_detect(statusTmp, 'non-longitudinal'),\n      #   years_all %>% filter(n == max(n)) %>% slice(1) %>% pull(year) %>% as.numeric(),\n      #   min(as.numeric(years))\n      # )\n      # year_max_tmp = ifelse(\n      #   str_detect(statusTmp, 'non-longitudinal'),\n      #   years_all %>% filter(n == max(n)) %>% slice(1) %>% pull(year)%>% as.numeric(),\n      #   min(as.numeric(years))\n      # )\n      \n      tibble(\n        n_years = length(years),\n        year_min =  min(as.numeric(years)),\n        year_max = max(as.numeric(years)),\n        n_countries = length(unique(.x$country)),\n        chr_years = paste0(years, collapse = ', '),\n        longitudinal_status = statusTmp\n      ) %>% \n        mutate(years = list(as.numeric(unique(.x$year))))\n    }) %>% \n    ungroup() %>% \n    select(var_name, longitudinal_status, n_years, years, year_min, year_max)\n  }\n\n{\n  xwalk_var_name_nested = cleaned_datasets %>% select(var_merge, var_name_nested) %>% distinct() %>% \n    filter(!is.na(var_merge))\n}\n\ncleaned_codebooks  = compiled_codebooks %>% \n  filter(var_name%in%cleaned_datasets$var_name ) %>% \n  left_join(xwalk_years_available) %>% \n  left_join(xwalk_var_name_nested)\n\n\n\n\n\n## Check for that nested var_name codebook entries have var_name_nested\ncheckCodebookNested = cleaned_codebooks %>% \n  add_count(var_name) %>% \n  select(var_name, var_merge, var_name_nested, n) %>% \n  filter(n>1) %>% \n  arrange(desc(n)) %>% \n  filter(is.na(var_merge)| is.na(var_name_nested)) %>% \n  nrow() > 0\n\nif (checkCodebookNested){\n  stop(\"ERROR: Some neste codebook entries are missing var_merge/var_name_nested\")\n}\n\n\ncleaned_datasets %>% \n  slice(1:10) %>% \n  reactable( resizable = TRUE, wrap = FALSE, bordered = TRUE)\n\n\n\n\n\n\n\n\n2.3 Validation of Outputs\nThe another round of QC is run to validate the quality of our final output. The results of the validation are shown in the table below.\n\n## Make sure that all tests pass \nvalidaiton_results = map_df(tests, ~{\n  result = get(.x)(cleaned_datasets,cleaned_codebooks,role = 'test')   \n  tibble(\n    Test = result$test, \n    Result = result$pass,\n    Description = result$desc,\n    faulty = list(result$faulty))})\n\nvalidaiton_results %>% \n  select(-faulty) %>% \n  reactable(\n    columns = list(\n      Test  = colDef(width = 100),\n      Result  = colDef(cell = function(value) qc_icon_formatter(value), width = 100)\n    ))"
+  },
+  {
+    "objectID": "pages/database/qc.html#database-summary",
+    "href": "pages/database/qc.html#database-summary",
+    "title": "FAIR SALURBAL Database Summary",
+    "section": "3. Database Summary",
+    "text": "3. Database Summary\n\nn_variables = cleaned_datasets %>%  count(var_name) %>% nrow()\nn_datasets = nrow(df_sources)\n\nFrom 16 datasets/codebook pairs we have cleaned 194 variables. Below are some metrics which summarize what is available in our compiled database.\n\n3.1 Variables Count\nHow many variables for each dataset?\n\n## Sankey\n\ndf_sankey_count = cleaned_datasets %>% \n  count(domain,subdomain, var_name) %>% \n  mutate(all = glue(\"Cleaned Variables ({n_variables})\")) %>% \n  select(all,domain, subdomain)\nhchart(data_to_sankey(df_sankey_count), \"sankey\", name = \"Variable Count\")\n\n\n\n\n\n\n\n\n3.2 Stratification\nHow many is our data stratified?\n\ndf2a = cleaned_datasets %>% \n  count(var_name, subdomain, domain, attribute1) %>% \n  mutate(attribute1 = ifelse(is.na(attribute1),\"Not Stratified\", \"Stratification Available\")) %>% \n  select(stratified = attribute1, domain )\n# hchart(data_to_sankey(df2a), \"sankey\", name = \"Variable Count\")\n\ntable_strata_by_file = cleaned_datasets %>%\n  count(domain, var_name, attribute1, attribute2) %>%\n  mutate(stratified = ifelse(!is.na(attribute1), 'Available', 'Not Available')) %>%\n  count(domain,stratified) %>%\n  ## Order domain\n  group_by(domain) %>%\n  mutate(n_domain = sum(n))%>%\n  ungroup() %>%\n  mutate(domain = fct_reorder(as.factor(domain), (n_domain)))\n\n\n{ ## b. Examine strata levels\n  \n  ## All strata vars\n  dfa =  cleaned_datasets %>%\n    count(file, var_name, attribute1, attribute2) %>%\n    filter(!is.na(attribute1))%>% \n    select(-n)\n  \n  ## Single attribute variables\n  df1 = dfa %>% \n    filter(is.na(attribute2)) %>% \n    left_join(cleaned_datasets) %>% \n    count(domain, var_name, attribute1,attribute1_value)\n  # df1\n  \n  ## Double attribute variables\n  df2 = dfa %>% \n    filter(!is.na(attribute2)) %>% \n    left_join(cleaned_datasets) %>% \n    count(domain, var_name,\n          attribute1,attribute1_value,\n          attribute2,attribute2_value )\n  # df2\n  \n  }\n\n## Plot \ndfb = cleaned_datasets %>%\n  mutate(stratified2 =case_when(\n    is.na(attribute1)~'Not Stratified',\n    is.na(attribute2)~'Single Stratification',\n    TRUE~'Double Stratification'\n  )  )%>% \n  count(domain,var_name,stratified2,attribute1, attribute2) %>% \n  rowwise() %>% \n  mutate(attribute = paste(attribute1,attribute2, sep  = '+') %>% \n           str_remove_all('NA') %>% \n           str_trim() %>% \n           ifelse(str_sub(.,-1L)=='+',str_sub(.,0,-1L-1),. ) %>% \n           ifelse(.=='',NA,.),\n         stratified = ifelse(stratified2=='Not Stratified','Not Stratified','Stratified')) %>% \n  ungroup() %>% \n  select(domain,stratified2, attribute)\nhchart(data_to_sankey(dfb), \"sankey\", name = \"Stratification Count\")\n\n\n\n\n\n{## Operationalize statistics\n  \n  n_var_with_strata = table_strata_by_file %>% filter(stratified == \"Available\") %>% pull(n) %>% sum()\n  n_var_without_strata = table_strata_by_file %>% filter(stratified != \"Available\") %>% pull(n) %>% sum()\n  n_var_with_1_strata = df1 %>% count(var_name) %>% nrow()\n  n_var_with_2_strata = df2 %>% count(var_name) %>% nrow()\n}\n\nOut of 194 variables, only 23 variables are have stratification available. The different stratas available cane be seen below.\n\n\n3.3 Value Type\nWhat type of data is available?\n\ndfa = cleaned_datasets %>% \n  count(var_name, value_type) %>% \n  count(value_type)\ndfa %>% \n  reactable(\n    details = function(index){\n      dfa_tmp = cleaned_datasets %>% \n        count(var_name, var_label, value_type) %>% \n        filter(value_type ==dfa %>% slice(index) %>% pull(value_type) ) \n      htmltools::div(style = \"padding: 16px\",\n                     reactable(dfa_tmp, \n                               outlined = TRUE,\n                               resizable = TRUE,\n                               wrap = FALSE,\n                               bordered = TRUE) ) }\n  )\n\n\n\n\n\n\n\n\n3.4 Longitudinal Data\nEDA of longitudinality in SALURBAL data. Note that whether variables are longitudinal is not available in v1 codebook. pending v2 codebooks they will be assigned by groups themselves and thus should be more accurate. Right now only 9 variables from v2 codebooks (Air Pollution have DMC assigned longitudinal value).\n\ncleaned_codebooks %>% \n  count(var_name, longitudinal) %>% \n  tabyl(longitudinal) %>% \n  reactable()\n\n\n\n\n\n\nBut we can back-calculate longitudinality from the data it self, for now we will use these ‘longitudinal_status’ as a metadata field for our datastore. Roughly 65% of the variables are not longitudinal. Here we document the four possible cases of longitudinality which were coded for each variable based on year availability by year.\n\ncleaned_codebooks %>% \n  select(var_name, subdomain,longitudinal_status) %>% \n  distinct() %>% \n  tabyl(longitudinal_status) %>% \n  arrange(desc(percent)) %>% \n  reactable()\n\n\n\n\n\n\n\nLongitudinal is when variable is longitudinal\nCompletely non-longitudinal is when a variable only has a single year value.\nFunctionally non-longitudinal is when a variable only has a single year value per country; this is for when data source differ by a few years across country. For example life expectancy is ‘2010-2014’ for El Salvador but ‘2012-2016’ for all other countries.\nMixed When the variable identified as non-longitudinal but does not fall into the expected two cases above. It has single years for some countries but multiple years for other countries. These come from two subdomains 1) migration and 2) segregation. The distribution of data availabl by year and country for these two datasets are displayed below.\n\n\n\nSegregation\n\n\n\n\n  \n\n\n\n\n\nMigration\n\n\n\n\n  \n\n\n\n\n\nMoving forward we need to to make some decisions about how to address each of these cases during the check out selection and downloads steps."
+  },
+  {
+    "objectID": "pages/fair/accessible.html",
+    "href": "pages/fair/accessible.html",
+    "title": "Accessible",
+    "section": "",
+    "text": "A1.1 The protocol is open, free, and universally implementable.\n\nWe use HTTPS to faciliate data transfer. There are two main ways for users to download data: 1) each variable’s web page contains download links for data and associated metadata 2) users and create a custom data extract on the data portal and have the data/metadata operationalied into a analytical bundle that is then emailed to them."
+  },
+  {
+    "objectID": "pages/fair/accessible.html#a1.2",
+    "href": "pages/fair/accessible.html#a1.2",
+    "title": "Accessible",
+    "section": "A1.2",
+    "text": "A1.2\n\nA1.2 The protocol allows for an authentication and authorisation procedure, where necessary.\n\nWe deploy the data portal via the Azure Static Web Application Service. This service has built in authentication via OAuth integrating with GitHub or Outlook for handle user authentication. We then write authorisation logic as need in our front-end Next.js application to control information flow. Although this mechanism was developed, we do use it to primarily track user behavior.\nSALURBAL data is stored on an private encrypted server hosted by Drexel University. Data items that which have contractual restrictions remain on this private encrypted server. Data items that are open to the public are then stored within Azure Blob Storage with anynyous access (anyone can have access to them)."
+  },
+  {
+    "objectID": "pages/fair/accessible.html#a2",
+    "href": "pages/fair/accessible.html#a2",
+    "title": "Accessible",
+    "section": "A2",
+    "text": "A2\n\nA2 Metadata are accessible, even when the data are no longer available.\n\nWe plan to submit and metadata to ICPSR. Metadata will persist via their stewardship independent of our own within-project data portal."
+  },
+  {
+    "objectID": "pages/fair/findable-f1.html",
+    "href": "pages/fair/findable-f1.html",
+    "title": "F1. Globally unique and persistent Identifiers",
+    "section": "",
+    "text": "The SALURBAL database is a collection of data items, each item being an individual variable. So within the scope of the project, our primary concern is that each variable has a unique identifier which we term var_name. For example the data item of the variable SALURBAL Life Expectancy is assigned a var_name of LEAEA. Within SALURBAL no other variable/data-item has this identifier."
+  },
+  {
+    "objectID": "pages/fair/findable-f1.html#var_name-rules",
+    "href": "pages/fair/findable-f1.html#var_name-rules",
+    "title": "F1. Globally unique and persistent Identifiers",
+    "section": "var_name Rules",
+    "text": "var_name Rules\n\nvar_name is a string containing only letters and numbers and does not have spaces or special characters.\nvar_name is a variable level identifier that should not contain strata information. For example SECLABPARTM and SECLABPARTF are invalid because they indicate that the variable SECLABPART is for sex (male) and sex (female) strata; the correct var_name in this case is just SECLABPART. var_name is strictly for the variable and strata is captured in supplementary identifiers detailed in F3"
+  },
+  {
+    "objectID": "pages/fair/findable-f1.html#outside-project-id---doi",
+    "href": "pages/fair/findable-f1.html#outside-project-id---doi",
+    "title": "F1. Globally unique and persistent Identifiers",
+    "section": "Outside project id - DOI",
+    "text": "Outside project id - DOI\n\n\n\n\n\n\nDOI at collection or item level?\n\n\n\n\n\n\n\nThe question of minting DOIs at the collection or the item level is quite philosophical but draw comparison to old school multi-volume encyclopedia. Do you catalog the encyclopedia as one thing or do you the individual volumes or do you catalog the individual entries within the encyclopedia?\nIt really comes down to when other people try to reuse your data, should they cite one particular entry or are they more likely to cite the entire collection as a whole. My intuition is that for SALURBAL, if people reuse our data we would be suggesting a SALURBAL wide project citation rather than individual variable or working groups.\n\n\n\n\n\n\n\n\n\nFrom a global perspective, DOIs are a common way to uniquely and persistently identify digital assets. After we have established a certain level FAIRness we can upload our data to a FAIR data repository (ICSPR) and they will mint a DOI for our data collection. Then we can append our within project identifier var_name to the collection/SALURBAL-level DOI to allow item level identification. For example:\n\nData Asset: SALURBAL Life expectancy data\nWithin project unique identifier: LEAEA\nSALUBAL project identifier (e.g. DOI): 0.1000/ICPSR/xyz123\nGlobally unique and persistent Identifiers: 0.1000/ICPSR/xyz123/LEAEA"
+  },
+  {
+    "objectID": "pages/fair/findable-f2.html",
+    "href": "pages/fair/findable-f2.html",
+    "title": "F2. Data are described with rich metadata (defined by R1 below)",
+    "section": "",
+    "text": "Machines are great for computing can’t extrapolate certain things based on context. Consequently, how informative our data portal is will depend on how comprehensive and machine-actionable our data/codebooks are. Below we deocument standards for SALURBAL data/codebooks that improve FAIRness of our project and make a much more comprehensive amount of context accessible to the data portal."
+  },
+  {
+    "objectID": "pages/fair/findable-f2.html#data",
+    "href": "pages/fair/findable-f2.html#data",
+    "title": "F2. Data are described with rich metadata (defined by R1 below)",
+    "section": "Data",
+    "text": "Data\nLegacy SALURBAL data tables structure were in general pretty FAIR. The only major change in the renovated data table structure is that we enforce strict rules for our within project variable identifiers. var_name is our workhorse identifier which links things at the variable-level - it should not contain strata information. In some cases metadata is available within variable by country details or data strata and we use iso2 or strata_id to do data-metadata linkage. More details can be found int the F3 principle page.\nThe first tab below give details on what fields/columns should be present in renovated SALURBAL data tables and the second shows an example data table. The new data columns/fields can be grouped in to the following categories\n\n\nIdentifiers: columns responsible for linkage of data and metadata. var_name is our workhorse identifier which links things at the variable-level - it should not contain strata information\n\n\nData: data related fields including SALID, year of data, geographic level and year.\n\n\nInternal: internal project related metadata (intermediate strata details and file directories ).\n\n\n\n\nData Fields (details)Data (example)"
+  },
+  {
+    "objectID": "pages/fair/findable-f2.html#codebooks",
+    "href": "pages/fair/findable-f2.html#codebooks",
+    "title": "F2. Data are described with rich metadata (defined by R1 below)",
+    "section": "Codebooks",
+    "text": "Codebooks\nMachines are great for computing but are quite dumb … in other words they can’t extrapolate certain things that humans can based on context. So making the web application to interface with the SALURBAL data we found that there were fundamental metadata (data about the data) - which may be possible for SALURBAL staff to extrapolate - were missing (either explicitly missing from codebooks in machine unreadable formats).\nBelow is a more comprehensive codebook structure to address these gaps. The first tab below give details on what fields/columns should be present in renovated SALURBAL codebooks and the second shows an example codebook. The new codebooks columns/fields can be grouped in to the following categories\n\n\nIdentifiers: columns responsible for linkage of data and metadata. var_name is our workhorse identifier which links things at the variable-level - it should not contain strata information\n\n\nCategorization: columns responsible for grouping variables into user friendly domains and subdomains.\n\n\nDetails: research related variables details, this will be useful for users who want to reuse our data/codebooks.\n\n\nInternal: internal project related metadata (file directories and access status).\n\n\n\n\n\n\n\n\nThe new codebooks columns/fields can be grouped in to the following categories\n\n\nIdentifiers: columns responsible for linkage of data and metadata\n\n\nCategorization: columns responsible for categorising variables into domain or subdomain\n\n\nDetails: research related variables details, this will be useful for users who want to reuse our data/codebooks.\n\n\nInternal: internal project related metadata\n\n\n\n\nCodebook fields (details)Codebook (example)"
+  },
+  {
+    "objectID": "pages/fair/findable-f2.html#tldr-to-long-did-not-read",
+    "href": "pages/fair/findable-f2.html#tldr-to-long-did-not-read",
+    "title": "F2. Data are described with rich metadata (defined by R1 below)",
+    "section": "TLDR (To Long Did not Read)",
+    "text": "TLDR (To Long Did not Read)\nIn trying to make a FAIR data portal we found two major challenges: 1) our existing codebooks were not accessible or comprehensive enough to support creating a FAIR data portal 2) no existing way to link complex metadata (by strata, country) to data. This page documents a proposed data and codebooks standard that will guide the FAIR renovation of existing datasets and serve as templates for future datasets.\n\na set of identifer fields (var_name, strata_fields) to link metadata and data at a variable level while accounting for complex by strata/country/year metadata\nMore comprehensive codebooks to explicitly codify important metadata (identifiers, strata details, categories, internal info, research details)"
+  },
+  {
+    "objectID": "pages/fair/findable-f3.html#description",
+    "href": "pages/fair/findable-f3.html#description",
+    "title": "F3. Metadata clearly and explicitly include the identifier of the data they describe.",
+    "section": "Description",
+    "text": "Description\nThe SALURBAL database is a collection of data variables; each variable has a unique identifier var_name (F1). If life were simple, metadata would matched 1 to 1 with each variable and we could do linkage with just var_name. However, the pairing between variable and individual metadata fields are not always one to one. SALURBAL metadata/data linkage scenarios are listed below based on prevalence.\n\nsimple: (Very common) Metadata links 1:1 to data at the variable level via var_name (e.g. domain, subdomain .. ETC). This linkage specific codebook would be called codebook.csv\nby_country (Very common) This may be a common complexity where metadata differs by variable + country and needs to be linked by var_name and iso2(e.g. data source or censor status). This linkage specific codebook would be called codebook_by_iso2.csv\nby_year (Uncommon?) metadata differs by variable + country and needs to be linked by var_name and year(e.g. data source or censor status). This linkage specific codebook would be called codebook_by_year.csv\nby_strata (Rare) This case is rare but should be noted. Here metadata differs by variable + strata thus needs to be linked by var_name and strata_id. (e.g. var_def or intepretation). This linkage specific codebook would be called codebook_by_strata.csv\n\nThe direct consequence of having multiple linkages between data and metadata is that for each dataset we need to 1) evaluate what type of linkage works best for each metadata field then 2)secondly operationalize seperate linkage specific codebooks for each of those linkages. We will discuss each of these two steps further below."
+  },
+  {
+    "objectID": "pages/fair/findable-f3.html#evaluate-metadata-linkage",
+    "href": "pages/fair/findable-f3.html#evaluate-metadata-linkage",
+    "title": "F3. Metadata clearly and explicitly include the identifier of the data they describe.",
+    "section": "1. Evaluate metadata linkage",
+    "text": "1. Evaluate metadata linkage\nThe first step is to evaluate what type of linkage works best for each metadata field. The interactive table represents how youshould fill out for the dataset you are try to process. Moreover you can download salurbal_codebook_evaluation.csv which is a csv template for the require metadata fields which shows by default all metadata have simple linkage; use this as a starting point to evaluate the metadata linkage for your dataset.\n\nGuidelines\n\nthis linkage categorization for each field is mutually exclusive (only one category per field). For now we assume linkage complexity exists at one level (by a single identifier) lest try this for now and deal with more complex later.\nsalurbal_codebook_evaluation.csv is template containing a table of require metadata and possible linkage types.\nthe template provided assumes everything is simple (which most of the time it is). Please go through each field and assign a linkage type by asking your team ‘is this field going to vary by ….’ then update the template based on your reply."
+  },
+  {
+    "objectID": "pages/fair/findable-f3.html#operationalize-linkage-specific-codebooks",
+    "href": "pages/fair/findable-f3.html#operationalize-linkage-specific-codebooks",
+    "title": "F3. Metadata clearly and explicitly include the identifier of the data they describe.",
+    "section": "2. Operationalize linkage specific codebooks",
+    "text": "2. Operationalize linkage specific codebooks\n\n\n\n\n\n\nWhy linkage specific codebooks vs a fully merged codebook?\n\n\n\n\n\nI think its better to compartmentalize each linkage to its own table because seperation of concerns makes it very transparent which meta data fields are in which linkage tables. Fully merged codebooks that account for potential linkage complexity are often bloated and harder to QC or work with in the data pipeline.\n\n\n\nAfter we have evaluated the metadata linkage for a dataset. We will know which codebook and codebook variations to prepare. For each dataset we could potentiall have up to four:\n\ncodebook_simple.csv: (Very common) will link to the data via only a single identifer var_name and contain all the metadata fields that were categorized as ‘simple’.\ncodebook_by_country.csv (Very common) will link to the data via var_name and iso2; it will contain all the metadata fields that were categorized as ‘by_country’\ncodebook_by_year.csv (Uncommon?) will link to the data via var_name and year; it will contain all the metadata fields that were categorized as ‘by_country’\ncodebook_by_strata.csv (Rare) will link to the data via var_name and strata_id; it will contain all the metadata fields that were categorized as ‘by_country’. Metadata links to data via"
+  },
+  {
+    "objectID": "pages/fair/findable-f3.html#integration-into-data-pipeline",
+    "href": "pages/fair/findable-f3.html#integration-into-data-pipeline",
+    "title": "F3. Metadata clearly and explicitly include the identifier of the data they describe.",
+    "section": "Integration into data pipeline",
+    "text": "Integration into data pipeline\n\nSimple linkage\n\n\n\nBy country\n\n\n\nBy Year\n\n\n\nBy Strata"
+  },
+  {
+    "objectID": "pages/fair/findable-f4.html",
+    "href": "pages/fair/findable-f4.html",
+    "title": "F4. Meta)data are in a searchable resource.",
+    "section": "",
+    "text": "Takeaway\n\n\n\nWe built a bespoke web application to index and make our data searchable. We leverage serveral fundamental technologies\n\nBlob storage (Azure): highly scalable, performant and affordable storage solution. We organized files via our projects global identifiers var_name; consequently, our Blob sotrage container functioned as an API for our front-end application.\nFront-end application (Next.js): Next.js is a full stack JavaScript web development framework which can build via static site generation (SSG) or work with server-side rendering (SSR). We chose to deploy our web application as a staticly generated site because the content of our data portal would largely be static other than between large data updates. SSG at build-time allows us to deploy a static site at a fraction of the cost of a web application that requires a server.\nServerless architecture for computation (Azure Functions). We also wanted to allow users to compile data and download a custom data extract. While the actual selection UI can be built with JavaScript and run client-side, the final data merges, file preparation and email notification could be problematic both resource and security wise to be run clientside. We leverage serverless computing to handle these more complex or computationally intensive actions. Compared to Cloud 1.0 computing, serverless computing takes care of the server adminstration and allows us to develop bespoke solutions that are comparably performant, much more affordable and easier to maintain."
+  },
+  {
+    "objectID": "pages/fair/findable-f4.html#goal-and-tool-alignment",
+    "href": "pages/fair/findable-f4.html#goal-and-tool-alignment",
+    "title": "F4. Meta)data are in a searchable resource.",
+    "section": "Goal and Tool Alignment",
+    "text": "Goal and Tool Alignment\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhy not use ICPSR or CKAN to FAIR principles for SALURBAL?\n\n\n\nIt is key to recognize that CKAN or ICPSR are solutions to global/multi-national/multi-discplenary FAIR data problem. FAIR data implementation for our own organization need only serves only our community of researchers - think 100 epi/public health researchers rather than millions of researchers of all fields.\nGiven the difference the dramatic difference in the scale of the problem, it is logical that the solution could be and likely should be different."
+  },
+  {
+    "objectID": "pages/fair/findable-f4.html#baggage-of-traditional-portals",
+    "href": "pages/fair/findable-f4.html#baggage-of-traditional-portals",
+    "title": "F4. Meta)data are in a searchable resource.",
+    "section": "Baggage of traditional portals",
+    "text": "Baggage of traditional portals\nThey are by design extremely generablizable - to be widely or generally applicable to all types of projects, data or organizations and 2) large scale open data contribution - mechanisms to allow authentication, authorization, uploading from thousands of contributors.\nThese selling points which make them good platforms for serving a broad community of hundreds of thousands of researchers/organiation from all types of fields actually make them less appealing for use by a single organiation. Firstly, it is difficult to for an extremely generalizable platform be tailored to specific needs of an organization. Secondly, the technical infrasture that support large scale open data contribution are expensive to maintain, difficult to develop and require dedciated staff with IT/DevOps expertise."
+  },
+  {
+    "objectID": "pages/fair/findable-f4.html#modern-solutions",
+    "href": "pages/fair/findable-f4.html#modern-solutions",
+    "title": "F4. Meta)data are in a searchable resource.",
+    "section": "Modern solutions",
+    "text": "Modern solutions\nWhile these platforms make sense for really large FAIR data initiatives they may not make sense for us due to cost and expertise. Importantly many of these platforms was built over a decade ago (e.g. CKAN released in 2006) with infrastructure that are in many senses out of date. This document will give a high level overview of how we leverage emergent technologies (open source UI frameworks, cloud infrastructure and serverless computing) to build a highly customizable and resource-efficient data portal.\n\nOpen source User Interface frameworks.\nIn the past few years, large tech companies have fortunately open sourced their internal frameworks for making web content (Facebook - React.js , Vercel - Next.js). With these tools it is now able to make incredibly customizable, scalable and complex websites all in JavaScript. These JavaScript have some really big selling points:\n\nThey don’t need virtual machines or a server to run (essentially free to deploy anywhere).\nThere is an incredible amount of open-source education resources for these open-source frameworkss (much easier to learn and master)\n\nEven the creators of CKAN are moving towards this direction.\n\nEven still, there’s a high learning curve before you can build a proper application. That’s because you need to learn about Python, templating, data loading and so on. If you’d like to integrate content or rich visualizations things are even more complex.\nSo, we need something simple but customizable.\nThink about how apps are created as a frontend developer. You create some files, write some code, load some data and then simply deploy it. We don’t have to worry about Docker, Kubernetes, data storage, Postgres etc.\n\nWe are using React.js and Next.js to build the front-end of our data portal.\n\n\nServerless Computing\n\n\n\n\n\n\n\n\nPre-cloud buy server, administer to server, and run code on them.\nCloud 1.0 buy server rent and administer to server, and run code on them.\nSeverless buy server, rent and administer to server, software and run code on them.\n\nCKAN utilizes Cloud 1.0 you are just renting servers which you have to administer to. While you can easily get access to many servers you still face traditional IT problems: - you have to rent servers for each application - need to learn server technologies (linux, dockers, nginx) to use them - need to worry about server scalable. What server should I rent? How much RAM do I need? How much computing power do I need?\nServerless architerutre move away from renting and administering and directly to renting computing power as needed. Rather than provider giving you a server, you give them code and they worry about where it should run. this is incredibly cheap and lets us focus on building our application rather than server administration."
+  },
+  {
+    "objectID": "pages/fair/findable-f4.html#direct-value",
+    "href": "pages/fair/findable-f4.html#direct-value",
+    "title": "F4. Meta)data are in a searchable resource.",
+    "section": "Direct Value",
+    "text": "Direct Value\n\nHighly customizable application\n\n\n\nBasically Free"
+  },
+  {
+    "objectID": "pages/fair/findable-overview.html",
+    "href": "pages/fair/findable-overview.html",
+    "title": "Findable- Overview",
+    "section": "",
+    "text": "Principle\nVerbatim\nELI5\n\n\n\n\nF1\nGlobally unique and persistent Identifiers\nVariables need unique ids\n\n\nF2\nData are described with rich metadata (defined by R1 below)\nComprehensive codebooks that cover community needs\n\n\nF3\nMetadata clearly and explicitly include the identifier of the data they describe\nCodebooks can be linked to data\n\n\nF4\n(Meta)data are registered or indexed in a searchable resource\nUser interface to search through data/codebooks"
+  },
+  {
+    "objectID": "pages/fair/findable-overview.html#actions-taken-to-improve-salurbal-findability",
+    "href": "pages/fair/findable-overview.html#actions-taken-to-improve-salurbal-findability",
+    "title": "Findable- Overview",
+    "section": "Actions taken to improve SALURBAL Findability",
+    "text": "Actions taken to improve SALURBAL Findability\n\nThe following sections will detail how we implemented each Findability principle F1-F4."
+  },
+  {
+    "objectID": "pages/fair/fip.html",
+    "href": "pages/fair/fip.html",
+    "title": "Get Started",
+    "section": "",
+    "text": "TBD"
+  },
+  {
+    "objectID": "pages/fair/index.html",
+    "href": "pages/fair/index.html",
+    "title": "SALURBAL - FAIR Principles",
+    "section": "",
+    "text": "The problem with the current data ecosystem is that the outputs of millions of dollars of public research funder are stored within each recipient or research groups system, without any standards for sharing their outputs or data generated. This issue is prevalent in health informatics as well where a large commercial EMR market provides a wide selection of disparate informatics platforms that don’t work well with each other.\nThis means there is a large pool of data that cannot be found, accessed, interoperate with each other and thus unable to be reused. This problem is prevalent within institutions as well as on a industry/national/global level (COVID-19 is a prime example of how important and beneficial quick and reliable data sharing and integration is to epidemiological surveillanceand evidence based policy decisions)."
+  },
+  {
+    "objectID": "pages/fair/index.html#fair-principles",
+    "href": "pages/fair/index.html#fair-principles",
+    "title": "SALURBAL - FAIR Principles",
+    "section": "FAIR Principles",
+    "text": "FAIR Principles\nLargely to address these data challenges, a collective of pharma, academia, government and publishing representatives published the FAIR data principles were published in 2016 (Wilkinson et al. 2016) to provide guiding principles for improved Findability, Accessibility, Interoperability, and Reuse of digital assets.\nThe principles emphasise machine-actionability (i.e., the capacity of computational systems to find, access, interoperate, and reuse data with none or minimal human intervention) because humans increasingly rely on computational support to deal with data as a result of the increase in volume, complexity, and creation speed of data.\nFAIR data principles and direct value generated by FAIR data are displayed below (Wise et al. 2019)."
+  },
+  {
+    "objectID": "pages/fair/index.html#fair-open-data",
+    "href": "pages/fair/index.html#fair-open-data",
+    "title": "SALURBAL - FAIR Principles",
+    "section": "FAIR ≠ Open data",
+    "text": "FAIR ≠ Open data\nOpen data (everyone share your data) does not mean the data is FAIR (easily reusable). The open data movement (Murray-Rust 2008) predates FAIR data but it quickly became apparent that there was not much value to just exposing our data to the world if other not could find, access, interoperate or reuse.\nFAIR data (easily findable/reusable) does not equal open data. FAIR data are just a set best practices for data management and stewardship; the Accessibility principle states that FAIR projects should respect any ethical legal or contractual restrictions (Wilkinson et al. 2016). Authentication and authorization mechanism should be in place to prevent access to sensitive/protected data. However, if possible metadata or information about the data should be made available so others can find the data and go through proper channels for access. Even if your data is not open, it is still best practice to enforce FAIR principles to not only maximize the value of your data within the project but also to provide details.\nProjects should aim to FAIR (regardless of whether it is open) in order to maximize the value of their data assets."
+  },
+  {
+    "objectID": "pages/fair/index.html#how-to-be-fair",
+    "href": "pages/fair/index.html#how-to-be-fair",
+    "title": "SALURBAL - FAIR Principles",
+    "section": "How to be FAIR?",
+    "text": "How to be FAIR?\nSince the introduction of FAIR data principles in 2016, there is still no global multi-disiplenary accepted implementation for FAIR principles. However there have been FAIR implementations executed at several levels from within a project, to within a field/industry, to national or even global efforts. Current effort led by the go FAIR initiative seeks to profile the diverse FAIR implementation ecosystem in order to document convergent implementation methods (Schultes et al. 2020)."
+  },
+  {
+    "objectID": "pages/fair/index.html#what-does-this-mean-for-salurbal",
+    "href": "pages/fair/index.html#what-does-this-mean-for-salurbal",
+    "title": "SALURBAL - FAIR Principles",
+    "section": "What does this mean for SALURBAL?",
+    "text": "What does this mean for SALURBAL?\nThe first step is to achieve FAIR/machine-actionable data within our own project (SALURBAL). Then we can utilize some FAIR data services (e.g. ICPSR) to share our resource with the larger global FAIR data ecosystem.\nHere we first evaluate the baseline SALURBAL infrastructure in terms of some FAIR principles. Before talking about our efforts to improve FAIRness of our project."
+  },
+  {
+    "objectID": "pages/fair/interoperable.html",
+    "href": "pages/fair/interoperable.html",
+    "title": "Interoperability",
+    "section": "",
+    "text": "I1. (Meta)data use a formal, accessible, shared, and broadly applicable language for knowledge representation.\n\nData and metadata is stored in Azure Blob Storage in both CSV form as well as JSON format. JSON is highly interoperable as a REST API for web applications; for example our data portal pulls from this to provide analytics/visualizations. CSV is a common data sharing format in the epi field; any download links or downloaded data from our data portal comes in CSV format as it is more human friendly."
+  },
+  {
+    "objectID": "pages/fair/interoperable.html#i2.",
+    "href": "pages/fair/interoperable.html#i2.",
+    "title": "Interoperability",
+    "section": "I2.",
+    "text": "I2.\n\nI2. (Meta)data use vocabularies that follow FAIR principles.\n\nTBD"
+  },
+  {
+    "objectID": "pages/fair/interoperable.html#i3.",
+    "href": "pages/fair/interoperable.html#i3.",
+    "title": "Interoperability",
+    "section": "I3.",
+    "text": "I3.\n\nI3. (Meta)data include qualified references to other (meta)data.\n\nTBD"
+  },
+  {
+    "objectID": "pages/fair/reusable.html",
+    "href": "pages/fair/reusable.html",
+    "title": "Reusabile",
+    "section": "",
+    "text": "R1. (Meta)data are richly described with a plurality of accurate and relevant attributes."
+  },
+  {
+    "objectID": "pages/fair/reusable.html#r1.1",
+    "href": "pages/fair/reusable.html#r1.1",
+    "title": "Reusabile",
+    "section": "R1.1",
+    "text": "R1.1\n\nR1.1. (Meta)data are released with a clear and accessible data usage license.\n\nOur funders mandate that all research papers fall under a CC BY 4.0 license. Most likely publicly available data will be under the same license, pending confirmation by Kari and Fer."
+  },
+  {
+    "objectID": "pages/fair/reusable.html#r1.2",
+    "href": "pages/fair/reusable.html#r1.2",
+    "title": "Reusabile",
+    "section": "R1.2",
+    "text": "R1.2\n\nR1.2. (Meta)data are associated with detailed provenance.\n\nTBD"
+  },
+  {
+    "objectID": "pages/fair/reusable.html#r1.3",
+    "href": "pages/fair/reusable.html#r1.3",
+    "title": "Reusabile",
+    "section": "R1.3",
+    "text": "R1.3\n\nR1.3. (Meta)data meet domain-relevant community standards.\n\nThis field is really community specific. What are the metadata requirements for SALURBAL? From a machine-actionability perspective, the minimal metadata requirements are detailed in F2. These fields fall into the following categories:\n\n\nIdentifiers: columns responsible for linkage of data and metadata\n\n\nCategorization: columns responsible for categorising variables into domain or subdomain\n\n\nDetails: research related variables details, this will be useful for users who want to reuse our data/codebooks.\n\n\nInternal: internal project related metadata"
+  },
+  {
+    "objectID": "pages/fair/slides/baseline.html#salurbal-goal",
+    "href": "pages/fair/slides/baseline.html#salurbal-goal",
+    "title": "",
+    "section": "SALURBAL: goal",
+    "text": "SALURBAL: goal"
+  },
+  {
+    "objectID": "pages/fair/slides/baseline.html#salurbal-what-initially-happened",
+    "href": "pages/fair/slides/baseline.html#salurbal-what-initially-happened",
+    "title": "",
+    "section": "SALURBAL: what initially happened",
+    "text": "SALURBAL: what initially happened\n\n\n\n\n\nGroups work independently\nLack of strict standards across groups: variable naming conventions, codebook content/format"
+  },
+  {
+    "objectID": "pages/fair/slides/baseline.html#salurbal-what-initially-happened-1",
+    "href": "pages/fair/slides/baseline.html#salurbal-what-initially-happened-1",
+    "title": "",
+    "section": "SALURBAL: what initially happened",
+    "text": "SALURBAL: what initially happened\n\n\n\n\n\nGroups work independently\nLack of strict standards across groups: variable naming conventions, codebook content/format\nThen outputs were stored in separate folders"
+  },
+  {
+    "objectID": "pages/fair/slides/baseline.html#low-findability",
+    "href": "pages/fair/slides/baseline.html#low-findability",
+    "title": "",
+    "section": "🤕 #1 Low Findability",
+    "text": "🤕 #1 Low Findability"
+  },
+  {
+    "objectID": "pages/fair/slides/baseline.html#access-is-human-intensive",
+    "href": "pages/fair/slides/baseline.html#access-is-human-intensive",
+    "title": "",
+    "section": "🤕 #2 Access is human intensive",
+    "text": "🤕 #2 Access is human intensive"
+  },
+  {
+    "objectID": "pages/fair/slides/baseline.html#access-is-human-intensive-1",
+    "href": "pages/fair/slides/baseline.html#access-is-human-intensive-1",
+    "title": "",
+    "section": "🤕 #2 Access is human intensive",
+    "text": "🤕 #2 Access is human intensive"
+  },
+  {
+    "objectID": "pages/fair/slides/baseline.html#no-interoperablity-big-picture",
+    "href": "pages/fair/slides/baseline.html#no-interoperablity-big-picture",
+    "title": "",
+    "section": "🤕 #3 No interoperablity (big picture)",
+    "text": "🤕 #3 No interoperablity (big picture)"
+  },
+  {
+    "objectID": "pages/fair/slides/findability-implementation.html#baseline-infrastructure",
+    "href": "pages/fair/slides/findability-implementation.html#baseline-infrastructure",
+    "title": "",
+    "section": "Baseline infrastructure",
+    "text": "Baseline infrastructure\n\n\n\n\n\n\n\n\n\n\nFindable - Challenges\n\n\n\nlack of key research oriented metadata (units, interpretations, ETC)\nlack of project management metadata (variable domain/subdomain, censor status)\nmetadata may be in machine unfriendly formats (pdf, word, doc)\ncomplex metadata that vary within variable by country, year or strata (mortality censorship by certain countries)\nNo established way to link complex metadata to data"
+  },
+  {
+    "objectID": "pages/fair/slides/findability-implementation.html#step-1-standardization-f1f2-f3",
+    "href": "pages/fair/slides/findability-implementation.html#step-1-standardization-f1f2-f3",
+    "title": "",
+    "section": "Step 1: Standardization (F1,F2, F3)",
+    "text": "Step 1: Standardization (F1,F2, F3)\n\n\n\n\n\nenforce strict variable naming convention (F1.)\ncreate more comprehensive codebooks (F2.)\nlink codebooks to datasets that capture by country, by year, by strata complexities (F3.)"
+  },
+  {
+    "objectID": "pages/fair/slides/findability-implementation.html#step-2-user-interface-f4",
+    "href": "pages/fair/slides/findability-implementation.html#step-2-user-interface-f4",
+    "title": "",
+    "section": "Step 2: User Interface (F4)",
+    "text": "Step 2: User Interface (F4)\n\n\n\n\n\nCompile standardized data into a single database\nCreate a user interface for users to interact with our SALURBAL database (F4)"
+  },
+  {
+    "objectID": "pages/fair/slides/findability-implementation.html#improve-findability---action-items",
+    "href": "pages/fair/slides/findability-implementation.html#improve-findability---action-items",
+    "title": "",
+    "section": "Improve Findability - action items",
+    "text": "Improve Findability - action items\n\n(F1) enforce unique variable level identifiers\n(F2) create comprehensive codebooks which contain additional research focused and project related metadata\n(F3) link complex metadata to data via identifiers, country and year\n(F4) web application to search and access standardize data/codebooks"
+  },
+  {
+    "objectID": "pages/manuals/index.html#overview",
+    "href": "pages/manuals/index.html#overview",
+    "title": "SALURBAL - Renovation Workflow",
+    "section": "Overview",
+    "text": "Overview\nDue to the heterogeneity in existing SALURBAL data/codebooks, the process of how each dataset is renovate will differ. The Renovation manuals pages will provide guidance for the FAIR renovation of SALURBAL data as well as provide instructions for new SALURBAL datasets. The steps are summarized in the list below.\n\nStep 1: Assign var_name to each variable\nStep 2: Summarize strata information for each variable\nStep 3: Evaluate metadata linkage\nStep 4: Renovate codebooks\nStep 5: Renovate data.csv"
+  },
+  {
+    "objectID": "pages/manuals/index.html#deliverables-at-each-step",
+    "href": "pages/manuals/index.html#deliverables-at-each-step",
+    "title": "SALURBAL - Renovation Workflow",
+    "section": "Deliverables at each step",
+    "text": "Deliverables at each step\nThe deliverables at each step are displayed in the tabs below. Within each step there are tabs that contain examples (table + downloadable csv) of deliverables for three different datasets.\n\n\n1. var_name.csv2. strata.csv3. linkage.csv4. codebook.csv5. data.csv\n\n\nvar_name.csvis a table summarizing var_name called . It should contain two columns:\n\nvar_name\ndataset_id\n\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\n\n\n\nDownload var_name.csv for APS\n\n\n\n\n\n\n\n\n\nDownload var_name.csv for CNS\n\n\n\n\n\n\n\n\n\nDownload var_name.csv for SVY\n\n\n\n\n\n\n\n\n\nstrata.csv is a table that contains all possible strata_id for each variable. This will organize strata information ‘long’ meaning if a variable is stratified there should be multiple rows per variable. It should contain the following columns \n\nvar_name\nstrata_1_name: name of the first strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\nstrata_1_value value of the first strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\nstrata_2_name name of the second strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\nstrata_2_value value of the second strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\n\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\n\n\n\nDownload strata.csv for APS\n\n\n\n\n\n\n\n\n\nDownload strata.csv for CNS\n\n\n\n\n\n\n\n\n\nDownload strata.csv for SVY\n\n\n\n\n\n\n\n\n\nlinkage.csv is a table that describes how the linkage for each of the codebook fields. Starting with this template (📥 linkage.csv), for each codebook field (row) you should write a value of ‘1’ in the column cells if any variable falls under that linkage type.\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\nAll codebook fields are linkable only by_variable for the APS dataset so we for all codebook fields we only check (fill out the cell as ‘1’) the by_var column.\n\n\n\nDownload linkage.csv for APS\n\n\n\n\n\n\nMost of the codebook fields in the CNS dataset are linkable only be variable except for:\n\nsource vary by var_name+iso2 for some variables but other do not for other variables; so this row has both by_var and by_var_iso2 filled out.\n\n\n\n\nDownload linkage.csv for CNS\n\n\n\n\n\n\nMost of the codebook fields in the SVY dataset are linkable only be variable except for:\n\nvar_def vary by var_name+strata for some variables but other do not for other variables; so this row has both by_var and by_var_strata filled out.\nsource vary by var_name+iso2 for some variables but other do not for other variables; so this row has both by_var and by_var_iso2 filled out.\n\n\n\n\nDownload linkage.csv for SVY\n\n\n\n\n\n\n\n\n\nFor each data set review the metadta linkage evaluation. For each unique linkage that is present in your dataset you will need to prepare the assosiated codebook. The thought process and deliverables for our three example datasets can be seen below.\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\nBased on the APS codebook evaluation we saw that all the metadata are categorized as simple; therefor our step -4-codebooks deliverable for this dataset contains one file - codebook_simple.csv\n\ncodebook_simple.csv\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBased on the CNS codebook evaluation we saw:\n\n17 simple fields\n2 by_country fields (source, public)\n\nTherefore we need to prepare two codebooks for this dataset (see below).\n\ncodebook_simple.csvcodebook_by_iso2.csv\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBased on the SVY codebook evaluation we saw:\n\n15 simple fields\n2 by_country fields (source, public, censor)\n2 by_strata (var_def, interpretation)\n\nTherefore we need to prepare three codebooks for this dataset (see below).\n\ncodebook_simple.csvcodebook_by_iso2.csvcodebook_by_strata.csv\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFor each dataset you should have a data.csv as a deliverable\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\naps_data.csv\n\n\n\n\n\n\n\n\n\ncns_data.csv\n\n\n\n\n\n\n\n\n\nsvy_data.csv\n\n\n\n\n\n\n\nBased on the SVY codebook evaluation we saw:\n\n15 simple fields\n2 by_country fields (source, public, censor)\n2 by_strata (var_def, interpretation)\n\nTherefore we need to prepare three codebooks for this dataset (see below)."
+  },
+  {
+    "objectID": "pages/manuals/index.html#deliverables-summary",
+    "href": "pages/manuals/index.html#deliverables-summary",
+    "title": "SALURBAL - Renovation Workflow",
+    "section": "Deliverables summary",
+    "text": "Deliverables summary\nSo for the three examples we provided here are the final deliverable files."
+  },
+  {
+    "objectID": "pages/manuals/step1.html",
+    "href": "pages/manuals/step1.html",
+    "title": "Step 1: Assign var_name to each variable",
+    "section": "",
+    "text": "As per F1 the field var_name will be a unique identifier for each variable. Some rules to adhere to:\n\nvar_name is a string containing only letters and numbers and does not have spaces or special characters.\nvar_name is a variable level identifier that should not contain strata information. For example SECLABPARTM and SECLABPARTF are invalid because they indicate that the variable SECLABPART is for sex (male) and sex (female) strata; the correct var_name in this case is just SECLABPART. var_name is strictly for the variable and strata is captured in supplementary identifiers detailed in the next step.\n\n\nDeliverable: var_name.csv\nvar_name.csvis a table summarizing var_name called . It should contain two columns:\n\nvar_name\ndataset_id\n\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\n\n\n\nDownload var_name.csv for APS\n\n\n\n\n\n\n\n\n\nDownload var_name.csv for CNS\n\n\n\n\n\n\n\n\n\nDownload var_name.csv for SVY"
+  },
+  {
+    "objectID": "pages/manuals/step2.html",
+    "href": "pages/manuals/step2.html",
+    "title": "Step 2: summarize strata information",
+    "section": "",
+    "text": "Important\n\n\n\nIf your data is not stratified you can skip this step and move on to Step 3.\nStep 2 template: 📥 strata.csv\n\n\n\nDeliverable: strata.csv\nstrata.csv is a table that contains all possible strata_id for each variable. This will organize strata information ‘long’ meaning if a variable is stratified there should be multiple rows per variable. It should contain the following columns \n\nvar_name\nstrata_1_name: name of the first strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\nstrata_1_raw raw value of the first strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\nstrata_1_value recoded value of the first strata (for interpretability). Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\nstrata_2_raw raw value of the second strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\nstrata_2_name recoded value of the second strata (for interpretability). Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\nstrata_2_value value of the second strata. Should have no spaces and no underdashes ’_’ all text should be in Pascal case.\n\n\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\n\n\n\nDownload strata.csv for APS\n\n\n\n\n\n\n\n\n\nDownload strata.csv for CNS\n\n\n\n\n\n\n\n\n\nDownload strata.csv for SVY"
+  },
+  {
+    "objectID": "pages/manuals/step3.html",
+    "href": "pages/manuals/step3.html",
+    "title": "Step 3: evaluate metadata linkage",
+    "section": "",
+    "text": "Things you will need\n\n\n\n\nStep 3 template: 📥 linkage.csv\nCodebook field definitions\n\n\n\n\nDescription\nThe goal is to evaluate what type of linkage works best for each metadata field. Details about this step can be found in the documentation for the F3 principle.\nlinkage.csv is a table that describes how the linkage for each of the codebook fields. Starting with this template (📥 linkage.csv), for each codebook field (row) you should write a value of ‘1’ in the column cells if any variable falls under that linkage type.\nThe interactive table below represents how you should fill out for the dataset you are try to process.\n\n\n\n\n\n\n\n\n\n\n\nDeliverable: linkage.csv\n\n\n\n\n\n\nImportant\n\n\n\nStep 3 template: 📥 linkage.csv\n\n\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\nAll codebook fields are linkable only by_variable for the APS dataset so we for all codebook fields we only check (fill out the cell as ‘1’) the by_var column.\n\n\n\nDownload linkage.csv for APS\n\n\n\n\n\n\nMost of the codebook fields in the CNS dataset are linkable only be variable except for:\n\nsource vary by var_name+iso2 for some variables but other do not for other variables; so this row has both by_var and by_var_iso2 filled out.\n\n\n\n\nDownload linkage.csv for CNS\n\n\n\n\n\n\nMost of the codebook fields in the SVY dataset are linkable only be variable except for:\n\nvar_def vary by var_name+strata for some variables but other do not for other variables; so this row has both by_var and by_var_strata filled out.\nsource vary by var_name+iso2 for some variables but other do not for other variables; so this row has both by_var and by_var_iso2 filled out.\n\n\n\n\nDownload linkage.csv for SVY"
+  },
+  {
+    "objectID": "pages/manuals/step4.html#deliverable",
+    "href": "pages/manuals/step4.html#deliverable",
+    "title": "Step 4: Renovate codebooks",
+    "section": "Deliverable",
+    "text": "Deliverable\nFor each data set review the metadta linkage evaluation. For each unique linkage that is present in your dataset you will need to prepare the assosiated codebook. The thought process and deliverables for our three example datasets can be seen below. Note these codebooks are from an older template, please use the template provided below.\n\n\n\n\n\n\nImportant\n\n\n\nStep 4 template: 📥 codebook_template.csv\n\n\n\n\nAir Pollution (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\nBased on the APS codebook evaluation we saw that all the metadata are categorized as simple; therefor our step -4-codebooks deliverable for this dataset contains one file - codebook_simple.csv\n\ncodebook_simple.csv\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBased on the CNS codebook evaluation we saw:\n\n17 simple fields\n2 by_country fields (source, public)\n\nTherefore we need to prepare two codebooks for this dataset (see below).\n\ncodebook_simple.csvcodebook_by_iso2.csv\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBased on the SVY codebook evaluation we saw:\n\n15 simple fields\n2 by_country fields (source, public, censor)\n2 by_strata (var_def, interpretation)\n\nTherefore we need to prepare three codebooks for this dataset (see below).\n\ncodebook_simple.csvcodebook_by_iso2.csvcodebook_by_strata.csv"
+  },
+  {
+    "objectID": "pages/manuals/step5.html#description",
+    "href": "pages/manuals/step5.html#description",
+    "title": "Step 5: Renovate data",
+    "section": "Description",
+    "text": "Description\nTo review data format and template can be found in principle F3 page. This step will is just reviewing your data and making sure it adheres to the standards."
+  },
+  {
+    "objectID": "pages/manuals/step5.html#deliverable",
+    "href": "pages/manuals/step5.html#deliverable",
+    "title": "Step 5: Renovate data",
+    "section": "Deliverable",
+    "text": "Deliverable\n\n\n\n\n\n\nImportant\n\n\n\nStep 5 template: 📥 data_template.csv\n\n\nFor each dataset you should have a data.csv as a deliverable\n\n\nAir Pollution Dataset (APS)SEC Census dataset (CNS)Health Survey (SVY)\n\n\naps_data.csv\n\n\n\n\n\n\n\n\n\ncns_data.csv\n\n\n\n\n\n\n\n\n\nsvy_data.csv\n\n\n\n\n\n\n\nBased on the SVY codebook evaluation we saw:\n\n15 simple fields\n2 by_country fields (source, public, censor)\n2 by_strata (var_def, interpretation)\n\nTherefore we need to prepare three codebooks for this dataset (see below)."
+  }
+]

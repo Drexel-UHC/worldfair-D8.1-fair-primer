@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.241">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ran Li">
+<meta name="dcterms.date" content="2023-01-31">
+
+<title>Tidy Data: structure and semantics of data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../logo.png" alt="SALURBAL logo." class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/fair/index.html">
+ <span class="menu-text">FAIR Implementation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/database/qc.html">
+ <span class="menu-text">Database</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LACUrbanHealth"><i class="bi bi-twitter" role="img" aria-label="SALURBAL Twitter">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Drexel-UHC/salurbal-project-dashboard"><i class="bi bi-github" role="img" aria-label="SALURBAL GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Tidy Data: structure and semantics of data</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#characteristics-of-a-tidy-dataset" id="toc-characteristics-of-a-tidy-dataset" class="nav-link" data-scroll-target="#characteristics-of-a-tidy-dataset">Characteristics of a tidy dataset</a>
+  <ul class="collapse">
+  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a></li>
+  <li><a href="#semantics" id="toc-semantics" class="nav-link" data-scroll-target="#semantics">Semantics</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy data</a></li>
+  </ul></li>
+  <li><a href="#examples-of-common-messy-data" id="toc-examples-of-common-messy-data" class="nav-link" data-scroll-target="#examples-of-common-messy-data">Examples of common messy data</a>
+  <ul class="collapse">
+  <li><a href="#column-headers-are-values-not-variable-names" id="toc-column-headers-are-values-not-variable-names" class="nav-link" data-scroll-target="#column-headers-are-values-not-variable-names">Column headers are values, not variable names</a></li>
+  <li><a href="#multiple-variables-stored-in-one-column" id="toc-multiple-variables-stored-in-one-column" class="nav-link" data-scroll-target="#multiple-variables-stored-in-one-column">Multiple variables stored in one column</a></li>
+  <li><a href="#multiple-types-in-one-table" id="toc-multiple-types-in-one-table" class="nav-link" data-scroll-target="#multiple-types-in-one-table">Multiple types in one table</a></li>
+  <li><a href="#one-type-in-multiple-tables." id="toc-one-type-in-multiple-tables." class="nav-link" data-scroll-target="#one-type-in-multiple-tables.">One type in multiple tables.</a></li>
+  </ul></li>
+  <li><a href="#reflections-for-salurbal" id="toc-reflections-for-salurbal" class="nav-link" data-scroll-target="#reflections-for-salurbal">Reflections for SALURBAL</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Drexel-UHC/salurbal-project-dashboard/edit/main/pages/blog/tidy-data/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Drexel-UHC/salurbal-project-dashboard/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Tidy Data: structure and semantics of data</h1>
+<p class="subtitle lead">Summary of data best practices (tidy data + relational database management) and reflections for SALURBAL.</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ran Li </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 31, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>These ideas and examples are from <span class="citation" data-cites="wickham2014">Wickham (<a href="#ref-wickham2014" role="doc-biblioref">2014</a>)</span> and <a href="https://www.oreilly.com/library/view/sql-in-a/9780596155322/ch01s01s01.html">Codd’s Rules for Relational Database Systems</a>.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>It is often said that 80% of data analysis is spent on the process of cleaning and preparing the data. Data preparation is not just a first step, but must be repeated many over the course of analysis as new problems come to light or new data is collected. Despite the amount of time it takes, there has been surprisingly little research on how to clean data well.</p>
+<p>The principles of tidy data provide a standard way to organise data values within a dataset. A standard makes initial data cleaning easier because you don’t need to start from scratch and reinvent the wheel every time. The tidy data standard has been designed to facilitate initial exploration and analysis of the data, and to simplify the development of data analysis tools that work well together.</p>
+<p>The principles of tidy data are closely tied to those of relational databases and Codd’s relational algebra (Codd 1990), but are framed in a language familiar to statisticians.</p>
+</section>
+<section id="characteristics-of-a-tidy-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="characteristics-of-a-tidy-dataset">Characteristics of a tidy dataset</h2>
+<section id="structure" class="level3">
+<h3 class="anchored" data-anchor-id="structure">Structure</h3>
+<ul>
+<li>Datastructure describes the physical layout of a dataset.</li>
+<li>Datasets are rectangular tables made up of <strong>rows</strong> and <strong>columns</strong>.</li>
+<li>Columns are almost always labeled, rows are sometimes labeeled.</li>
+</ul>
+</section>
+<section id="semantics" class="level3">
+<h3 class="anchored" data-anchor-id="semantics">Semantics</h3>
+<ul>
+<li>The semantics of a dataset describe its meaning</li>
+<li>A dataset is a collection of <strong>values</strong>.</li>
+<li>Values are organized in two ways. Every value belongs to a <strong>variable</strong> and an <strong>observation</strong>.
+<ul>
+<li>A variable contains all values that measure the same underlying attribute (like height, temperature, duration) across units.</li>
+<li>An observation contains all values measured on the same unit (like a person, or a day, or a race) across attributes.</li>
+</ul></li>
+</ul>
+<p><img src="images/image-267068559.png" class="img-fluid"></p>
+<p>Above dataset is shown in three different structures. Table 3 reoragnizes the data to make the values, variables and observations (semantics) more clear. The dataset contains 18 values representing three variables and six observations. <em>Variables</em> <code>name</code> - person, <code>trt</code> treatment and <code>result</code> value of some test. The observation depends on the exerpiemtnal design which in this case is a completely cross design, so the obervation type for this table is crossed (person, treatment).</p>
+<p>Note in a given analysis, there may be multiple levels of observation. For example, in a trial of new allergy medication we might have three observational types: demographic data collected from each person (age, sex, race), medical data collected from each person on each day (number of sneezes, redness of eyes), and meterological data collected on each day (temperature, pollen count).</p>
+<p>It is important to keep in mind the meaning/semantic (observations and variables) of your data when designing dataset structure (rows and columns).</p>
+</section>
+<section id="tidy-data" class="level3">
+<h3 class="anchored" data-anchor-id="tidy-data">Tidy data</h3>
+<p>Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is messy or tidy depending on how many row, columns and tables are matched with observations, vairables and types. In <strong>tidy data:</strong></p>
+<ol type="1">
+<li>Each variable forms a column</li>
+<li>Each observation forms a row</li>
+<li>Each type of observational unit forms a table.</li>
+</ol>
+<p>These rules are just Codd’s 3rd normal form but framed in statistical language and focusing on a single dataset rather than interconnection. <strong>Messy data</strong> is any other arrangement of the data.</p>
+<p><img src="images/image-1632838951.png" class="img-fluid"></p>
+<p>Table 3 is the tidy version of these data. Each row represents an observation, the <code>result</code> of one <code>treatment</code> on one <code>person</code>, and each column is a variable.</p>
+<p>Tidy data makes it easy for a computer to extract needed variables because it provides a standard way of structuring a dataset. Compare Table 3 to Table 1: in Table 1 you need to use different strategies to extract different variables. At the end of the day, the order of variables and observations (tidy vs messy) may not effect the results of an analysis, but tidy data is immediately machine actionabl, thus reusable, interoperable nd suited for performant vectorized computing - aka it will save you a lot of man hours!</p>
+<p>A good way to design your datasets (what are observations and what are variables), is to think about their role in the analysis: are values fixed by the design of the data collection, or are they measured during the course of the experiment? Fixed variables describe the experimental design and are known in advance. Computer scientists often call fixed variables dimensions, and statistician usually denote them with subscripts. Measured variables are what we actually measure in the study. Fixed variables should come first, followed by measured variables, each ordered so that related variables are contiguous. Rows can then be ordered by the first variable, breaking ties with the second and subsequent (fixed) variables. This is the convention adopted by all tabular displays in this paper.</p>
+</section>
+</section>
+<section id="examples-of-common-messy-data" class="level2">
+<h2 class="anchored" data-anchor-id="examples-of-common-messy-data">Examples of common messy data</h2>
+<section id="column-headers-are-values-not-variable-names" class="level3">
+<h3 class="anchored" data-anchor-id="column-headers-are-values-not-variable-names">Column headers are values, not variable names</h3>
+<p>While this raw format is very useful for some applications (e.g.good format for data entry, or matrix calculations) it is not machine actionable or tidy; to tidy it we need to pivot it making the dataset longer.</p>
+<p><img src="images/image-429613038.png" class="img-fluid"></p>
+</section>
+<section id="multiple-variables-stored-in-one-column" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-variables-stored-in-one-column">Multiple variables stored in one column</h3>
+<p>After you pivot your data, one common issue is that <code>column</code> variable names becomes a combination of multiple underlying variable names. Here we need to decompose this into its individual variables.</p>
+<p><img src="images/image-952592988.png" class="img-fluid"></p>
+</section>
+<section id="multiple-types-in-one-table" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-types-in-one-table">Multiple types in one table</h3>
+<p>Within a project, data is available at multiple levels, on different types of observational units. During tidying, each type of observational unit should be stored in its own table. This is closely related to the idea of <strong>database normalisation</strong>, where each facet is expressed in only one place. [[case3.png]]</p>
+<p>The Billboards data is an example of this type of messiness. The raw dataset contains two types of observations (song) and (song rank each week), this manifests as duplications of facts about the song: <code>artist</code> and <code>time</code> are repeated for each everysong in the week. This can be broken down into seperate tables aka <strong>database normalization</strong>.</p>
+<p>Note that Normalisation is useful for tidying and eliminating inconsistencies. However, there are few data analysis tools that work directly with relational data, so analysis usually also requires denormalisation or the merging the datasets back into one table.Normalisation is useful for tidying and eliminating inconsistencies. <strong>However, there are few data analysis tools that work directly with relational data, so analysis usually also requires denormalisation or the merging the datasets back into one table.</strong></p>
+</section>
+<section id="one-type-in-multiple-tables." class="level3">
+<h3 class="anchored" data-anchor-id="one-type-in-multiple-tables.">One type in multiple tables.</h3>
+<p>It’s also common to find data values about a single type of observational unit spread out over multiple tables or files. These tables and files are often split up by another variable, so that each represents a single year, person, or location. As long as the format for individual records is consistent, this is an easy problem to fix via importing, merging and oeprationalizeing file-name metadata.</p>
+</section>
+</section>
+<section id="reflections-for-salurbal" class="level1">
+<h1>Reflections for SALURBAL</h1>
+<ul>
+<li>Codd’s 4th rule is key: “Metadata (data about the database) must be stored in the database just as regular data is.”</li>
+<li>Data is largely useless without metadata. Unfortunately, SALURBAL metadata is loaded with complexity.</li>
+<li>The strength of SALURBAL, is harmonized multi-national, multi-year, multi-source data repository.</li>
+<li>This strength is also unfortunate the source of a lot of difficulties for data management.</li>
+<li>Due to the variability in metadata (public-access, data-source … ETC) within variables, it is key to have data point level observational units when tidying data.</li>
+<li>Having metadata available at the data point level is the only way to capture the complexities of our metadata and enable us to make our data more open while adhering to legal obligations such as DUAs.</li>
+</ul>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-wickham2014" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LACUrbanHealth">
+      <i class="bi bi-twitter" role="img" aria-label="SALURBAL Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Drexel-UHC/salurbal-project-dashboard">
+      <i class="bi bi-github" role="img" aria-label="SALURBAL GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
+
+
+
+</body></html>
